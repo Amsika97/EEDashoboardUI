@@ -1,0 +1,11 @@
+.login-card{
+    margin-left: 7%;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border: none;
+}
+.form-outline{
+    width: 300px;
+}
+.login{
+    color: #234F80;
+}

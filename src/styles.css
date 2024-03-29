@@ -1,0 +1,320 @@
+@import "./assets/fonts.css";
+
+.ngx-pagination .current {
+  background: #653fb1 !important;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+body {
+  margin: 0;
+  font-family: "InterBlack", system-ui, -apple-system, "Segoe UI", Robot;
+  background-color: rgb(239, 245, 243);
+}
+
+.piechartTab .mdc-tab {
+  background-color: #e6e7e7;
+}
+
+.piechartTab .mdc-tab .mdc-tab__text-label {
+  color: black;
+}
+
+.piechartTab .mdc-tab--active {
+  background-color: #bd267d;
+  color: white;
+}
+
+.piechartTab .mdc-tab--active .mdc-tab__text-label {
+  color: white !important;
+}
+
+.linechartTab .mdc-tab {
+  background-color: #e6e7e7;
+}
+
+.linechartTab .mdc-tab--active .mdc-tab__text-label {
+  color: #234f80 !important;
+  font-weight: bolder;
+}
+
+.linechartTab .mdc-tab .mdc-tab__text-label {
+  color: rgb(94, 94, 94);
+}
+
+.linechartTab .mdc-tab--active {
+  color: #234f80;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.mdc-switch {
+  width: 39px !important;
+}
+
+.mdc-switch__track {
+  height: 20px !important;
+  border-radius: 20px !important;
+}
+
+.mdc-switch:enabled .mdc-switch__track::after {
+  background: #234f80 !important;
+}
+
+.mdc-switch:enabled .mdc-switch__track::before {
+  background: #b5bad0 !important;
+}
+
+.mdc-switch .mdc-switch__handle {
+  left: 3px;
+}
+
+.mdc-switch.mdc-switch--checked .mdc-switch__handle {
+  left: 2px;
+}
+.mdc-switch__handle {
+  width: 15px !important;
+  height: 15px !important;
+}
+
+.mdc-elevation-overlay {
+  background: white !important;
+}
+
+.mdc-slider .mdc-slider__value-indicator {
+  transform: none !important;
+  opacity: 1 !important;
+}
+
+.mdc-switch__icons {
+  display: none !important;
+  /* .mat-mdc-menu-item {
+    min-height: 35px !important;
+  }
+  .mat-mdc-menu-item-text {
+    font-size: 15px !important;
+  } */
+}
+
+.metric-radio.mat-mdc-radio-group
+  .mat-mdc-radio-button
+  .mdc-form-field
+  .mdc-label {
+  font-size: 15px;
+  color: #6c757d;
+  padding: 0;
+}
+
+.matric-checkbox.mat-mdc-checkbox .mdc-form-field .mdc-label {
+  font-size: 15px;
+  color: #6c757d;
+  padding: 0;
+}
+
+.checkbox-section span .mat-mdc-checkbox {
+  margin-right: 10px;
+}
+
+.metricDropdown.mat-mdc-form-field {
+  width: 50%;
+}
+
+.metricDropdown.mat-mdc-form-field:hover {
+  background-color: unset !important;
+}
+
+.metricDropdown .mat-mdc-form-field-focus-overlay,
+.textarea-container .mat-mdc-form-field-focus-overlay {
+  background-color: unset !important;
+}
+
+.metricDropdown.mat-mdc-form-field .mat-mdc-text-field-wrapper,
+.textarea-container.mat-mdc-form-field .mat-mdc-text-field-wrapper {
+  background-color: unset !important;
+  border: 1px solid #c7c7c7;
+  border-radius: 2px 2px 0px 0px;
+}
+.dtpick .mat-mdc-text-field-wrapper {
+  height: 35px !important;
+}
+.dtpick .mat-mdc-form-field-icon-suffix {
+  margin-top: -7px;
+}
+.metricDropdown .mat-mdc-form-field-subscript-wrapper {
+  display: none;
+}
+
+.textarea-container {
+  width: 100%;
+  min-height: 100px;
+}
+
+.rangeQuestion {
+  width: 70% !important;
+  margin: 23px 20px !important;
+}
+
+.sub-heading {
+  color: #91979d;
+}
+
+.mat-mdc-tooltip .mdc-tooltip__surface {
+  text-align: left;
+  padding: 0.8em 1em;
+  font-family: Regular;
+}
+
+.test {
+  white-space: pre-line !important;
+}
+
+ol.breadcrumb li:last-child {
+  color: #bd267d;
+}
+
+ol.breadcrumb li a {
+  text-decoration: none;
+  cursor: pointer;
+  color: #91979d;
+}
+
+ol.breadcrumb li a:hover {
+  text-decoration: underline;
+}
+
+.mat-stepper-label-position-bottom
+  .mat-horizontal-stepper-header:not(:last-child):has(
+    div.mat-step-icon-state-done
+  )::after {
+  background: #234f80;
+}
+
+.mat-horizontal-stepper-header:has(div.mat-step-icon-state-done)
+  .mat-step-text-label {
+  color: #234f80;
+}
+
+.mat-horizontal-stepper-header:not(:last-child):has(div.mat-step-icon-selected)
+  .mat-step-text-label {
+  color: #234f80;
+}
+
+.mat-stepper-label-position-bottom
+  .mat-horizontal-stepper-header:not(:last-child):has(
+    div.mat-step-icon-state-done
+  )
+  + .mat-stepper-horizontal-line {
+  background: #234f80;
+}
+
+.mat-stepper-label-position-bottom
+  .mat-horizontal-stepper-header:has(div.mat-step-icon-selected):before {
+  background: #234f80 !important;
+}
+
+.mat-stepper-label-position-bottom
+  .mat-horizontal-stepper-header:has(div.mat-step-icon-selected)::before {
+  background: #234f80 !important;
+}
+
+.mat-stepper-label-position-bottom
+  .mat-horizontal-stepper-header:has(
+    div.mat-step-icon-state-selected-submit-ass
+  )::before {
+  background: #234f80 !important;
+}
+
+.mat-stepper-label-position-bottom
+  .mat-horizontal-stepper-header:has(
+    div.mat-step-icon-state-selected-submit-ass
+  ):before {
+  background: #234f80 !important;
+}
+
+.mat-horizontal-stepper-header:has(div.mat-step-icon-state-selected-submit-ass)
+  .mat-step-text-label {
+  color: #234f80;
+}
+
+.mat-stepper-label-position-bottom
+  .mat-horizontal-stepper-header:has(div.mat-step-icon-state-done)::before {
+  background: #234f80;
+}
+
+.xng-breadcrumb-trail {
+  color: #bd267d;
+}
+
+.xng-breadcrumb-item {
+  color: #b5bad0;
+}
+
+html {
+  --mat-table-header-container-height: 36px !important;
+}
+
+.subtext {
+  color: #6c757d;
+  font-size: 12px;
+  font-family: "semibold";
+}
+
+.xng-breadcrumb-link:hover {
+  text-decoration: none !important;
+}
+
+.xng-breadcrumb-separator {
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+  color: #91979d;
+}
+
+@media (min-width: 1400px) {
+  .col-xxl-12 {
+    flex: 0 0 auto;
+    width: 94%;
+    max-width: 94%;
+  }
+}
+
+.mat-mdc-dialog-container .mdc-dialog__content {
+  color: #31374a !important;
+}
+
+.mat-mdc-form-field-subscript-wrapper {
+  display: none;
+}
+.mat-mdc-form-field-infix {
+  min-height: 0px !important;
+}
+.mat-mdc-text-field-wrapper.mdc-text-field--outlined .mat-mdc-form-field-infix {
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+}
+.mat-mdc-form-field-infix {
+  width: 140px !important;
+}
+.mat-mdc-select-placeholder {
+  font-size: smaller;
+}

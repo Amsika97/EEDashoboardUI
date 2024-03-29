@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="390" height="146" viewBox="0 0 390 146">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_3387" data-name="Rectangle 3387" width="390" height="146" rx="4" fill="#ffe386"/>
+    </clipPath>
+    <filter id="Ellipse_138" x="224" y="-35" width="213" height="216" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="16" result="blur"/>
+      <feFlood flood-color="#fff" flood-opacity="0.2"/>
+      <feComposite operator="in" in2="blur"/>
+    </filter>
+    <clipPath id="clip-path-2">
+      <rect id="Rectangle_3427" data-name="Rectangle 3427" width="76" height="76" transform="translate(294 35)" fill="#6c757d"/>
+    </clipPath>
+  </defs>
+  <g id="Group_11304" data-name="Group 11304" transform="translate(-241 -252)">
+    <g id="Group_11232" data-name="Group 11232" transform="translate(241 252)">
+      <rect id="Rectangle_3370" data-name="Rectangle 3370" width="390" height="146" rx="4" fill="#7eeaf5"/>
+      <g id="Mask_Group_10229" data-name="Mask Group 10229" clip-path="url(#clip-path)">
+        <ellipse id="Ellipse_142" data-name="Ellipse 142" cx="153.5" cy="157" rx="153.5" ry="157" transform="translate(-128 -8)" fill="#17747e"/>
+        <ellipse id="Ellipse_135" data-name="Ellipse 135" cx="153.5" cy="157" rx="153.5" ry="157" transform="translate(-134 -11)" fill="#b4f7ff"/>
+        <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Ellipse_138)">
+          <ellipse id="Ellipse_138-2" data-name="Ellipse 138" cx="58.5" cy="60" rx="58.5" ry="60" transform="translate(272 13)" fill="#fff"/>
+        </g>
+      </g>
+    </g>
+    <g id="Mask_Group_10297" data-name="Mask Group 10297" transform="translate(240 252)" clip-path="url(#clip-path-2)">
+      <path id="contacts-book-fill" d="M25.333,7.238V79.619H10.857V7.238Zm7.238,0H68.78a7.229,7.229,0,0,1,7.22,7.2V72.414a7.211,7.211,0,0,1-7.22,7.2H32.571ZM79.619,21.714h7.238V36.19H79.619Zm0,21.714h7.238V57.9H79.619Zm-25.333,0a7.238,7.238,0,1,0-7.238-7.238A7.238,7.238,0,0,0,54.286,43.429ZM43.429,57.9H65.143a10.857,10.857,0,1,0-21.714,0Z" transform="translate(283.143 29.571)" fill="#17747e"/>
+    </g>
+  </g>
+</svg>

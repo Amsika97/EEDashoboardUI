@@ -1,0 +1,36 @@
+<mat-dialog-content>
+  <!-- <div mat-dialog-actions class="crossbtn" align="end">
+    <div
+      
+      mat-button
+      [mat-dialog-close]="'no'"
+      cdkFocusInitial
+    >
+      X
+    </div>
+  </div> -->
+  <div class="content">
+    <img
+      mat-card-image
+      align="center"
+      src="{{ '../../assets/svg/' + data.status + '.svg' }}"
+      alt=""
+      class="menu-icon"
+    />
+
+    <div>
+      <p mat-dialog-title class="main" align="center">{{ data.heading }}</p>
+      <p mat-dialog-title class="para" align="center">{{ data.subHeading }}</p>
+    </div>
+    <div mat-dialog-actions align="center">
+      <button
+        class="backbtn"
+        mat-button
+        [mat-dialog-close]="'yes'"
+        cdkFocusInitial
+      >
+        {{ data.buttonText }}
+      </button>
+    </div>
+  </div>
+</mat-dialog-content>

@@ -1,0 +1,45 @@
+.labelname {
+  padding-bottom: 4px;
+}
+.close {
+  border-radius: 5px;
+  background-color: #e96363;
+}
+.optionBorder {
+  padding: 9px;
+}
+.modal-title {
+  text-align: center;
+  font: normal normal bold 31px/40px Inter;
+  letter-spacing: 0px;
+  color: #414141;
+  opacity: 1;
+  height: 20px;
+  font-family: "Medium";
+}
+.text1 {
+  font-family: Regular;
+}
+.footersave {
+  border-radius: 8px;
+  opacity: 1;
+  height: 47px;
+  color: #fff;
+  width: 141px;
+  text-align: center;
+  letter-spacing: 0px;
+  font-family: Medium;
+  background: #234f80 0% 0% no-repeat padding-box;
+}
+.footerclose {
+  border-radius: 8px;
+  border: 1px solid #234f80;
+  opacity: 1;
+  height: 47px;
+  color: #234f80;
+  width: 141px;
+  text-align: center;
+  letter-spacing: 0px;
+  font-family: Medium;
+  background: #ffffff 0% 0% no-repeat padding-box;
+}

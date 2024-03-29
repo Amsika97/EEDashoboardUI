@@ -1,0 +1,31 @@
+<div
+  *ngIf="
+    flowInforData.flowType === 'reviewed'
+  "
+  class="reviewerComment"
+>
+  <div>
+    <div class="categoryName bg-gradient-secondary fw-medium mb-3">
+      Reveiwer Comments:
+    </div>
+    <div *ngFor="let reviewer of categoryList.reviewers">
+      <div class="d-flex flex-row" style="justify-content: space-between">
+        <div class="d-flex flex-row">
+          <div class="reviewerInitial">
+            {{ createInititals(reviewer.reviewerName) }}
+          </div>
+          <div class="d-flex flex-column mx-3">
+            {{ reviewer.reviewerName }}
+            <div style="color: #91979d">
+              {{ reviewer.comment }}
+            </div>
+          </div>
+        </div>
+        <div style="color: #6c757d">
+          {{ reviewer.reviewerAt | date : "shortTime" }} /
+          {{ reviewer.reviewerAt | date : "dd-MMM-YYYY" }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

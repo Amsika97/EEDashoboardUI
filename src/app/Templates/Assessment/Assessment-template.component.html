@@ -1,0 +1,377 @@
+<!-- <page-navigation
+  *ngIf="!previewTemplate"
+  [linkText]="flowInforData.heading"
+  [subHeading]="headingLabels.ReviewHeadingTitle"
+>
+</page-navigation> -->
+<div ngxUiLoaderBlurred>
+<div #containerSelector>
+  <div class="main-div m-2 mt-0">
+    <app-assessment-header
+      *ngIf="showSections.includes('header')"
+      [flowInforData]="flowInforData"
+      [headingLabels]="headingLabels.assessmentSubHeading"
+    ></app-assessment-header>
+    <!-- <hr
+    class="hr"
+    *ngIf="
+      flowInforData.flowType === 'new' || flowInforData.flowType === 'saved'
+    "
+  /> -->
+    <mat-stepper
+      *ngIf="
+        flowInforData.flowType === 'new' || flowInforData.flowType === 'saved'
+      "
+      style="margin: 2% 10% 0% 10%"
+      linear
+      #stepper
+      [selectedIndex]="selectedStep"
+      [labelPosition]="'bottom'"
+    >
+      <!-- [selectedIndex]="
+      !(
+        flowInforData.flowType === 'submitted' ||
+        flowInforData.flowType === 'reviewer' ||
+        flowInforData.flowType === 'preview' ||
+        flowInforData.flowType === 'reports'
+      )
+        ? 1
+        : 3
+    " -->
+      <mat-step [editable]="false" label="Select Template" state="done">
+        <ng-template matStepperIcon="ui-checks">
+          <mat-icon
+            svgIcon="ui-checks"
+            class="ui-checks"
+            style="width: 34px"
+          ></mat-icon>
+        </ng-template>
+      </mat-step>
+      <!-- state="{{!(
+          flowInforData.flowType === 'submitted' ||
+          flowInforData.flowType === 'reviewer' ||
+          flowInforData.flowType === 'preview'
+        ) ? 'take-ass' : 'done'}}"  -->
+      <mat-step
+        label="Take Assessment"
+        state="{{ selectedStep === 1 ? 'selected-take-ass' : 'done' }}"
+        class="take-ass"
+        [editable]="false"
+      >
+        <ng-template matStepperIcon="take-ass">
+          <mat-icon
+            svgIcon="take-ass"
+            style="width: 34px; height: 23px"
+          ></mat-icon>
+        </ng-template>
+        <ng-template matStepperIcon="selected-take-ass">
+          <mat-icon
+            svgIcon="selected-take-ass"
+            style="width: 34px; height: 23px"
+          ></mat-icon>
+        </ng-template>
+      </mat-step>
+      <mat-step
+        label="Submit Assessment"
+        state="{{
+          selectedStep === 2
+            ? 'selected-submit-ass'
+            : selectedStep === 3
+            ? 'done'
+            : 'submit-ass'
+        }}"
+        class="submit-ass"
+        [editable]="false"
+      >
+        <ng-template matStepperIcon="selected-submit-ass">
+          <mat-icon
+            svgIcon="selected-submit-ass"
+            style="width: 34px; height: 23px"
+          ></mat-icon>
+        </ng-template>
+        <ng-template matStepperIcon="submit-ass">
+          <mat-icon
+            svgIcon="submit-ass"
+            style="width: 34px; height: 23px"
+          ></mat-icon>
+        </ng-template>
+      </mat-step>
+      <!-- <mat-step
+      label="{{
+        flowInforData.status === 'approved'
+          ? 'Approved'
+          : flowInforData.status === 'rejected'
+          ? 'Rejected'
+          : 'Submitted'
+      }}"
+      state="{{
+        !(
+          flowInforData.flowType === 'submitted' ||
+          flowInforData.flowType === 'reviewer' ||
+          flowInforData.flowType === 'preview' ||
+          flowInforData.flowType === 'reports'
+        )
+          ? 'done-custom'
+          : flowInforData.status === 'approved'
+          ? 'approved'
+          : flowInforData.status === 'rejected'
+          ? 'rejected'
+          : 'done-custom'
+      }}"
+      [editable]="false"
+    >
+      <ng-template matStepperIcon="done-custom">
+        <mat-icon
+          style="color: black; font-size: 30px; height: 30px; width: 30px"
+          >task_alt</mat-icon
+        >
+      </ng-template>
+
+      <ng-template matStepperIcon="approved">
+        <mat-icon
+          class="approved"
+          style="font-size: 34px; height: 34px; width: 34px"
+          >task_alt</mat-icon
+        >
+      </ng-template>
+
+      <ng-template matStepperIcon="rejected">
+        <mat-icon
+          svgIcon="rejected"
+          class="rejected"
+          style="height: 34px; width: 34px"
+        ></mat-icon>
+      </ng-template>
+    </mat-step> -->
+
+      <ng-template matStepperIcon="done" let-index="index">
+        <mat-icon
+          *ngIf="index === 0"
+          svgIcon="ui-checks-white"
+          class="ui-checks"
+          style="width: 34px"
+        ></mat-icon>
+        <mat-icon
+          *ngIf="index === 1"
+          svgIcon="take-ass-white"
+          class="ui-checks"
+          style="width: 34px; height: 23px"
+        ></mat-icon>
+        <mat-icon
+          *ngIf="index === 2"
+          svgIcon="submit-ass-white"
+          class="ui-checks"
+          style="width: 34px; height: 23px"
+        ></mat-icon>
+        <mat-icon *ngIf="index === 3">task_alt</mat-icon>
+      </ng-template>
+
+      <ng-template matStepperIcon="edit" let-index="index">
+        <mat-icon
+          *ngIf="index === 0"
+          svgIcon="ui-checks"
+          class="ui-checks"
+          style="width: 34px"
+        ></mat-icon>
+        <mat-icon
+          *ngIf="index === 1"
+          svgIcon="take-ass"
+          class="ui-checks"
+          style="width: 34px; height: 23px"
+        ></mat-icon>
+        <mat-icon
+          *ngIf="index === 2"
+          svgIcon="submit-ass"
+          class="ui-checks"
+          style="width: 34px; height: 23px"
+        ></mat-icon>
+        <mat-icon *ngIf="index === 3">task_alt</mat-icon>
+      </ng-template>
+    </mat-stepper>
+    <!-- <hr
+    *ngIf="
+      flowInforData.flowType === 'new' || flowInforData.flowType === 'saved'
+    "
+    class="hr"
+    style="margin: 5px; font-family: 'SemiBold'"
+  /> -->
+    <div
+      class="container col-xl-12 col-xxl-12"
+      [ngClass]="
+        flowInforData.flowType === 'submitted' && !flowInforData.status
+          ? 'submitted-popup-border'
+          : ''
+      "
+      style="position: relative; margin-top: 2%; border: 1px solid #d8d8d8"
+      [ngStyle]="{ padding: flowInforData.flowType === 'new' ? '' : '0px' }"
+      *ngIf="!!categoryList"
+    >
+      <div class="container__header" #container__header>
+        <app-account-project-details
+          *ngIf="showSections.includes('proJectDetails')"
+          [flowInforData]="flowInforData"
+          [categoryList]="categoryList"
+          [projectName]="projectName"
+          [businessUnitName]="businessUnitName"
+          [accountName]="accountName"
+          [selectedStep]="selectedStep"
+        ></app-account-project-details>
+
+        <div
+          class="scrollable-content"
+          #scrollableContent
+          *ngIf="!isPopupOpen && !isConfirmPopup"
+        >
+          <app-reviewer-details
+            *ngIf="showSections.includes('reviewerDetails')"
+            [flowInforData]="flowInforData"
+            [categoryList]="categoryList"
+          ></app-reviewer-details>
+
+          <app-question-list
+            *ngIf="showSections.includes('questionList')"
+            [flowInforData]="flowInforData"
+            [categoryList]="categoryList"
+            [disableQuestion]="disableQuestion"
+            [originalData]="originalData"
+            [isSubmitted]="isSubmitted"
+            [assesmentId]="assesmentId"
+            [popupData]="popupData"
+            [respMsg]="respMsg"
+            (resetDefault)="resetDefault()"
+            (validateQuestion)="validateQuestion($event)"
+            (callSaveReviewCommentFun)="callSaveReviewCommentFun($event)"
+            (respMsgFun)="respMsgFun($event)"
+          ></app-question-list>
+        </div>
+        <div
+          *ngIf="
+            !(isPopupOpen || isConfirmPopup) && containerScrollPercentage > 15
+          "
+        >
+          <div
+            [ngClass]="{
+              container_footer: containerScrollPercentage <= scrollActivePercentage,
+              container_footer_stickbottom: containerScrollPercentage >= scrollActivePercentage,
+            }"
+            *ngIf="
+              !(
+                flowInforData.flowType === 'submitted' ||
+                flowInforData.flowType === 'reviewer' ||
+                flowInforData.flowType === 'reviewed' ||
+                flowInforData.flowType === 'inactive' ||
+                flowInforData.flowType === 'preview' ||
+                flowInforData.flowType === 'reports'
+              )
+            "
+          >
+            <div
+              class="button-group d-flex flex-row align-items-center justify-content-center"
+            >
+              <div
+                class="button-group d-flex flex-row align-items-center justify-content-center me-4"
+              >
+                <!--   <button (click)="resetCategory()" class="reset">RESET1</button> -->
+                <button
+                  class="btn btn-secondary"
+                  style="height: 34px"
+                  (click)="resetCategory()"
+                >
+                  RESET
+                </button>
+                <button
+                  (click)="
+                    isPopupOpen = true;
+                    popupData = {
+                      name: 'Are you sure you want to Save Assessment'
+                    };
+                    isSaveAction = 'saveCategory';
+                    pageComponentService.pageScroll('bottom')
+                  "
+                  class="save"
+                >
+                  SAVE
+                </button>
+                <button
+                  (click)="isSaveAction = 'submitAssessment'; submitCategory()"
+                  class="submit"
+                >
+                  PREVIEW
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="isPopupOpen || isConfirmPopup" class="overlay"></div>
+        <div *ngIf="isPopupOpen" class="scrollable-content div-center">
+          <h1 class="msg" align="center">
+            {{ popupData.name }}
+          </h1>
+
+          <div mat-dialog-actions align="center">
+            <button
+              class="nobtn"
+              mat-button
+              (click)="isPopupOpen = false; selectedStep = 1"
+            >
+              NO
+            </button>
+            <button class="yesbtn" mat-button (click)="clickOnYesConsent()">
+              YES
+            </button>
+          </div>
+        </div>
+        <div *ngIf="isConfirmPopup" class="scrollable-content div-center">
+          <div class="content">
+            <img
+              mat-card-image
+              align="center"
+              src="{{ '../../assets/svg/' + confirmPopupData.status + '.svg' }}"
+              alt=""
+              class="menu-icon"
+            />
+
+            <div>
+              <p mat-dialog-title class="main" align="center">
+                {{ confirmPopupData.heading }}
+              </p>
+              <p mat-dialog-title class="para" align="center">
+                {{ confirmPopupData.subHeading }}
+              </p>
+            </div>
+            <hr claaa="s1" />
+          </div>
+          <div mat-dialog-actions style="margin-left: 678px">
+            <button
+              class="backbtn"
+              mat-icon-button
+              [mat-dialog-close]="'yes'"
+              cdkFocusInitial
+              (click)="backToHome('dashboard')"
+            >
+              {{ confirmPopupData.buttonText }}
+            </button>
+
+            <button
+              class="backbtn1"
+              mat-icon-button
+              [mat-dialog-close]="'yes'"
+              cdkFocusInitial
+              (click)="
+                backToHome(
+                  flowInforData.flowType === 'reviewer'
+                    ? 'dashboard/review-assessments'
+                    : 'dashboard/assessments'
+                )
+              "
+            >
+              {{ confirmPopupData.buttonText1 }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<ngx-ui-loader fgsColor="#bd267d" pbColor="#bd267d" text="Please wait...."></ngx-ui-loader>

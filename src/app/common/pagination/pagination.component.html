@@ -1,0 +1,36 @@
+
+<div class="control-main"
+  [ngClass]="{
+    'justify-content-start': alignment === 'left',
+    'justify-content-center': alignment === 'center',
+    'justify-content-end': alignment === 'right'
+}">
+  <div class="page-controls" >
+    <pagination-controls
+    [id]="'advanced'"
+    [maxSize]="maxSize"
+    [directionLinks]="showDirectionLinks"
+    [autoHide]="autoHide"
+    [responsive]="responsive"
+    [previousLabel]="labels.previousLabel"
+    [nextLabel]="labels.nextLabel"
+    [screenReaderPaginationLabel]="labels.screenReaderPaginationLabel"
+    [screenReaderPageLabel]="labels.screenReaderPageLabel"
+    [screenReaderCurrentLabel]="labels.screenReaderCurrentLabel"
+    (pageChange)="pageChange.emit($event)"
+  >
+</pagination-controls>
+  
+</div>
+ <div class="select-page-size-div">
+  <label for="">Items per page</label>
+  <select class="form-select select-pageSizes form-select-sm" (change)="onSelectItemsPerPage($event)">
+    <option *ngFor="let size of pageSizes">
+      {{ size }}
+    </option>
+  </select>
+ </div>
+  
+
+
+</div>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="390" height="146" viewBox="0 0 390 146">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_3386" data-name="Rectangle 3386" width="390" height="146" rx="4" transform="translate(0.334)" fill="#ffe386"/>
+    </clipPath>
+    <filter id="Ellipse_139" x="222" y="-35" width="216" height="216" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="16" result="blur"/>
+      <feFlood flood-color="#fff" flood-opacity="0.2"/>
+      <feComposite operator="in" in2="blur"/>
+    </filter>
+  </defs>
+  <g id="Group_11233" data-name="Group 11233" transform="translate(-0.334)">
+    <rect id="Rectangle_3370" data-name="Rectangle 3370" width="390" height="146" rx="4" transform="translate(0.334)" fill="#f5bc00"/>
+    <g id="Group_10228" data-name="Group 10228" clip-path="url(#clip-path)">
+      <g transform="matrix(1, 0, 0, 1, 0.33, 0)" filter="url(#Ellipse_139)">
+        <circle id="Ellipse_139-2" data-name="Ellipse 139" cx="60" cy="60" r="60" transform="translate(270 13)" fill="#fff"/>
+      </g>
+      <circle id="Ellipse_143" data-name="Ellipse 143" cx="157" cy="157" r="157" transform="translate(-130.666 -8)" fill="#b25b00"/>
+      <circle id="Ellipse_134" data-name="Ellipse 134" cx="157" cy="157" r="157" transform="translate(-136.666 -11)" fill="#ffdb64"/>
+    </g>
+  </g>
+</svg>

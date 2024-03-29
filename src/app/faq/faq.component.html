@@ -1,0 +1,41 @@
+<div class="container faq-page">
+  <div class="headings px-3">
+    <div class="d-flex flex-column">
+      <mat-card [ngClass]="{'active-tab': isSelected('user')}" (click)="getFaq('user')">
+        <mat-card-content>
+          <strong class="faq-list">User FAQ'S</strong>
+          <div class="subtext">subtext</div>
+        </mat-card-content>
+      </mat-card>
+      <div class="py-3">
+        <mat-card [ngClass]="{'active-tab': isSelected('reviewer')}" (click)="getFaq('reviewer')">
+          <mat-card-content>
+            <strong class="faq-list">Reviewer FAQ'S</strong>
+            <div class="subtext">subtext</div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <mat-card [ngClass]="{'active-tab': isSelected('admin')}" (click)="getFaq('admin')">
+        <mat-card-content>
+          <strong class="faq-list">Admin FAQ'S</strong>
+          <div class="subtext">subtext</div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <div class="faqs">
+    <mat-card>
+      <mat-card-content class="faq-content">
+        <div *ngFor="let faq of specificFAQ">
+          <li class="py-2 faq-list">
+            <span class="py-2 question">
+              {{ faq.question }}
+            </span>
+            <div class="subtext pt-2">{{ faq.answer }}</div>
+          </li>
+          <mat-divider></mat-divider>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

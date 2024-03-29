@@ -1,0 +1,41 @@
+<div class="search-cont">
+  <div class="container search">
+    <div class="row">
+      <div class="col-lg-10">
+        <div class="input-group">
+          <input
+            type="text"
+            [(ngModel)]="searchTextModal"
+            (keyup.enter)="OnSearch()"
+            class="form-control inputtype"
+            (input)="onSearchChange($event)"
+            [placeholder]="textPlaceHolder"
+            aria-label="Recipient's username"
+            aria-describedby="button-addon2"
+          />
+
+          <button
+            *ngIf="searchTextModal.length"
+            class="btn btn-outline-secondary clearBtn"
+            type="button"
+            id="button-addon2"
+            (click)="clearSearch()"
+          >
+            X
+          </button>
+        </div>
+      </div>
+      <div class="col-lg-2">
+        <button
+          class="searchBtn"
+          mat-button
+          color="primary"
+          [disabled]="buttonDisable"
+          (click)="OnSearch()"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

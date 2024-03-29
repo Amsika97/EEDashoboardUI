@@ -1,0 +1,549 @@
+<div class="modal-header">
+  <h4 class="modal-title">Add New Score</h4>
+  <button
+    mat-icon-button
+    class="close-button"
+    [mat-dialog-close]="true"
+    (click)="modalRef.hide()"
+  >
+    <mat-icon class="close-icon" style="color: #bd267d">close</mat-icon>
+  </button>
+</div>
+<div class="modal-body text1">
+  <form [formGroup]="addScoreForm" (ngSubmit)="onSubmit(addScoreForm.value)">
+    <div class="row">
+      <div class="form-group col-xs-6 col-lg-6 col-md-6">
+        <label for="scoreType" class="labelname"
+          >Select Scoring Type <span class="text-danger text">*</span></label
+        >
+        <select
+          class="form-select"
+          aria-label="Default select example"
+          #mySelect
+          (change)="changeOption($event)"
+        >
+          <option disabled selected>Select Score Name</option>
+          <option *ngFor="let type of scoreTypes" value="{{ type.id }}">
+            {{ type.value }}
+          </option>
+        </select>
+      </div>
+      <div class="form-group col-xs-6 col-lg-6 col-md-6">
+        <label for="scoreName" class="labelname"
+          >Score Name<span class="text-danger text">*</span></label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="scoreName"
+          formControlName="scoreName"
+          [ngClass]="{
+            'is-invalid':
+              submitted &&
+              addScoreForm.controls['scoreName'].errors &&
+              (addScoreForm.controls['scoreName'].touched ||
+                addScoreForm.controls['scoreName'].dirty)
+          }"
+        />
+        <div
+          *ngIf="addScoreForm.controls['scoreName'].hasError('required')"
+          class="invalid-feedback"
+        >
+          Score Name is required
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div class="display-content">
+      <div *ngIf="selectedOption">
+        <div class="row">
+          <div class="row pb-2">
+            <label><b>Option Value 1 </b></label><br />
+            <div class="form-group col-xs-6 col-lg-6 col-md-6">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="from1"
+                [placeholder]="isRange ? 'From Range' : 'Option 1 value'"
+                (change)="updateToValue($event, 'to1')"
+                [ngClass]="{
+                  'is-invalid':
+                    submitted &&
+                    addScoreForm.controls['from1'].errors &&
+                    (addScoreForm.controls['from1'].touched ||
+                      addScoreForm.controls['from1'].dirty)
+                }"
+              />
+
+              <div
+                *ngIf="
+                  submitted &&
+                  (addScoreForm.controls['from1'].touched ||
+                    addScoreForm.controls['from1'].dirty)
+                "
+                class="invalid-feedback"
+              >
+                <div
+                  *ngIf="addScoreForm.controls['from1'].hasError('required')"
+                >
+                  {{ isRange ? "From Range" : "Option 1 value" }} is required
+                </div>
+                <div
+                  *ngIf="
+                    !addScoreForm.controls['from1'].hasError('required') &&
+                    addScoreForm.controls['from1'].hasError('pattern')
+                  "
+                >
+                  Please enter a valid number.
+                </div>
+                <div
+                  *ngIf="
+                    !addScoreForm.controls['from1'].hasError('required') &&
+                    !addScoreForm.controls['from1'].hasError('pattern') &&
+                    addScoreForm.controls['from1'].hasError('greaterThanZero')
+                  "
+                >
+                  Value must be greater than 0
+                </div>
+              </div>
+            </div>
+            <div *ngIf="isRange" class="form-group col-xs-6 col-lg-6 col-md-6">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="to1"
+                placeholder="To Range"
+                [ngClass]="{
+                  'is-invalid':
+                    submitted &&
+                    addScoreForm.controls['to1'].errors &&
+                    (addScoreForm.controls['to1'].touched ||
+                      addScoreForm.controls['to1'].dirty)
+                }"
+              />
+
+              <div
+                *ngIf="
+                  submitted &&
+                  (addScoreForm.controls['to1'].touched ||
+                    addScoreForm.controls['to1'].dirty)
+                "
+                class="invalid-feedback"
+              >
+                <div *ngIf="addScoreForm.controls['to1'].hasError('required')">
+                  To Range is required
+                </div>
+                <div
+                  *ngIf="
+                    !addScoreForm.controls['to1'].hasError('required') &&
+                    addScoreForm.controls['to1'].hasError('pattern')
+                  "
+                >
+                  Please enter a valid number.
+                </div>
+                <div
+                  *ngIf="
+                    !addScoreForm.controls['to1'].hasError('required') &&
+                    addScoreForm.controls['to1'].hasError('isGreaterThanFrom')
+                  "
+                >
+                  Must be greater than From value
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row pb-2">
+            <label><b>Option Value 2 </b></label><br />
+            <div class="form-group col-xs-6 col-lg-6 col-md-6">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="from2"
+                [placeholder]="isRange ? 'From Range' : 'Option 2 value'"
+                (change)="updateToValue($event, 'to2')"
+                [ngClass]="{
+                  'is-invalid':
+                    submitted &&
+                    addScoreForm.controls['from2'].errors &&
+                    (addScoreForm.controls['from2'].touched ||
+                      addScoreForm.controls['from2'].dirty)
+                }"
+              />
+
+              <div
+                *ngIf="
+                  submitted &&
+                  (addScoreForm.controls['from2'].touched ||
+                    addScoreForm.controls['from2'].dirty)
+                "
+                class="invalid-feedback"
+              >
+                <div
+                  *ngIf="addScoreForm.controls['from2'].hasError('required')"
+                >
+                  {{ isRange ? "From Range" : "Option 2 value" }} is required
+                </div>
+                <div
+                  *ngIf="
+                    !addScoreForm.controls['from2'].hasError('required') &&
+                    addScoreForm.controls['from2'].hasError('pattern')
+                  "
+                >
+                  Please enter a valid number.
+                </div>
+                <div
+                  *ngIf="
+                    !addScoreForm.controls['from2'].hasError('required') &&
+                    addScoreForm.controls['from2'].hasError('isGreaterThanFrom')
+                  "
+                >
+                  Must be greater than Option1
+                </div>
+              </div>
+            </div>
+            <div *ngIf="isRange" class="form-group col-xs-6 col-lg-6 col-md-6">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="to2"
+                placeholder="To Range"
+                [ngClass]="{
+                  'is-invalid':
+                    submitted &&
+                    addScoreForm.controls['to2'].errors &&
+                    (addScoreForm.controls['to2'].touched ||
+                      addScoreForm.controls['to2'].dirty)
+                }"
+              />
+
+              <div
+                *ngIf="
+                  submitted &&
+                  (addScoreForm.controls['to2'].touched ||
+                    addScoreForm.controls['to2'].dirty)
+                "
+                class="invalid-feedback"
+              >
+                <div *ngIf="addScoreForm.controls['to2'].hasError('required')">
+                  To Range is required
+                </div>
+                <div
+                  *ngIf="
+                    !addScoreForm.controls['to2'].hasError('required') &&
+                    addScoreForm.controls['to2'].hasError('pattern')
+                  "
+                >
+                  Please enter a valid number.
+                </div>
+                <div
+                  *ngIf="
+                    !addScoreForm.controls['to2'].hasError('required') &&
+                    addScoreForm.controls['to2'].hasError('isGreaterThanFrom')
+                  "
+                >
+                  Must be greater than From value
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row pb-2">
+            <label><b>Option Value 3 </b></label><br />
+            <div class="form-group col-xs-6 col-lg-6 col-md-6">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="from3"
+                [placeholder]="isRange ? 'From Range' : 'Option 3 value'"
+                (change)="updateToValue($event, 'to3')"
+                [ngClass]="{
+                  'is-invalid':
+                    submitted &&
+                    addScoreForm.controls['from3'].errors &&
+                    (addScoreForm.controls['from3'].touched ||
+                      addScoreForm.controls['from3'].dirty)
+                }"
+              />
+
+              <div
+                *ngIf="
+                  submitted &&
+                  (addScoreForm.controls['from3'].touched ||
+                    addScoreForm.controls['from3'].dirty)
+                "
+                class="invalid-feedback"
+              >
+                <div
+                  *ngIf="addScoreForm.controls['from3'].hasError('required')"
+                >
+                  {{ isRange ? "From Range" : "Option 3 value" }} is required
+                </div>
+                <div
+                  *ngIf="
+                    !addScoreForm.controls['from3'].hasError('required') &&
+                    addScoreForm.controls['from3'].hasError('pattern')
+                  "
+                >
+                  Please enter a valid number.
+                </div>
+                <div
+                  *ngIf="
+                    !addScoreForm.controls['from3'].hasError('required') &&
+                    addScoreForm.controls['from3'].hasError('isGreaterThanFrom')
+                  "
+                >
+                  Must be greater than Option2
+                </div>
+              </div>
+            </div>
+            <div *ngIf="isRange" class="form-group col-xs-6 col-lg-6 col-md-6">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="to3"
+                placeholder="To Range"
+                [ngClass]="{
+                  'is-invalid':
+                    submitted &&
+                    addScoreForm.controls['to3'].errors &&
+                    (addScoreForm.controls['to3'].touched ||
+                      addScoreForm.controls['to3'].dirty)
+                }"
+              />
+
+              <div
+                *ngIf="
+                  submitted &&
+                  (addScoreForm.controls['to3'].touched ||
+                    addScoreForm.controls['to3'].dirty)
+                "
+                class="invalid-feedback"
+              >
+                <div *ngIf="addScoreForm.controls['to3'].hasError('required')">
+                  To Range is required
+                </div>
+                <div
+                  *ngIf="
+                    !addScoreForm.controls['to3'].hasError('required') &&
+                    addScoreForm.controls['to3'].hasError('pattern')
+                  "
+                >
+                  Please enter a valid number.
+                </div>
+                <div
+                  *ngIf="
+                    !addScoreForm.controls['to3'].hasError('required') &&
+                    addScoreForm.controls['to3'].hasError('isGreaterThanFrom')
+                  "
+                >
+                  Must be greater than From value
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row pb-2">
+            <label><b>Option Value 4 </b></label><br />
+            <div class="form-group col-xs-6 col-lg-6 col-md-6">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="from4"
+                [placeholder]="isRange ? 'From Range' : 'Option 4 value'"
+                (change)="updateToValue($event, 'to4')"
+                [ngClass]="{
+                  'is-invalid':
+                    submitted &&
+                    addScoreForm.controls['from4'].errors &&
+                    (addScoreForm.controls['from4'].touched ||
+                      addScoreForm.controls['from4'].dirty)
+                }"
+              />
+
+              <div
+                *ngIf="
+                  submitted &&
+                  (addScoreForm.controls['from4'].touched ||
+                    addScoreForm.controls['from4'].dirty)
+                "
+                class="invalid-feedback"
+              >
+                <div
+                  *ngIf="addScoreForm.controls['from4'].hasError('required')"
+                >
+                  {{ isRange ? "From Range" : "Option 4 value" }} is required
+                </div>
+                <div
+                  *ngIf="
+                    !addScoreForm.controls['from4'].hasError('required') &&
+                    addScoreForm.controls['from4'].hasError('pattern')
+                  "
+                >
+                  Please enter a valid number.
+                </div>
+                <div
+                  *ngIf="
+                    !addScoreForm.controls['from4'].hasError('required') &&
+                    addScoreForm.controls['from4'].hasError('isGreaterThanFrom')
+                  "
+                >
+                  Must be greater than Option3
+                </div>
+              </div>
+            </div>
+            <div *ngIf="isRange" class="form-group col-xs-6 col-lg-6 col-md-6">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="to4"
+                placeholder="To Range"
+                [ngClass]="{
+                  'is-invalid':
+                    submitted &&
+                    addScoreForm.controls['to4'].errors &&
+                    (addScoreForm.controls['to4'].touched ||
+                      addScoreForm.controls['to4'].dirty)
+                }"
+              />
+
+              <div
+                *ngIf="
+                  submitted &&
+                  (addScoreForm.controls['to4'].touched ||
+                    addScoreForm.controls['to4'].dirty)
+                "
+                class="invalid-feedback"
+              >
+                <div *ngIf="addScoreForm.controls['to4'].hasError('required')">
+                  To Range is required
+                </div>
+                <div
+                  *ngIf="
+                    !addScoreForm.controls['to4'].hasError('required') &&
+                    addScoreForm.controls['to4'].hasError('pattern')
+                  "
+                >
+                  Please enter a valid number.
+                </div>
+                <div
+                  *ngIf="
+                    !addScoreForm.controls['to4'].hasError('required') &&
+                    addScoreForm.controls['to4'].hasError('isGreaterThanFrom')
+                  "
+                >
+                  Must be greater than From value
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row pb-4">
+            <label><b>Option Value 5 </b></label><br />
+            <div class="form-group col-xs-6 col-lg-6 col-md-6">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="from5"
+                [placeholder]="isRange ? 'From Range' : 'Option 5 value'"
+                (change)="updateToValue($event, 'to5')"
+                [ngClass]="{
+                  'is-invalid':
+                    submitted &&
+                    addScoreForm.controls['from5'].errors &&
+                    (addScoreForm.controls['from5'].touched ||
+                      addScoreForm.controls['from5'].dirty)
+                }"
+              />
+
+              <div
+                *ngIf="
+                  submitted &&
+                  (addScoreForm.controls['from5'].touched ||
+                    addScoreForm.controls['from5'].dirty)
+                "
+                class="invalid-feedback"
+              >
+                <div
+                  *ngIf="addScoreForm.controls['from5'].hasError('required')"
+                >
+                  {{ isRange ? "From Range" : "Option 5 value" }} is required
+                </div>
+                <div
+                  *ngIf="
+                    !addScoreForm.controls['from5'].hasError('required') &&
+                    addScoreForm.controls['from5'].hasError('pattern')
+                  "
+                >
+                  Please enter a valid number.
+                </div>
+                <div
+                  *ngIf="
+                    !addScoreForm.controls['from5'].hasError('required') &&
+                    addScoreForm.controls['from5'].hasError('isGreaterThanFrom')
+                  "
+                >
+                  Must be greater than Option4
+                </div>
+              </div>
+            </div>
+            <div *ngIf="isRange" class="form-group col-xs-6 col-lg-6 col-md-6">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="to5"
+                placeholder="To Range"
+                [ngClass]="{
+                  'is-invalid':
+                    submitted &&
+                    addScoreForm.controls['to5'].errors &&
+                    (addScoreForm.controls['to5'].touched ||
+                      addScoreForm.controls['to5'].dirty)
+                }"
+              />
+
+              <div
+                *ngIf="
+                  submitted &&
+                  (addScoreForm.controls['to5'].touched ||
+                    addScoreForm.controls['to5'].dirty)
+                "
+                class="invalid-feedback"
+              >
+                <div *ngIf="addScoreForm.controls['to5'].hasError('required')">
+                  To Range is required
+                </div>
+                <div
+                  *ngIf="
+                    !addScoreForm.controls['to5'].hasError('required') &&
+                    addScoreForm.controls['to5'].hasError('pattern')
+                  "
+                >
+                  Please enter a valid number.
+                </div>
+                <div
+                  *ngIf="
+                    !addScoreForm.controls['to5'].hasError('required') &&
+                    addScoreForm.controls['to5'].hasError('isGreaterThanFrom')
+                  "
+                >
+                  Must be greater than From value
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="footerclose"
+        data-bs-dismiss="modal"
+        (click)="modalRef.hide()"
+      >
+        Close
+      </button>
+      <button type="submit" class="footersave" [disabled]="!addScoreForm.valid">
+        Save
+      </button>
+    </div>
+  </form>
+</div>

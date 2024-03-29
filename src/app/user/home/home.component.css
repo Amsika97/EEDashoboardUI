@@ -1,0 +1,13 @@
+.color {
+  background-color: #421f89;
+  border: none;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.assessmentChart {
+  margin: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

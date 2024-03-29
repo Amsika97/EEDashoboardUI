@@ -1,0 +1,64 @@
+<!-- <h2 class="questionHeader">
+  {{ questionIndex }} {{ questionDetails.question }}
+</h2> -->
+
+<div class="fw-medium mb-2 questionAlignment">
+  <span style="color: #91979d">
+    {{ questionIndex }}
+  </span>
+  <span style="font-family: Semibold">
+    {{ questionDetails.question }}
+  </span>
+
+  <span *ngIf="questionDetails.questionDescription || ''" class="infoTooltip">
+    <i
+      matTooltip="{{ questionDetails.questionDescription }}"
+      matTooltipPosition="right"
+    >
+      <i
+        class="fa fa-exclamation-circle tool"
+        style="padding: 0; margin: 0"
+      ></i>
+    </i>
+  </span>
+  <div *ngIf="questionDetails.questionSubText"
+        class="d-flex flex-row subtext ps-4 pb-2"
+        >
+        {{ questionDetails.questionSubText }}
+  </div>
+</div>
+
+<mat-form-field
+  appearance="fill"
+  class="fill-container textarea-container"
+  *ngIf="this.questionDetails.valueType === 'NUMBER'"
+>
+  <mat-label>Provide your Number Input</mat-label>
+  <textarea
+    [disabled]="disableQuestion"
+    matInput
+    cdkAutosizeMinRows="1"
+    cdkAutosizeMaxRows="50"
+    [value]="questionDetails.answerValue || ''"
+    (input)="textChange($event, questionDetails)"
+    maxlength="7"
+  ></textarea>
+</mat-form-field>
+
+<mat-form-field
+  appearance="fill"
+  class="fill-container textarea-container"
+  *ngIf="this.questionDetails.valueType === 'TEXT'"
+>
+  <mat-label>Provide your Text Input</mat-label>
+
+  <textarea
+    [disabled]="disableQuestion"
+    matInput
+    cdkAutosizeMinRows="1"
+    cdkAutosizeMaxRows="50"
+    [value]="questionDetails.answerValue || ''"
+    (input)="textChange($event, questionDetails)"
+    maxlength="200"
+  ></textarea>
+</mat-form-field>

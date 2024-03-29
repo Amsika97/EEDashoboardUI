@@ -1,0 +1,50 @@
+<!-- <mat-drawer-container>
+  <mat-drawer-container>
+    <app-nav-bar></app-nav-bar>
+  </mat-drawer-container>
+
+  <mat-drawer-container class="content">
+    <mat-drawer-content class="left-nav">
+      <app-sidebar></app-sidebar>
+    </mat-drawer-content>
+    <mat-drawer-content class="right-nav">
+      <router-outlet></router-outlet>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</mat-drawer-container> -->
+
+<div class="container-fluid p-0 g-0">
+  <app-pre-loader *ngIf="preloader"></app-pre-loader>
+  <div class="container-fluid g-0">
+    <app-nav-bar (openUserDetails)="openUserDetails()"></app-nav-bar>
+  </div>
+
+  <div class="container-fluid p-0 g-0 content">
+    <div class="left-nav" *ngIf="!disableSidebar">
+      <app-sidebar></app-sidebar>
+    </div>
+
+    <div
+      class="right-nav d-flex"
+      [ngStyle]="{ width: disableSidebar ? '100%' : '89%' }"
+      #topContainer
+    >
+      <div class="pag_nav" #pageHeader>
+        <page-navigation> </page-navigation>
+      </div>
+      <div
+        id="page-content-scroll"
+        class="inner-cont flex-fill"
+        (scroll)="scrollHandler($event)"
+        #pageContainer
+        [style.height.px]="innerContHeight"
+      >
+        <app-breadcrumb *ngIf="showBreadCrumb"></app-breadcrumb>
+        <router-outlet></router-outlet>
+      </div>
+      <div #pageFooter class="footer">
+        <app-footer></app-footer>
+      </div>
+    </div>
+  </div>
+</div>

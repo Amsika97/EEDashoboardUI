@@ -1,0 +1,21 @@
+<svg id="Group_11232" data-name="Group 11232" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="390" height="146" viewBox="0 0 390 146">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_3387" data-name="Rectangle 3387" width="390" height="146" rx="4" fill="#ffe386"/>
+    </clipPath>
+    <filter id="Ellipse_138" x="224" y="-35" width="213" height="216" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="16" result="blur"/>
+      <feFlood flood-color="#fff" flood-opacity="0.2"/>
+      <feComposite operator="in" in2="blur"/>
+    </filter>
+  </defs>
+  <rect id="Rectangle_3370" data-name="Rectangle 3370" width="390" height="146" rx="4" fill="#7eeaf5"/>
+  <g id="Mask_Group_10229" data-name="Mask Group 10229" clip-path="url(#clip-path)">
+    <ellipse id="Ellipse_142" data-name="Ellipse 142" cx="153.5" cy="157" rx="153.5" ry="157" transform="translate(-128 -8)" fill="#17747e"/>
+    <ellipse id="Ellipse_135" data-name="Ellipse 135" cx="153.5" cy="157" rx="153.5" ry="157" transform="translate(-134 -11)" fill="#b4f7ff"/>
+    <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Ellipse_138)">
+      <ellipse id="Ellipse_138-2" data-name="Ellipse 138" cx="58.5" cy="60" rx="58.5" ry="60" transform="translate(272 13)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

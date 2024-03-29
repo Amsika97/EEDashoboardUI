@@ -1,0 +1,21 @@
+{
+    
+    "templateType":[
+        {
+            "id":123,
+            "type":"Type-A"
+        },
+        {
+            "id":124,
+            "type":"Type-B"
+        },
+        {
+            "id":125,
+            "type":"Type-C"
+        },
+        {
+            "id":126,
+            "type":"Type-D"
+        }
+    ]
+}

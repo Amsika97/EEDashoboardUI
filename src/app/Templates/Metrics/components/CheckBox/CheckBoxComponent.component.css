@@ -1,0 +1,14 @@
+.infoTooltip {
+    position: relative;
+    left: 9px;
+  }
+
+  ::ng-deep .mat-mdc-checkbox.mat-primary {
+    --mdc-checkbox-selected-focus-icon-color: #234f80;
+    --mdc-checkbox-selected-hover-icon-color: #234f80;
+    --mdc-checkbox-selected-icon-color: #234f80;
+    --mdc-checkbox-selected-pressed-icon-color: #234f80;
+    --mdc-checkbox-selected-focus-state-layer-color: #234f80;
+    --mdc-checkbox-selected-hover-state-layer-color: #234f80;
+    --mdc-checkbox-selected-pressed-state-layer-color: #234f80;
+}

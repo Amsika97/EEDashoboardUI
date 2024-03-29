@@ -1,0 +1,60 @@
+<mat-toolbar color="primary" class="bg-color">
+  <img
+    (click)="openUserPopup()"
+    class="mb-2"
+    src="../../../assets/png/Image 1@2x.png"
+    alt="Maveric-Logo"
+    height="34px"
+    width="130px"
+  />
+  <p class="vertical-line mt-3"></p>
+  <p class="eetext">
+    Engineering Excellence <br />
+    Dashboard
+  </p>
+
+  <!-- <button class="btn btn-primary btn-sm" (click)="login()">Login</button> -->
+  <span class="example-spacer"></span>
+
+  <div style="flex-direction: column">
+    <div class="d-flex flex-column">
+      <div *ngIf="!showUser">
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            font-weight: 200;
+            font-size: calc(0.3rem + 0.7vw);
+          "
+        >
+          <div class="roles">
+            <p
+              *ngIf="
+                useDetail.role === 'Admin' || useDetail.role === 'Reviewer'
+              "
+              class="admin-head m-0 me-2"
+            >
+              {{ useDetail.role }}
+            </p>
+          </div>
+          <div class="circles">
+            {{ createInititals(useDetail.name) }}
+          </div>
+          <div class="d-flex flex-column">
+            <section class="username">{{ useDetail.name }}</section>
+            <section class="last-Login pb-2">
+              Last Login : {{ lastLogin }}
+            </section>
+            <div class="roles">
+              <a
+                class="adminHead m-0 me-5 view-profile"
+                [routerLink]="['dashboard/profile/self', useDetail.oid]"
+                >View Profile</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-toolbar>

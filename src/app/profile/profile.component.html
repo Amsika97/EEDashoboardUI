@@ -1,0 +1,16 @@
+<div>
+  <app-my-activity
+    [assessmentStatusCounts]="assessmentStatusCounts"
+    [metricStatusCounts]="metricStatusCounts"
+    [emailId]="emailAddress"
+    [name]="userName"
+    [accountProjectInfo]="accountProjectInfo"
+    [profileType]="profileType"
+  ></app-my-activity>
+</div>
+<div>
+  <app-assessment-history [assessments]="assessments"></app-assessment-history>
+</div>
+<div>
+  <app-metrics-history [metrics]="metrics"></app-metrics-history>
+</div>

@@ -1,0 +1,8 @@
+
+<highcharts-chart *ngIf=" !pieChartData.message  ; else noContent" style="display: flex;
+justify-content: center;
+align-items: center"
+[Highcharts]="Highcharts"
+[options]="chartOptions"
+></highcharts-chart>
+<ng-template #noContent > <h1  class="text-center fw-bold pt-5">No Data Found</h1></ng-template>

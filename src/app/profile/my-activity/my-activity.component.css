@@ -1,0 +1,76 @@
+.user-details {
+  width: auto;
+  font-size: 14px;
+  padding: 4px 9px;
+  background: #f6f7fa;
+  border-radius: 3px;
+}
+.header {
+  color: #91979d;
+}
+.header-details {
+  font-weight: 500;
+}
+.tbl-heading {
+  padding-top: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #31374a;
+}
+.my-activity-heading {
+  padding-left: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #31374a;
+}
+.hd-container {
+  padding-left: 10px;
+  padding-bottom: 12% !important;
+}
+.custom-table {
+  float: left;
+  width: 25%;
+  height: 159px;
+  border-radius: 4px;
+  margin-right: 20px;
+  text-align: left;
+}
+.icon {
+  margin-left: 5px;
+  width: 15px;
+  height: 15px;
+}
+.custom-table tr td {
+  border: 1px solid #aeaeb1;
+}
+.custom-table th {
+  background-color: #f6f7fa;
+  border: 1px solid #aeaeb1;
+}
+.data-table {
+  float: left;
+  width: 50%;
+  height: 159px;
+}
+
+.data-table td {
+  color: #234f80;
+}
+.static {
+  color: #91979d;
+  margin-left: 5px;
+}
+.value {
+  float: right;
+  margin-right: 5px;
+}
+.acct {
+  color: #234f80;
+  padding: 5px;
+}
+.pad-tp {
+  padding-top: 5px;
+}
+.my-activity-height {
+  line-height: 1;
+}

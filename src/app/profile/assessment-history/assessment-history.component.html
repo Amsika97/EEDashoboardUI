@@ -1,0 +1,100 @@
+<mat-card class="m-4 mt-0">
+  <mat-card-content>
+    <div class="heading-container">
+      <div>
+        <div class="tbl-heading">Assessments - Submissions History</div>
+        <div class="tbl-subheading sub-heading">
+          Below table lists the history of last 10 submissions across accounts
+          and projects
+        </div>
+      </div>
+    </div>
+    <div class="table-container mt-2">
+      <table
+        mat-table
+        [dataSource]="assessments"
+        class="assessment-table"
+        matSort
+      >
+        <ng-container matColumnDef="projectCode">
+          <th mat-header-cell *matHeaderCellDef>Project Code</th>
+          <td mat-cell *matCellDef="let assessment">
+            {{ assessment.projectCode }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="projectName">
+          <th mat-header-cell *matHeaderCellDef>Project Name</th>
+          <td mat-cell *matCellDef="let assessment">
+            {{ assessment.projectName }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="accountName">
+          <th mat-header-cell *matHeaderCellDef>Account</th>
+          <td mat-cell *matCellDef="let assessment">
+            {{ assessment.accountName }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="submittedAt">
+          <th mat-header-cell *matHeaderCellDef>Submissions Date</th>
+          <td mat-cell *matCellDef="let assessment">
+            {{ assessment.submittedAt | date }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="score">
+          <th mat-header-cell *matHeaderCellDef>Score</th>
+          <td mat-cell *matCellDef="let assessment">
+            {{ assessment.score | number : "1.2-2" }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>Status</th>
+          <td mat-cell *matCellDef="let assessment">{{ assessment.status }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef>Action</th>
+          <td
+            mat-cell
+            *matCellDef="let assessment"
+            (click)="preview(assessment)"
+            style="width: 60px"
+          >
+            <span class="viewLink">
+              <div
+                *ngIf="
+                  (assessment.status | uppercase) === 'SAVE';
+                  else normalPreview
+                "
+              >
+                <img
+                  src="../../../../assets/svg/pencil-icon.svg"
+                  alt="preview"
+                />
+              </div>
+
+              <ng-template #normalPreview>
+                <img
+                  src="../../../../assets/svg/action-icon.svg"
+                  alt="preview"
+                />
+              </ng-template>
+            </span>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" [attr.colspan]="displayedColumns.length">
+            <p class="no-data-found">No data found</p>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </mat-card-content>
+</mat-card>

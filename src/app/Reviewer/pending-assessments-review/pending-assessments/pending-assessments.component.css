@@ -1,0 +1,26 @@
+/* .assessment-table {
+    border-radius: 10px;
+    overflow: hidden;
+    border-collapse: separate; 
+    border: 1px solid #ddd; 
+  } */
+
+  /* .mat-header-cell {
+    border-radius: 10px; 
+  } */
+
+
+  
+  .active {
+    background-color: #bd267d;
+    color: white;
+    padding: 5px 12px;
+    font-family: Medium;
+  }
+  
+  .deactive {
+    color: #6C757D;
+    background-color:#EDEDED ;
+    padding: 5px 12px;
+    font-family: Medium;
+  }

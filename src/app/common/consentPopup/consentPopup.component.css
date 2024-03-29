@@ -1,0 +1,36 @@
+.yesbtn {
+  border-radius: 25px;
+  background-color: #234f80;
+  padding: 4px 30px;
+  font-size: 12px;
+  color: azure !important;
+  height: auto;
+}
+.nobtn {
+  border-radius: 25px;
+  border-color: #234f80;
+  border-style: solid;
+  border-width: 1px;
+  padding: 4px 30px;
+  font-size: 12px;
+  margin-right: 10px;
+  height: auto;
+}
+.crossbtn div {
+  color: rgb(239, 66, 95);
+  font-weight: bold;
+  padding: 1px 8px;
+}
+.msg {
+  font-size: 18px;
+  line-height: normal;
+  padding: 0 20px;
+  font-weight: 500;
+}
+.maindiv {
+  border-radius: 22px;
+  align-items: center;
+  text-align: center;
+  border-collapse: collapse;
+  width: 350px;
+}

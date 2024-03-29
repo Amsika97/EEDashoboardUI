@@ -1,0 +1,176 @@
+<div class="table-container">
+  <table
+    class="assessment-table"
+    mat-table
+    [dataSource]="assessments"
+    matSort
+    (matSortChange)="announceSortChange($event)"
+  >
+    <ng-container matColumnDef="srNo">
+      <th
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by srNo"
+        class="fw-sl-no"
+      >
+        SL. No
+      </th>
+      <td mat-cell *matCellDef="let assessment">
+        {{ !assessment.srNo ? "-" : assessment.srNo }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="projectName">
+      <th
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by projectName"
+      >
+        {{ label.projectName }}
+      </th>
+      <td mat-cell *matCellDef="let assessment">
+        {{ !assessment.projectName ? "-" : assessment.projectName }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="submittedBy">
+      <th
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by submittedBy"
+      >
+        {{ label.submittedBy }}
+      </th>
+      <td mat-cell *matCellDef="let assessment">
+        {{ !assessment.submitedBy ? "-" : assessment.submitedBy }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastUpdated">
+      <th
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by lastUpdated"
+      >
+        {{ label.lastUpdated }}
+      </th>
+      <td mat-cell *matCellDef="let assessment" class="date-cell">
+        {{ !assessment.submitedAt ? "-" : (assessment.submitedAt | date) }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="reviewerName">
+      <th
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by reviewerName"
+        class="fw-reviewer-name"
+      >
+        {{ label.reviewer }}
+      </th>
+      <td mat-cell *matCellDef="let assessment">
+        {{ !assessment.reviewerName ? "-" : assessment.reviewerName }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="reviewedOn">
+      <th
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by reviewedOn"
+      >
+        {{ label.reviewedDate }}
+      </th>
+      <td mat-cell *matCellDef="let assessment" class="date-cell">
+        {{ !assessment.reviewerAt ? "-" : (assessment.reviewerAt | date) }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="saved">
+      <th
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by saved"
+      >
+        {{ label.saved }}
+      </th>
+      <td mat-cell *matCellDef="let assessment">
+        <span class="saved">
+          {{ label.saved }}
+        </span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="submitted">
+      <th
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by submitted"
+      >
+        {{ label.submitted }}
+      </th>
+      <td mat-cell *matCellDef="let assessment">
+        <span class="submitted">
+          {{ label.submitted }}
+        </span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="reviewed">
+      <th
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by reviewed"
+      >
+        {{ label.reviewed }}
+      </th>
+      <td mat-cell *matCellDef="let assessment">
+        <span
+          [ngClass]="{
+            rejected: assessment.submitStatus === 'REJECTED',
+            approved: assessment.submitStatus === 'APPROVED'
+          }"
+        >
+          {{
+            !assessment.submitStatus
+              ? "---"
+              : (assessment.submitStatus | titlecase)
+          }}
+        </span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th *matHeaderCellDef sortActionDescription="Sort by action"></th>
+      <td
+        mat-cell
+        *matCellDef="let assessment"
+        (click)="preview(assessment.assessmentId)"
+      >
+        <!--      <span class="viewLink"> VIEW </span> -->
+        <span class="viewLink">
+          <mat-icon matSuffix class="eye">{{ "visibility" }}</mat-icon>
+        </span>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <div
+    *ngIf="assessments.data.length === 0"
+    style="text-align: center; padding: 30px 0"
+  >
+    No records found
+  </div>
+</div>
+
+<div class="mt-5">
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    aria-label="Select page of reviewed-assessments"
+  >
+  </mat-paginator>
+</div>

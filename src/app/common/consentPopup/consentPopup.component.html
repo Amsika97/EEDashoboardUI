@@ -1,0 +1,23 @@
+<div class="maindiv">
+  <div mat-dialog-actions class="crossbtn" align="end">
+    <div [mat-dialog-close]="'no'" cdkFocusInitial>X</div>
+  </div>
+
+  <h1 class="msg" align="center">{{ data.name }}</h1>
+
+  <div mat-dialog-actions align="center">
+    <button class="nobtn" mat-button [mat-dialog-close]="'no'" cdkFocusInitial>
+      NO
+    </button>
+    <button
+      class="yesbtn"
+      mat-button
+      [mat-dialog-close]="'yes'"
+      cdkFocusInitial
+    >
+      YES
+    </button>
+  </div>
+  <br />
+  <br />
+</div>

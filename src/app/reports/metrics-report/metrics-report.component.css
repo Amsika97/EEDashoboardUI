@@ -1,0 +1,58 @@
+/* ::ng-deep .assessment-table th {
+    padding: 0 0 0 8px !important;
+    font-size: calc(0.5rem + 0.14vw) !important;
+  }
+  
+  ::ng-deep .assessment-table .mdc-data-table__cell,
+  .mdc-data-table__header-cell {
+    padding: 0 0 0 8px;
+  }
+   */
+::ng-deep .status-col .mat-sort-header-container {
+  justify-content: center;
+}
+
+.submittedReport {
+  color: #91979d;
+  background-color: #91979d1a;
+  border-radius: 20px;
+  padding: 5px 15px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.inactiveReport{
+  color: #EE0200;
+  background-color: #FFE8E8;
+  border-radius: 20px;
+  padding: 5px 15px;
+  display: inline-block;
+  font-weight: 600;
+}
+
+.approvedReport {
+  color: #39c18d;
+  background-color: #39c18d1a;
+  border-radius: 20px;
+  padding: 5px 15px;
+  display: inline-block;
+  font-weight: 600;
+}
+.reviewedReport {
+  background-color:#DFF9D4 ;
+  color: #366A1E;
+  /* border: #9FD387 1px; */
+  border-radius: 20px;
+  padding: 5px 15px;
+  display: inline-block;
+  font-weight: 600;
+}
+
+.rejectedReport {
+  color: #ee0200;
+  background-color: #ee02001a;
+  border-radius: 20px;
+  padding: 5px 15px;
+  font-weight: 600;
+  display: inline-block;
+}

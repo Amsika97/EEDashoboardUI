@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="Path_5124" data-name="Path 5124" d="M11.031,14.306l3.883,17.014,8.539-8.091Z" transform="translate(-11.031 -14.306)" fill="#234f80" clip-rule="evenodd"/>
+    </clipPath>
+    <clipPath id="clip-Fav_Icon">
+      <rect width="16" height="16"/>
+    </clipPath>
+  </defs>
+  <g id="Fav_Icon" data-name="Fav Icon" clip-path="url(#clip-Fav_Icon)">
+    <rect width="16" height="16" fill="#fff"/>
+    <rect id="Rectangle_3446" data-name="Rectangle 3446" width="16" height="16" fill="#bd267d"/>
+    <g id="Group_11338" data-name="Group 11338" transform="translate(7.422 22.619) rotate(180)">
+      <g id="Group_11332" data-name="Group 11332" transform="translate(4 0.112)">
+        <g id="Group_11331" data-name="Group 11331" clip-path="url(#clip-path)">
+          <rect id="Rectangle_3447" data-name="Rectangle 3447" width="21.063" height="19.959" transform="translate(-8.015 11.358) rotate(-54.79)" fill="#234f80"/>
+        </g>
+      </g>
+    </g>
+    <path id="Path_5125" data-name="Path 5125" d="M-3.99-7.182v2.04h2.747v1.5H-3.99V-1.56H-.4V0H-6.03V-8.742H-.4v1.56Z" transform="translate(7.902 12.371)" fill="#fff"/>
+    <path id="Path_5172" data-name="Path 5172" d="M-2.443-7.182v2.04H-5.19v1.5h2.747V-1.56H-6.03V0H-.4V-8.742H-6.03v1.56Z" transform="translate(14.529 12.371)" fill="#fff"/>
+    <g id="Group_11337" data-name="Group 11337" transform="translate(9 -4.383)">
+      <g id="Group_11332-2" data-name="Group 11332" transform="translate(4 0.112)">
+        <g id="Group_11331-2" data-name="Group 11331" clip-path="url(#clip-path)">
+          <rect id="Rectangle_3447-2" data-name="Rectangle 3447" width="21.063" height="19.959" transform="translate(-8.015 11.358) rotate(-54.79)" fill="#234f80"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

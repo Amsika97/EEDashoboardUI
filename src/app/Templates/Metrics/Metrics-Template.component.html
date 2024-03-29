@@ -1,0 +1,630 @@
+<!-- <page-navigation
+  *ngIf="!previewTemplate"
+  [linkText]="flowInforData.heading"
+  [subHeading]="headingLabels.ReviewMetricsSubHeadingh"
+>
+</page-navigation> -->
+
+<div ngxUiLoaderBlurred>
+<div class="bread">
+  <!-- <hr style="font-family: 'SemiBold'" /> -->
+  <div class="main-div">
+    <app-metric-header
+      *ngIf="showSections.includes('header')"
+      [flowInforData]="flowInforData"
+      [headingLabels]="headingLabels.metricsSubHeading"
+    ></app-metric-header>
+    <!-- <hr
+      *ngIf="
+        flowInforData.flowType === 'new' || flowInforData.flowType === 'saved'
+      "
+      class="hr"
+      style="margin: 7px; font-family: 'SemiBold'"
+    /> -->
+
+    <mat-stepper
+      *ngIf="
+        flowInforData.flowType === 'new' || flowInforData.flowType === 'saved'
+      "
+      style="margin: 2% 10% 0% 10%"
+      linear
+      #stepper
+      [selectedIndex]="selectedStep"
+      [labelPosition]="'bottom'"
+    >
+      <mat-step [editable]="false" label="Select Template" state="done">
+        <ng-template matStepperIcon="ui-checks">
+          <mat-icon
+            svgIcon="ui-checks"
+            class="ui-checks"
+            style="width: 34px"
+          ></mat-icon>
+        </ng-template>
+      </mat-step>
+      <mat-step
+        label="Input Metrics"
+        state="{{ selectedStep === 1 ? 'selected-take-ass' : 'done' }}"
+        class="take-ass"
+        [editable]="false"
+      >
+        <ng-template matStepperIcon="take-ass">
+          <mat-icon
+            svgIcon="take-ass"
+            style="width: 34px; height: 23px"
+          ></mat-icon>
+        </ng-template>
+        <ng-template matStepperIcon="selected-take-ass">
+          <mat-icon
+            svgIcon="selected-take-ass"
+            style="width: 34px; height: 23px"
+          ></mat-icon>
+        </ng-template>
+      </mat-step>
+      <mat-step
+        label="Submit Metrics"
+        state="{{
+          selectedStep === 2
+            ? 'selected-submit-ass'
+            : selectedStep === 3
+            ? 'done'
+            : 'submit-ass'
+        }}"
+        class="submit-ass"
+        [editable]="false"
+      >
+        <ng-template matStepperIcon="selected-submit-ass">
+          <mat-icon
+            svgIcon="selected-submit-ass"
+            style="width: 34px; height: 23px"
+          ></mat-icon>
+        </ng-template>
+        <ng-template matStepperIcon="submit-ass">
+          <mat-icon
+            svgIcon="submit-ass"
+            style="width: 34px; height: 23px"
+          ></mat-icon>
+        </ng-template>
+      </mat-step>
+      <!-- <mat-step
+        label="{{
+          flowInforData.status === 'approved'
+            ? 'Approved'
+            : flowInforData.status === 'rejected'
+            ? 'Rejected'
+            : 'Submitted'
+        }}"
+        state="{{
+          !(
+            flowInforData.flowType === 'submitted' ||
+            flowInforData.flowType === 'reviewer' ||
+            flowInforData.flowType === 'preview' ||
+            flowInforData.flowType === 'reports'
+          )
+            ? 'done-custom'
+            : flowInforData.status === 'approved'
+            ? 'approved'
+            : flowInforData.status === 'rejected'
+            ? 'rejected'
+            : 'done-custom'
+        }}"
+        [editable]="false"
+      >
+        <ng-template matStepperIcon="done-custom">
+          <mat-icon
+            style="color: black; font-size: 30px; height: 30px; width: 30px"
+            >task_alt</mat-icon
+          >
+        </ng-template>
+
+        <ng-template matStepperIcon="approved">
+          <mat-icon
+            class="approved"
+            style="font-size: 34px; height: 34px; width: 34px"
+            >task_alt</mat-icon
+          >
+        </ng-template>
+
+        <ng-template matStepperIcon="rejected">
+          <mat-icon
+            svgIcon="rejected"
+            class="rejected"
+            style="height: 34px; width: 34px"
+          ></mat-icon>
+        </ng-template>
+      </mat-step> -->
+
+      <ng-template matStepperIcon="done" let-index="index">
+        <mat-icon
+          *ngIf="index === 0"
+          svgIcon="ui-checks-white"
+          class="ui-checks"
+          style="width: 34px"
+        ></mat-icon>
+        <mat-icon
+          *ngIf="index === 1"
+          svgIcon="take-ass-white"
+          class="ui-checks"
+          style="width: 34px; height: 23px"
+        ></mat-icon>
+        <mat-icon
+          *ngIf="index === 2"
+          svgIcon="submit-ass-white"
+          class="ui-checks"
+          style="width: 34px; height: 23px"
+        ></mat-icon>
+        <mat-icon *ngIf="index === 3">task_alt</mat-icon>
+      </ng-template>
+
+      <ng-template matStepperIcon="edit" let-index="index">
+        <mat-icon
+          *ngIf="index === 0"
+          svgIcon="ui-checks"
+          class="ui-checks"
+          style="width: 34px"
+        ></mat-icon>
+        <mat-icon
+          *ngIf="index === 1"
+          svgIcon="take-ass"
+          class="ui-checks"
+          style="width: 34px; height: 23px"
+        ></mat-icon>
+        <mat-icon
+          *ngIf="index === 2"
+          svgIcon="submit-ass"
+          class="ui-checks"
+          style="width: 34px; height: 23px"
+        ></mat-icon>
+        <mat-icon *ngIf="index === 3">task_alt</mat-icon>
+      </ng-template>
+    </mat-stepper>
+    <!-- <hr
+      *ngIf="
+        flowInforData.flowType === 'new' || flowInforData.flowType === 'saved'
+      "
+      class="hr"
+      style="margin: 5px; font-family: 'SemiBold'"
+    /> -->
+
+    <div
+      class="container"
+      [ngClass]="
+        flowInforData.flowType === 'submitted' && !flowInforData.status
+          ? 'submitted-popup-border'
+          : ''
+      "
+      style="position: relative; margin-top: 2%; border: 1px solid #d8d8d8"
+      [ngStyle]="{ padding: flowInforData.flowType === 'new' ? '' : '0px' }"
+      *ngIf="!!categoryList"
+    >
+      <div
+        class="container__header"
+        #container__header
+        *ngIf="!(flowInforData.flowType === 'preview')"
+      >
+        <!-- <div class="">
+          <div class="row">
+            <div class="page-header d-flex px-4" style="font-size: smaller">
+              <div class="w-15 border-right border-white">
+                <div>Delivery Unit</div>
+                <div
+                  class="fw-medium"
+                  [matTooltip]="
+                    categoryList.businessUnitName || businessUnitName
+                  "
+                >
+                  {{
+                    (categoryList.businessUnitName || businessUnitName)
+                      ?.substring(0, 10)
+                      ?.trim() + "..."
+                  }}
+                </div>
+              </div>
+              <div class="v1 mx-4"></div>
+              <div class="w-15 border-right border-white">
+                <div>Account</div>
+                <div
+                  class="fw-medium"
+                  [matTooltip]="categoryList.accountName || accountName"
+                >
+                  {{
+                    (categoryList.accountName || accountName)
+                      ?.substring(0, 10)
+                      ?.trim() + "..."
+                  }}
+                </div>
+              </div>
+              <div class="v1 mx-4"></div>
+              <div
+                class="w-15 border-right border-white"
+                
+              >
+                <div>Project Name</div>
+                <div
+                  class="fw-medium"
+                  [matTooltip]="categoryList.projectName || projectName"
+                >
+                  {{
+                    (categoryList.projectName || projectName)
+                      ?.substring(0, 10)
+                      ?.trim() + "..."
+                  }}
+                </div>
+              </div>
+              <div [ngStyle]="{ flex: categoryList?.reviewers ? '' : '1 0 auto' }">
+
+              </div>
+              <span
+                class="d-flex"
+                style="flex: 1 0 auto"
+                *ngIf="categoryList?.reviewers"
+              >
+                <div class="v1 mx-4"></div>
+                <div class="w-15 border-right border-white">
+                  <div>Reviewed By</div>
+                  <div
+                    class="fw-medium"
+                    [matTooltip]="
+                      categoryList?.reviewers?.length
+                        ? categoryList?.reviewers[0]?.reviewerName
+                        : ''
+                    "
+                  >
+                    {{
+                      categoryList?.reviewers?.length
+                        ? categoryList?.reviewers[0]?.reviewerName
+                            ?.substring(0, 10)
+                            ?.trim() + "..."
+                        : "NA"
+                    }}
+                  </div>
+                </div>
+                <div class="v1 mx-4"></div>
+                <div class="w-15 border-right border-white">
+                  <div>Reviewed On</div>
+                  <div class="fw-medium">
+                    {{
+                      categoryList?.reviewers?.length
+                        ? (categoryList?.reviewers[0]?.reviewerAt
+                           | date : "dd-MMM-YYYY")
+                        : "NA"
+                    }}
+                  </div>
+                </div>
+              </span>
+              <div
+                class="score-status d-flex"
+                *ngIf="
+                  flowInforData.flowType === 'submitted' ||
+                  flowInforData.flowType === 'saved' ||
+                  flowInforData.flowType === 'reports'|| 
+                  flowInforData.flowType === 'reviewer'
+                "
+              >
+                <div
+                  class="p1 h-100 align-middle"
+                  *ngIf="
+                    (flowInforData.flowType === 'submitted' || flowInforData.flowType === 'reports' || 
+                  flowInforData.flowType === 'reviewer') && categoryList.score
+                  "
+                >
+                  Score: {{ categoryList.score?.toFixed(2) }}%
+                </div>
+                <div class="p1" *ngIf="flowInforData.flowType === 'saved'">
+                  Saved
+                </div>
+                <div
+                  class="p2"
+                  *ngIf="
+                    (flowInforData.flowType === 'submitted' || flowInforData.flowType === 'reports') &&
+                    flowInforData.status === ''
+                  "
+                >
+                  Submitted
+                </div>
+                <div
+                  class="p3"
+                  *ngIf="
+                    (flowInforData.flowType === 'submitted' || flowInforData.flowType === 'reports') &&
+                    flowInforData.status === 'approved'
+                  "
+                >
+                  Approved
+                </div>
+                <div
+                  class="p4"
+                  *ngIf="
+                    (flowInforData.flowType === 'submitted' || flowInforData.flowType === 'reports') &&
+                    flowInforData.status === 'rejected'
+                  "
+                >
+                  Rejected
+                </div>
+                <div class="p2" *ngIf="flowInforData.flowType === 'reviewer'">
+                  Submitted
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <app-account-project-details-metric
+          *ngIf="showSections.includes('proJectDetails')"
+          [flowInforData]="flowInforData"
+          [categoryList]="categoryList"
+          [projectName]="projectName"
+          [accountName]="accountName"
+          [selectedStep]="selectedStep"
+        ></app-account-project-details-metric>
+      </div>
+
+      <!-- <mat-stepper
+  linear
+  #stepper
+  [selectedIndex]="!(
+    flowInforData.flowType === 'submitted' ||
+    flowInforData.flowType === 'reviewer' ||
+    flowInforData.flowType === 'preview'
+  ) ? 1 : 4"
+  [labelPosition]="'bottom'"
+>
+  <mat-step [editable]="false"
+    label="Select Template"
+    state="done"
+  >
+    <ng-template matStepperIcon="ui-checks">
+      <mat-icon
+        svgIcon="ui-checks"
+        class="ui-checks"
+        style="width: 20px"
+      ></mat-icon>
+    </ng-template>
+  </mat-step>
+  <mat-step label="Take Assessment" state="{{!(
+    flowInforData.flowType === 'submitted' ||
+    flowInforData.flowType === 'reviewer' ||
+    flowInforData.flowType === 'preview'
+  ) ? 'take-ass' : 'done'}}" class="take-ass"
+  [editable]="false">
+    <ng-template matStepperIcon="take-ass">
+      <mat-icon
+        svgIcon="take-ass"
+        style="width: 15px; height: 23px"
+      ></mat-icon>
+    </ng-template>
+  </mat-step>
+  <mat-step label="Submit Assessment" state="{{!(
+    flowInforData.flowType === 'submitted' ||
+    flowInforData.flowType === 'reviewer' ||
+    flowInforData.flowType === 'preview'
+  ) ? 'submit-ass' : 'done'}}" class="submit-ass"
+  [editable]="false">
+    <ng-template matStepperIcon="submit-ass">
+      <mat-icon
+        svgIcon="submit-ass"
+        style="width: 15px; height: 23px"
+      ></mat-icon>
+    </ng-template>
+  </mat-step>
+  <mat-step label="{{flowInforData.status === 'approved' ? 'Approved': flowInforData.status === 'rejected' ? 'Rejected' : 'Submitted'}}"
+  state="{{!(
+    flowInforData.flowType === 'submitted' ||
+    flowInforData.flowType === 'reviewer' ||
+    flowInforData.flowType === 'preview'
+  ) ? 'done-custom' : flowInforData.status === 'approved' ? 'approved' : flowInforData.status === 'rejected' ? 'rejected' : 'done-custom'}}"
+  [editable]="false"
+  >
+    <ng-template matStepperIcon="done-custom">
+      <mat-icon style="color: black">task_alt</mat-icon>
+    </ng-template>
+
+    <ng-template matStepperIcon="approved">
+      <mat-icon  class="approved">task_alt</mat-icon>
+    </ng-template>
+
+    <ng-template matStepperIcon="rejected">
+      <mat-icon  class="rejected">cancel</mat-icon>
+    </ng-template>
+
+  </mat-step>
+
+  <ng-template matStepperIcon="done" let-index="index">
+    <mat-icon
+      *ngIf="index === 0"
+      svgIcon="ui-checks-white"
+      class="ui-checks"
+      style="width: 20px"
+    ></mat-icon>
+    <mat-icon
+      *ngIf="index === 1"
+      svgIcon="take-ass-white"
+      class="ui-checks"
+      style="width: 15px; height: 23px"
+    ></mat-icon>
+    <mat-icon
+      *ngIf="index === 2"
+      svgIcon="submit-ass-white"
+      class="ui-checks"
+      style="width: 15px; height: 23px"
+    ></mat-icon>
+    <mat-icon *ngIf="index === 3">task_alt</mat-icon>
+  </ng-template>
+
+  <ng-template matStepperIcon="edit" let-index="index">
+    <mat-icon
+      *ngIf="index === 0"
+      svgIcon="ui-checks"
+      class="ui-checks"
+      style="width: 20px"
+    ></mat-icon>
+    <mat-icon
+      *ngIf="index === 1"
+      svgIcon="take-ass"
+      class="ui-checks"
+      style="width: 15px; height: 23px"
+    ></mat-icon>
+    <mat-icon
+      *ngIf="index === 2"
+      svgIcon="submit-ass"
+      class="ui-checks"
+      style="width: 15px; height: 23px"
+    ></mat-icon>
+    <mat-icon *ngIf="index === 3">task_alt</mat-icon>
+  </ng-template>
+</mat-stepper> -->
+      <div
+        class="scrollable-content"
+        *ngIf="!isPopupOpen && !isConfirmPopup"
+        #scrollableContent
+      >
+        <div class="container__content">
+          <app-reviewer-details-metric
+            *ngIf="showSections.includes('reviewerDetails')"
+            [flowInforData]="flowInforData"
+            [categoryList]="categoryList"
+          ></app-reviewer-details-metric>
+
+          <app-question-list-metric
+            *ngIf="showSections.includes('questionList')"
+            [flowInforData]="flowInforData"
+            [categoryList]="categoryList"
+            [disableQuestion]="disableQuestion"
+            [originalData]="originalData"
+            [isSubmitted]="isSubmitted"
+            [assesmentId]="assesmentId"
+            [popupData]="popupData"
+            [respMsg]="respMsg"
+            (resetDefault)="resetDefault()"
+            (noCallReviewCommentEvent)="noCallSaveReviewComment()"
+            (validateQuestion)="validateQuestion($event)"
+            (callSaveReviewCommentFun)="callSaveReviewCommentFun($event)"
+            (respMsgFun)="respMsgFun($event)"
+          ></app-question-list-metric>
+        </div>
+        <hr class="h3a3" />
+        <div
+          *ngIf="
+            !(isPopupOpen || isConfirmPopup) && containerScrollPercentage > 5
+          "
+        >
+          <div
+            [ngClass]="{
+          container_footer: containerScrollPercentage <= scrollActivePercentage,
+          container_footer_stickbottom: containerScrollPercentage >= scrollActivePercentage,
+        }"
+            *ngIf="
+              !(
+                flowInforData.flowType === 'submitted' ||
+                flowInforData.flowType === 'reviewer' ||
+                flowInforData.flowType === 'inactive' ||
+                flowInforData.flowType === 'reviewed' ||
+                flowInforData.flowType === 'preview' ||
+                flowInforData.flowType === 'reports'
+              )
+            "
+          >
+            <div
+              class="button-group d-flex flex-row align-items-center justify-content-center me-4"
+            >
+              <!--   <button (click)="resetCategory()" class="reset">RESET1</button> -->
+              <button
+                class="btn btn-secondary"
+                style="height: 34px"
+                (click)="resetCategory()"
+              >
+                RESET
+              </button>
+              <button
+                (click)="
+                  isPopupOpen = true;
+                  popupData = {
+                    name: 'Are you sure you want to Save Metrics'
+                  };
+                  isSaveAction = 'saveCategory';
+                  pageComponentService.pageScroll('bottom')
+                "
+                class="save"
+              >
+                SAVE
+              </button>
+              <button
+                (click)="isSaveAction = 'submitAssessment'; submitCategory()"
+                class="submit"
+              >
+                PREVIEW
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="isPopupOpen || isConfirmPopup" class="overlay"></div>
+      <div *ngIf="isPopupOpen" class="scrollable-content div-center">
+        <h1 class="msg" align="center">
+          {{ popupData.name }}
+        </h1>
+
+        <div mat-dialog-actions align="center">
+          <button
+            class="nobtn"
+            mat-button
+            (click)="noCallSaveReviewComment()"
+          >
+            NO
+          </button>
+          <button class="yesbtn" mat-button (click)="clickOnYesConsent()">
+            YES
+          </button>
+        </div>
+      </div>
+
+      <div *ngIf="isConfirmPopup" class="scrollable-content div-center">
+        <div class="content">
+          <img
+            mat-card-image
+            align="center"
+            src="{{ '../../assets/svg/' + confirmPopupData.status + '.svg' }}"
+            alt=""
+            class="menu-icon"
+          />
+
+          <div>
+            <p mat-dialog-title class="main" align="center">
+              {{ confirmPopupData.heading }}
+            </p>
+            <p mat-dialog-title class="para" align="center">
+              {{ confirmPopupData.subHeading }}
+            </p>
+          </div>
+        </div>
+        <div style="margin-left: 678px">
+          <button
+            class="backbtn"
+            mat-icon-button
+            [mat-dialog-close]="'yes'"
+            cdkFocusInitial
+            (click)="backToHome('dashboard')"
+          >
+            {{ confirmPopupData.buttonText }}
+          </button>
+
+          <button
+            class="backbtn1"
+            mat-icon-button
+            [mat-dialog-close]="'yes'"
+            cdkFocusInitial
+            (click)="
+              backToHome(
+                flowInforData.flowType === 'reviewer'
+                  ? 'dashboard/review-assessments'
+                  : 'dashboard/metrics'
+              )
+            "
+          >
+            {{ confirmPopupData.buttonText1 }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<ngx-ui-loader fgsColor="#bd267d" pbColor="#bd267d" text="Please wait...."></ngx-ui-loader>

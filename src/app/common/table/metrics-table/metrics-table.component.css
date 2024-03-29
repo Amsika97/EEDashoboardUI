@@ -1,0 +1,12 @@
+
+
+.table-container {
+    padding: 20px;
+    width: 1100px;
+    overflow: auto;
+  }
+  
+  .nav-container {
+   display: flex;
+   justify-content: space-between;
+  }

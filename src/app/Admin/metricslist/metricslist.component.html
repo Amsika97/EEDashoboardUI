@@ -1,0 +1,205 @@
+<div class="table-container">
+  <table
+    class="metricstemplates-table"
+    mat-table
+    [dataSource]="metricsassessments"
+    matSort
+    (matSortChange)="announceSortChange($event)"
+  >
+    <ng-container matColumnDef="templateName">
+      <th
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by templateName"
+      >
+        {{ label.templateName }}
+      </th>
+      <td
+        mat-cell
+        *matCellDef="let metricstemplates"
+        matTooltip="{{ metricstemplates.templateName }}"
+      >
+        {{
+          !metricstemplates.templateName ? "-" : metricstemplates.templateName
+        }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="templateDisplayName">
+      <th
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by templateDisplayName"
+        style="width: 20%"
+      >
+        {{ label.templateDisplayName }}
+      </th>
+      <td
+        mat-cell
+        *matCellDef="let assessmenttemplates"
+        class="single-line-cell"
+        matTooltip="{{ assessmenttemplates.templateDisplayName }}"
+      >
+        {{
+          !assessmenttemplates.templateDisplayName
+            ? "-"
+            : assessmenttemplates.templateDisplayName
+        }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="projectType">
+      <th
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by projectType"
+      >
+        {{ label.projectType }}
+      </th>
+      <td mat-cell *matCellDef="let metricstemplates" class="single-line-cell">
+        <div class="d-flex row align-items-center">
+          <div
+            class="first-pt col-md-10"
+            matTooltip="{{
+              metricstemplates.projectType[0] !== 'All'
+                ? metricstemplates.projectType[0]
+                : ''
+            }}"
+          >
+            {{
+              !metricstemplates.projectType[0]
+                ? "-"
+                : metricstemplates.projectType[0]
+            }}
+          </div>
+
+          <!--         {{ assessmenttemplates.projectType[0]}} -->
+          <div
+            class="TabaleCount col-md-2"
+            *ngIf="metricstemplates.projectType.length > 1"
+            matTooltip="{{
+              getMoreInformation(metricstemplates.projectType.slice(1))
+            }}"
+            matTooltipClass="test"
+          >
+            +{{ metricstemplates.projectType.length - 1 }}
+          </div>
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="createdBy">
+      <th
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by createdBy"
+      >
+        {{ label.createdBy }}
+      </th>
+      <td
+        mat-cell
+        *matCellDef="let assessmenttemplates"
+        matTooltip="{{ assessmenttemplates.templateUploadedUserName }}"
+      >
+        {{
+          !assessmenttemplates.templateUploadedUserName
+            ? "-"
+            : assessmenttemplates.templateUploadedUserName
+        }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="createdOn">
+      <th
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by createdOn"
+        style="width: 120px"
+      >
+        <span style="margin-left: 9px">{{ label.createdOn }}</span>
+      </th>
+      <td mat-cell *matCellDef="let metricstemplates" style="width: 120px">
+        {{
+          !metricstemplates.createdOn
+            ? "-"
+            : (metricstemplates.createdOn | date)
+        }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="templateFrequency">
+      <th
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by templateName"
+      >
+        {{ label.templateFrequency }}
+      </th>
+      <td
+        mat-cell
+        *matCellDef="let metricstemplates"
+        matTooltip="{{ metricstemplates.templateFrequency }}"
+      >
+        {{
+          !metricstemplates.templateFrequency
+            ? "-"
+            : metricstemplates.templateFrequency
+        }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="toggleAction">
+      <th
+        *matHeaderCellDef
+        sortActionDescription="Sort by toggleAction"
+        style="width: 150px"
+      >
+        <span>{{ label.toggleAction }}</span>
+      </th>
+      <td mat-cell *matCellDef="let metricstemplates" style="width: 150px">
+        <mat-slide-toggle
+          color="primary"
+          [labelPosition]="'before'"
+          [checked]="metricstemplates.isActive"
+          (change)="EenableDisable($event, metricstemplates.templateId)"
+        >
+          <span style="padding-right: 7px">
+            {{ metricstemplates.isActive ? "Enabled" : "Disabled" }}
+          </span>
+        </mat-slide-toggle>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th
+        *matHeaderCellDef
+        sortActionDescription="Sort by action"
+        class="action"
+        style="width: 60px"
+      >
+        {{ label.action }}
+      </th>
+      <td
+        mat-cell
+        *matCellDef="let assessmenttemplates"
+        (click)="preview(assessmenttemplates.templateId)"
+        style="width: 60px"
+      >
+        <span class="viewLink">
+          <!-- <mat-icon matSuffix class="eye pt-1">{{ "visibility" }}</mat-icon> -->
+          <img src="../../../../assets/svg/action-icon.svg" alt="preview" />
+        </span>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>
+<div class="mt-4">
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    aria-label="Select page of metricslist"
+  >
+  </mat-paginator>
+</div>

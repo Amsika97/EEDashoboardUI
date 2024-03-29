@@ -1,0 +1,91 @@
+{
+    "projects":[
+        {
+            "projectId":1,
+            "projectName": "Project1",
+            "managerName": "Madhu",
+            "businessUnitId": "123",
+            "startDate": "2023-10-01",
+            "endDate": "2023-12-31",
+            "updatedBy": "JohnDoe",
+            "status": true,
+            "createdAt": "2023-09-25T14:30:00Z",
+            "updatedAt": "2023-09-25T15:45:00Z"
+
+        },
+        {
+            "projectId":2,
+            "projectName": "Project2",
+            "managerName": "Madhu",
+            "businessUnitId": "123",
+            "startDate": "2023-10-01",
+            "endDate": "2023-12-31",
+            "updatedBy": "JohnDoe",
+            "status": true,
+            "createdAt": "2023-09-25T14:30:00Z",
+            "updatedAt": "2023-09-25T15:45:00Z"
+        },
+        {
+            "projectId":3,
+            "projectName": "Project3",
+            "managerName": "Madhu",
+            "businessUnitId": "123",
+            "startDate": "2023-10-01",
+            "endDate": "2023-12-31",
+            "updatedBy": "JohnDoe",
+            "status": true,
+            "createdAt": "2023-09-25T14:30:00Z",
+            "updatedAt": "2023-09-25T15:45:00Z"
+        },
+        {
+            
+            "projectId":4,
+            "projectName": "Project4",
+            "managerName": "Madhu",
+            "businessUnitId": "123",
+            "startDate": "2023-10-01",
+            "endDate": "2023-12-31",
+            "updatedBy": "JohnDoe",
+            "status": true,
+            "createdAt": "2023-09-25T14:30:00Z",
+            "updatedAt": "2023-09-25T15:45:00Z"
+        },
+        {
+            "projectId":5,
+            "projectName": "Project1",
+            "managerName": "Madhu",
+            "businessUnitId": "124",
+            "startDate": "2023-10-01",
+            "endDate": "2023-12-31",
+            "updatedBy": "JohnDoe",
+            "status": true,
+            "createdAt": "2023-09-25T14:30:00Z",
+            "updatedAt": "2023-09-25T15:45:00Z"
+        },
+        {
+            "projectId":6,
+            "projectName": "Project2",
+            "managerName": "Madhu",
+            "businessUnitId": "124",
+            "startDate": "2023-10-01",
+            "endDate": "2023-12-31",
+            "updatedBy": "JohnDoe",
+            "status": true,
+            "createdAt": "2023-09-25T14:30:00Z",
+            "updatedAt": "2023-09-25T15:45:00Z"
+        },
+        {
+            "projectId":6,
+            "projectName": "Project3",
+            "managerName": "Madhu",
+            "businessUnitId": "124",
+            "startDate": "2023-10-01",
+            "endDate": "2023-12-31",
+            "updatedBy": "JohnDoe",
+            "status": true,
+            "createdAt": "2023-09-25T14:30:00Z",
+            "updatedAt": "2023-09-25T15:45:00Z"
+        }
+
+    ]
+}

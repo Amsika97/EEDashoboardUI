@@ -1,0 +1,178 @@
+th {
+  background-color: #d8d8d8;
+  color: #414141;
+  padding: 0 0 0 16px;
+  font-size: 12px;
+}
+
+.heading {
+  color: #234f80;
+  font-weight: bold;
+  padding: 12px 0 12px 20px;
+  font-size: 1.1rem;
+}
+
+.submitted {
+  color: #91979d;
+  background-color: rgba(145, 151, 157, 0.1);
+  border-radius: 20px;
+  padding: 5px 15px;
+  font-weight: 600;
+  display: block;
+  /* margin-left: -15px; */
+}
+.inactive{
+  color: #EE0200;
+  background-color: #FFE8E8;
+  border-radius: 20px;
+  padding: 5px 15px;
+  font-weight: 600;
+  display: block;
+}
+
+.saved {
+  color: #1f64ff;
+  background-color: rgba(31, 100, 255, 0.1);
+  border-radius: 20px;
+  padding: 5px 15px;
+  font-weight: 600;
+  /* margin-left: -15px; */
+  /* width: 80px; */
+  text-align: center;
+  display: block;
+}
+
+.rejected {
+  color: #ee0200;
+  background-color: rgba(238, 2, 0, 0.1);
+  border-radius: 20px;
+  padding: 5px 15px;
+  font-weight: 600;
+  display: block;
+  /* margin-left: -15px; */
+}
+.approved {
+  color: #39c18d;
+  background-color: rgba(57, 193, 141, 0.1);
+  border-radius: 20px;
+  padding: 5px 15px;
+  display: block;
+  font-weight: 600;
+  /* margin-left: -15px; */
+}
+.reviewed {
+  background-color:#DFF9D4 ;
+  color: #366A1E;
+  /* border: #9FD387 1px; */
+  border-radius: 20px;
+  padding: 5px 15px;
+  display: block;
+  font-weight: 600;
+}
+
+table tr th {
+  font-weight: inherit;
+}
+
+.viewLink {
+  text-decoration: underline;
+  /*   color: #BD267D; */
+  cursor: pointer;
+}
+
+td {
+  font-size: 12px;
+  color: #2b2b2b;
+  font-family: "Medium";
+}
+
+table {
+  font-size: 12px;
+  table-layout: fixed;
+  width: 100%;
+  border: 1px solid #d8d8d8;
+  border-radius: 4px;
+  overflow: hidden;
+  border-collapse: separate;
+}
+
+.mat-table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  border-radius: 1em !important;
+}
+
+table td {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.status {
+  padding: 0 0 0 35px;
+}
+
+.sr-no {
+  padding: 0 0 0 10px;
+  text-align: center;
+}
+
+.eye {
+  color: #2b2b2b;
+  font-size: 20px;
+  height: 20px;
+  width: 20px;
+}
+
+.heading-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tbl-heading {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.tbl-subheading {
+  font-size: 12px;
+}
+
+.score {
+  font-weight: 500;
+  color: black;
+}
+
+.single-line-cell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.action {
+  width: 80px;
+}
+
+.template-name {
+  width: 120px;
+}
+
+.table-container {
+  max-height: 320px;
+  overflow-y: auto;
+  /* overflow-x: auto;
+  max-width: 100%; */
+}
+
+::ng-deep .status-col .mat-sort-header-container {
+  justify-content: center;
+}
+
+::ng-deep .assessment-table th {
+  font-size: calc(0.5rem + 0.14vw) !important;
+}
+
+.link {
+  color: blue;
+  text-decoration: underline; 
+  cursor: pointer;
+}

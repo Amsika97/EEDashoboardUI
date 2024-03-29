@@ -1,0 +1,15 @@
+
+.control-main{
+    display: flex;
+}
+
+.select-page-size-div{
+    display: flex;
+    margin-left: 10px;
+}
+
+.select-pageSizes{
+    width: 70px;
+    height: 30px;
+    margin-left: 10px;
+}

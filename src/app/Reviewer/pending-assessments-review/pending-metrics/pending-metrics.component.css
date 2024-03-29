@@ -1,0 +1,14 @@
+  
+  .active {
+    background-color: #bd267d;
+    color: white;
+    padding: 5px 12px;
+    font-family: Medium;
+  }
+  
+  .deactive {
+    color: #6C757D;
+    background-color:#EDEDED ;
+    padding: 5px 12px;
+    font-family: Medium;
+  }

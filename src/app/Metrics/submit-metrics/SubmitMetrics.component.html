@@ -1,0 +1,308 @@
+<!-- <page-navigation [linkText]="'Metrics'"></page-navigation> -->
+
+<!-- <page-navigation
+  [linkText]="'Metrics'"
+  [subHeading]="headingLabels.MetricsSubHeadingData"
+>
+</page-navigation> -->
+<!-- <div class="container mx-auto ms-2">
+  
+</div> -->
+
+<div>
+  <mat-card class="ms-4 mt-0">
+    <mat-card-content>
+      <div class="heading-container">
+        <div>
+          <div class="tbl-heading">Submit Metrics</div>
+          <div class="tbl-subheading sub-heading">
+            Select your project, project type and applicable template to submit
+            metrics
+          </div>
+        </div>
+      </div>
+      <!-- <hr class="hr" style="margin: 7px; font-family: 'SemiBold'" /> -->
+
+      <mat-stepper
+        style="margin: 2% 10% 2% 10%"
+        linear
+        #stepper
+        [selectedIndex]="0"
+        [labelPosition]="'bottom'"
+      >
+        <mat-step
+          label="Select Template"
+          state="ui-checks"
+          [stepControl]="AllDetails"
+        >
+          <ng-template matStepperIcon="ui-checks">
+            <mat-icon
+              svgIcon="ui-checks"
+              class="ui-checks"
+              style="width: 20px"
+            ></mat-icon>
+          </ng-template>
+        </mat-step>
+        <mat-step label="Input Metrics" state="take-ass" class="take-ass">
+          <ng-template matStepperIcon="take-ass">
+            <mat-icon
+              svgIcon="take-ass"
+              style="width: 34px; height: 23px"
+            ></mat-icon>
+          </ng-template>
+        </mat-step>
+        <mat-step label="Submit Metrics" state="submit-ass" class="submit-ass">
+          <ng-template matStepperIcon="submit-ass">
+            <mat-icon
+              svgIcon="submit-ass"
+              style="width: 34px; height: 23px"
+            ></mat-icon>
+          </ng-template>
+        </mat-step>
+        <!-- <mat-step label="Done" state="done-custom">
+          <ng-template matStepperIcon="done-custom">
+            <mat-icon style="color: black;font-size: 30px;height: 30px;width: 30px;">task_alt</mat-icon>
+          </ng-template>
+        </mat-step> -->
+
+        <ng-template matStepperIcon="edit" let-index="index">
+          <mat-icon
+            *ngIf="index === 0"
+            svgIcon="ui-checks"
+            class="ui-checks"
+            style="width: 34px"
+          ></mat-icon>
+          <mat-icon
+            *ngIf="index === 1"
+            svgIcon="take-ass"
+            style="width: 34px; height: 23px"
+          ></mat-icon>
+          <mat-icon
+            *ngIf="index === 2"
+            svgIcon="submit-ass"
+            style="width: 34px; height: 23px"
+          ></mat-icon>
+          <mat-icon *ngIf="index === 3">task_alt</mat-icon>
+        </ng-template>
+
+        <ng-template matStepperIcon="done" let-index="index">
+          <mat-icon
+            *ngIf="index === 0"
+            svgIcon="ui-checks-white"
+            class="ui-checks"
+            style="width: 34px"
+          ></mat-icon>
+          <mat-icon
+            *ngIf="index === 1"
+            svgIcon="take-ass-white"
+            class="ui-checks"
+            style="width: 34px; height: 23px"
+          ></mat-icon>
+          <mat-icon
+            *ngIf="index === 2"
+            svgIcon="submit-ass-white"
+            class="ui-checks"
+            style="width: 34px; height: 23px"
+          ></mat-icon>
+          <mat-icon *ngIf="index === 3">task_alt</mat-icon>
+        </ng-template>
+      </mat-stepper>
+
+      <!-- <hr class="hr" style="margin: 5px; font-family: 'SemiBold'" /> -->
+
+      <form [formGroup]="AllDetails" class="flex-center">
+        <div class="drp-dwn-container d-flex flex-wrap">
+          <!-- <div class="col-md-12 col-sm-12 flex-center">
+            <label for="BU" class="label-text">
+              {{ label.bu }} <span class="text-danger text">*</span>
+            </label>
+            <div class="form-floating my-2">
+              <select
+                (change)="onBUChange($event)"
+                class="form-select Delivery border-none py-0"
+                formControlName="businessUnit"
+                aria-label="Default select example"
+                [ngClass]="{
+                  'error-border':
+                    formSubmit && AllDetails.get('businessUnit')?.invalid
+                }"
+              >
+                <option selected value="" disabled>Select BU</option>
+                <option
+                  class="text-dark fs-6 py-2"
+                  *ngFor="let bu of BusinessUnits"
+                  [value]="bu.id"
+                >
+                  {{ bu.name }}
+                </option>
+              </select>
+
+              <div
+                style="text-align: left !important; color: #ec1313 !important"
+                class="text-danger text-center"
+                *ngIf="formSubmit && AllDetails.get('businessUnit')?.invalid"
+              >
+                Business Unit is Required.
+              </div>
+            </div>
+          </div> -->
+
+          <div class="col-md-12 col-sm-12 flex-center">
+            <label for="account" class="label-text">
+              {{ label.account }} <span class="text-danger text">*</span>
+            </label>
+            <div class="form-floating my-2">
+              <select
+                (change)="onAccountChange($event)"
+                class="form-select border-none py-0"
+                formControlName="account"
+                aria-label="Default select example"
+                [ngClass]="{
+                  'error-border':
+                    formSubmit && AllDetails.get('account')?.invalid
+                }"
+              >
+                <option selected value="" disabled>Select Account</option>
+                <option
+                  class="text-dark"
+                  *ngFor="let account of accounts"
+                  [value]="account.accountId"
+                >
+                  {{ account.accountName }}
+                </option>
+              </select>
+
+              <div
+                style="text-align: left !important; color: #ec1313 !important"
+                class="text-danger text-center"
+                *ngIf="formSubmit && AllDetails.get('account')?.invalid"
+              >
+                Account is Required.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12 col-sm-12 flex-center">
+            <label for="Project" class="label-text">
+              {{ label.projectLabel }} <span class="text-danger text">*</span>
+            </label>
+            <div class="form-floating my-2">
+              <select
+                (change)="onProjectChange($event)"
+                class="form-select project border-none py-0"
+                formControlName="project"
+                aria-label="Default select example"
+                [ngClass]="{
+                  'error-border':
+                    formSubmit && AllDetails.get('project')?.invalid
+                }"
+              >
+                <option selected value="" disabled>Select Project</option>
+                <option
+                  class="text-dark"
+                  *ngFor="let project of projects"
+                  [value]="project.id"
+                >
+                  {{ project.projectName }}
+                </option>
+              </select>
+
+              <div
+                style="text-align: left !important; color: #ec1313 !important"
+                class="text-danger text-center"
+                *ngIf="formSubmit && AllDetails.get('project')?.invalid"
+              >
+                Project is Required.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12 col-sm-12 flex-center">
+            <label for="projectType" class="label-text"
+              >{{ label.projectTypeLabel }}
+              <span class="text-danger text">*</span></label
+            >
+            <div class="form-floating my-2">
+              <select
+                (change)="onProjectTypeChange($event)"
+                class="form-select custom-width border-none- py-0"
+                formControlName="projectType"
+                aria-label="Default select example"
+                [class.error-border]="
+                  formSubmit && AllDetails.get('projectType')?.invalid
+                "
+              >
+                <option selected value="" disabled>Select Project Type</option>
+                <option
+                  class="text-dark"
+                  *ngFor="let projectType of projectTypes"
+                  [value]="projectType.id"
+                >
+                  {{ projectType.projectTypeName }}
+                </option>
+              </select>
+
+              <div
+                style="text-align: left !important; color: #ec1313 !important"
+                class="text-danger text-center"
+                *ngIf="formSubmit && AllDetails.get('projectType')?.invalid"
+              >
+                Project type is Required.
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12 col-sm-12 flex-center">
+            <label for="Template" class="label-text">
+              {{ label.templateTypeLabel }}
+              <span class="text-danger text">*</span>
+            </label>
+            <div class="form-floating my-2">
+              <select
+                (change)="onTemplateChange($event)"
+                class="form-select custom-width border-none py-0"
+                formControlName="template"
+                aria-label="Default select example"
+                [ngClass]="{
+                  'error-border':
+                    formSubmit && AllDetails.get('template')?.invalid
+                }"
+              >
+                <option selected value="" disabled>Select template</option>
+                <option
+                  class="text-dark"
+                  *ngFor="let template of templates"
+                  [value]="template.templateId"
+                >
+                  {{ template.templateName }}
+                </option>
+              </select>
+
+              <div
+                style="text-align: left !important; color: #ec1313 !important"
+                class="text-danger text-center"
+                *ngIf="formSubmit && AllDetails.get('template')?.invalid"
+              >
+                Template is Required.
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <hr />
+      <div
+        class="btn-container d-flex justify-content-end"
+        style="float: right"
+      >
+        <button class="btn btn-secondary mr-4 px-4 me-2" (click)="reset()">
+          RESET
+        </button>
+        <button
+          class="btn btn-primary px-4 color"
+          (click)="submitForm(AllDetails.value)"
+        >
+          NEXT
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,38 @@
+<div class="container text-center pt-5">
+  <h1>Welcome Back</h1>
+  <h4 class="py-2">Today is {{ data | date : "fullDate" }}</h4>
+</div>
+
+<div class="container text-center pt-5">
+  <div
+    class="d-flex flex-column flex-md-row justify-content-center"
+    role="group"
+  >
+    <button class="btn btn-primary color" routerLink="/assessment">
+      Take Assessment
+    </button>
+    <button class="btn btn-primary color" routerLink="/savedassessments">
+      Saved Assessments
+    </button>
+    <button class="btn btn-primary color" routerLink="/submittedassessments">
+      Submitted Assessments
+    </button>
+    <button class="btn btn-primary color" routerLink="/reviewed-assessments">
+      Reviewed Assessments
+    </button>
+  </div>
+</div>
+
+<div class="assessmentChart">
+  <highcharts-chart
+    [Highcharts]="Highcharts"
+    [options]="chartOptions"
+  ></highcharts-chart>
+</div>
+
+<div class="assessmentChart">
+  <highcharts-chart
+    [Highcharts]="Highcharts"
+    [options]="chartOptionsPie"
+  ></highcharts-chart>
+</div>

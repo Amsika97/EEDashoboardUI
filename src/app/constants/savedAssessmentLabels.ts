@@ -1,0 +1,53 @@
+export const assessment = {
+  clientName: 'Client Name',
+  projectCode: 'Project Code',
+  projectName: 'Project Name',
+  projectType: 'Project Type',
+  projectId: 'ProjectId',
+  projectInitDate: 'Project Initiated',
+  submissionAs: 'Submission As',
+  saveDate: 'Saved On',
+  submitDate: 'Submitted On',
+  submittedBy: 'Submitted By',
+
+  lastUpdated: 'Last Updated',
+  edit: 'Resume',
+  reviewer: 'Reviewers Name',
+  reviewedDate: 'Reviewed On',
+  saved: 'Saved',
+  submitted: 'Submitted',
+  reviewed: 'Reviewed',
+  reviewedBy: 'Reviewed By',
+  action: 'Action',
+  status: 'Status',
+  accountName: 'Account',
+  submittedDate: 'Submitted On',
+  deliveryUnit: 'Delivery Unit',
+  templateName: 'Template Name',
+  score: 'Score',
+};
+
+export const assessmenttemplateslist = {
+  projectType: 'Project Type(s)',
+  templateName: 'Template Name',
+  templateDisplayName: 'Template Display Name',
+  createdBy: 'Created By',
+  createdOn: 'Created On',
+  templateFrequency: 'Template Frequency',
+  toggleAction: 'Template Status',
+  action: 'Action',
+};
+
+export const assessmentmetricslist = {
+  projectType: 'Project Type(s)',
+  templateName: 'Template Name',
+  templateDisplayName: 'Template Display Name',
+  createdBy: 'Created By',
+  createdOn: 'Created On',
+  templateFrequency: 'Template Frequency',
+  toggleAction: 'Template Status',
+  action: 'Action',
+  status: 'Status',
+  accountName: 'Account Name',
+  submittedDate: 'Submitted Date',
+};

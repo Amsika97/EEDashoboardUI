@@ -1,0 +1,325 @@
+<div
+  class=""
+  *ngIf="
+    (flowInforData.flowType === 'submitted' ||
+      flowInforData.flowType === 'reports' || flowInforData.flowType === 'reviewed' || flowInforData.flowType === 'inactive'  ) &&
+    flowInforData.status
+  "
+>
+  <div>
+    <div
+      class="d-flex header-cont"
+      style="font-size: smaller; height: 57px"
+      [ngStyle]="{
+        'background-color':
+          flowInforData.flowType === 'new' ? '#234f80' : 'white',
+        color: flowInforData.flowType !== 'new' ? 'black' : ''
+      }"
+    >
+      <mat-accordion class="w-100">
+        <mat-expansion-panel style="box-shadow: none">
+          <mat-expansion-panel-header
+            style="padding: 0px 10px; height: max-content; padding-top: 5px"
+          >
+            <div class="d-flex col-md-9">
+              <!-- <div class="w-15 border-right border-white"> -->
+                <!-- <div class="white-label">Delivery Unit</div>
+                <div
+                  class="white-value"
+                  [matTooltip]="
+                    categoryList.businessUnitName || businessUnitName
+                  "
+                >
+                  {{ categoryList.businessUnitName || businessUnitName }}
+                </div> -->
+              <!-- </div>  -->
+              <!-- <div class="v1 mx-4"></div> -->
+              <div class="w-15 border-right border-white">
+                <div class="white-label">Account</div>
+                <div
+                  class="white-value"
+                  [matTooltip]="categoryList.accountName || accountName"
+                >
+                  {{ categoryList.accountName || accountName }}
+                </div>
+              </div>
+              <div class="v1 mx-4"></div>
+              <div class="w-15 border-right border-white">
+                <div class="white-label">Project Name</div>
+                <div
+                  class="white-value"
+                  [matTooltip]="categoryList.projectName || projectName"
+                >
+                  {{ categoryList.projectName || projectName }}
+                </div>
+              </div>
+            </div>
+            <!-- <div
+                      [ngStyle]="{
+                        flex: flowInforData.flowType === 'new' ? '' : '1 0 auto'
+                      }"
+                    ></div> -->
+            <div class="d-flex col-md-3 justify-content-end">
+              <div
+                class="score-status d-flex"
+                style="margin-top: 5px"
+                *ngIf="
+                  flowInforData.flowType === 'submitted' ||
+                  flowInforData.flowType === 'saved' ||
+                  flowInforData.flowType === 'reports' ||
+                  flowInforData.flowType === 'inactive' ||
+                  flowInforData.flowType === 'reviewed' ||
+                  flowInforData.flowType === 'reviewer'
+                "
+              >
+              <div
+                  class="p1 h-100 align-middle"
+                  *ngIf="
+                    flowInforData.flowType === 'submitted' ||
+                    flowInforData.flowType === 'reports' ||
+                    flowInforData.flowType === 'reviewed' ||
+                    flowInforData.flowType === 'inactive' ||
+                    flowInforData.flowType === 'reviewer'
+                  "
+                >
+                  Total Score: {{ categoryList?.score?.toFixed(2) }}%
+                </div>
+                <!-- <div class="col-lg-3 pageIndicator"> -->
+                <div class="p1" *ngIf="flowInforData.flowType === 'saved'">
+                  {{ selectedStep === 3 ? "Submitted" : "Saved" }}
+                </div>
+                <div
+                  class="p2"
+                  *ngIf="
+                    (flowInforData.flowType === 'submitted' ||
+                      flowInforData.flowType === 'reports') &&
+                    flowInforData.status === ''
+                  "
+                >
+                  Submitted
+                </div>
+                <div
+                  class="reviewed"
+                  *ngIf="
+                    (flowInforData.flowType === 'reviewed' ||
+                      flowInforData.flowType === 'reports') 
+                  "
+                >
+                  Reviewed
+                </div>
+                <div
+                  class="inactive"
+                  *ngIf="
+                    (flowInforData.flowType === 'inactive' ||
+                      flowInforData.flowType === 'reports') 
+                  "
+                >
+                  Deleted
+                </div>
+                <div class="p2" *ngIf="flowInforData.flowType === 'reviewer'">
+                  Submitted
+                </div>
+                <!-- </div> -->
+              </div>
+            </div>
+            <hr class="m-0" />
+          </mat-expansion-panel-header>
+          <hr class="m-0" />
+          <span
+            class="d-flex"
+            style="flex: 1 0 auto; padding-top: 5px; height: 100%"
+            *ngIf="categoryList?.reviewers"
+          >
+            <div class="w-15 border-right border-white">
+              <div class="white-label">Reviewed By</div>
+              <div
+                class="white-value"
+                [matTooltip]="
+                  categoryList?.reviewers?.length
+                    ? categoryList?.reviewers[0]?.reviewerName
+                    : ''
+                "
+              >
+                {{
+                  categoryList?.reviewers?.length
+                    ? categoryList?.reviewers[0]?.reviewerName
+                    : "NA"
+                }}
+              </div>
+            </div>
+            <div class="v1 mx-4"></div>
+            <div class="w-15 border-right border-white">
+              <div class="white-label">Reviewed On</div>
+              <div class="white-value">
+                {{
+                  categoryList?.reviewers?.length
+                    ? (categoryList?.reviewers[0]?.reviewerAt
+                      | date : "dd-MMM-YYYY")
+                    : "NA"
+                }}
+              </div>
+            </div>
+          </span>
+        </mat-expansion-panel>
+        <hr class="m-0 extra-hr" />
+      </mat-accordion>
+    </div>
+    <!-- <div class="col-lg-9">
+              <page-navigation
+                [linkText]="flowInforData.navigation.text"
+                [routeURL]="flowInforData.navigation.routerLink"
+              >
+              </page-navigation>
+            </div> -->
+  </div>
+</div>
+
+<div
+  *ngIf="
+    ((flowInforData.flowType === 'saved' ||
+      flowInforData.flowType === 'submitted' ||
+      flowInforData.flowType === 'reports') &&
+      !flowInforData.status) ||
+    flowInforData.flowType === 'reviewer'
+  "
+>
+  <div class="row">
+    <div class="page-header d-flex px-4">
+      <div class="d-flex col-md-9">
+        
+          <!-- <div class="white-label">Delivery Unit</div> -->
+          <!-- <div
+            class="white-value"
+            [matTooltip]="categoryList.businessUnitName || businessUnitName"
+          >
+            {{ categoryList.businessUnitName || businessUnitName }}
+          </div> -->
+        <!-- <div class="v1 mx-4"></div> -->
+        <div class="w-15 border-right border-white">
+          <div class="white-label">Account</div>
+          <div
+            class="white-value"
+            [matTooltip]="categoryList.accountName || accountName"
+          >
+            {{ categoryList.accountName || accountName }}
+          </div>
+        </div>
+        <div class="v1 mx-4"></div>
+        <div class="w-15 border-right border-white">
+          <div class="white-label">Project Name</div>
+          <div
+            class="white-value"
+            [matTooltip]="categoryList.projectName || projectName"
+          >
+            {{ categoryList.projectName || projectName }}
+          </div>
+        </div>
+      </div>
+      <!-- <div
+                [ngStyle]="{
+                  flex: flowInforData.flowType === 'new' ? '' : '1 0 auto'
+                }"
+              ></div> -->
+
+
+
+      <div class="d-flex col-md-3 justify-content-end">
+        <div class="score-status d-flex" style="margin-top: 5px"
+        *ngIf="
+        flowInforData.flowType === 'submitted' ||
+        flowInforData.flowType === 'reports' ||
+        flowInforData.flowType === 'reviewed' 
+      ">
+       <div
+       class="p1 h-100 align-middle"
+       *ngIf="
+         flowInforData.flowType === 'submitted' ||
+         flowInforData.flowType === 'reports' ||
+         flowInforData.flowType === 'reviewed' 
+       "
+     >
+       Total Score: {{ categoryList?.score?.toFixed(2) }}%
+     </div>
+          <!-- <div class="col-lg-3 pageIndicator"> -->
+          <div class="p1" *ngIf="flowInforData.flowType === 'saved'">
+            {{ selectedStep === 3 ? "Submitted" : "Saved" }}
+          </div>
+          <div
+            class="p2"
+            *ngIf="
+              (flowInforData.flowType === 'submitted' ||
+                flowInforData.flowType === 'reports') &&
+              flowInforData.status === ''
+            "
+          >
+            Submitted
+          </div>
+          <div class="p2" *ngIf="flowInforData.flowType === 'reviewer'">
+            Submitted
+          </div>
+          <!-- </div> -->
+        </div>
+      </div>
+      <hr class="m-0" />
+      <hr class="m-0" />
+      <hr class="m-0" />
+    </div>
+  </div>
+  <hr class="m-0 extra-hr" />
+</div>
+
+<div class="" *ngIf="flowInforData.flowType === 'new'">
+  <div class="row">
+    <div
+      class="page-header d-flex px-4"
+      style="font-size: smaller; background-color: #234f80"
+    >
+      <!-- <div
+        class="w-15 border-right border-white"
+        [ngStyle]="{
+          'background-color':
+            flowInforData.flowType === 'new' ? '#234f80' : 'white',
+          color: flowInforData.flowType !== 'new' ? 'black' : ''
+        }"
+      > -->
+        <!-- <div class="blue-label">Delivery Unit</div>
+        <div
+          class="fw-medium blue-value"
+          [matTooltip]="categoryList.businessUnitName || businessUnitName"
+        >
+          {{ categoryList.businessUnitName || businessUnitName }}
+        </div> -->
+      <!-- </div>  -->
+      <!-- <div class="old-v1 mx-4"></div> -->
+      <div class="w-15 border-right border-white">
+        <div class="blue-label">Account</div>
+        <div
+          class="fw-medium blue-value"
+          [matTooltip]="categoryList.accountName || accountName"
+        >
+          {{ categoryList.accountName || accountName }}
+        </div>
+      </div>
+      <div class="old-v1 mx-4"></div>
+      <div class="w-15 border-right border-white">
+        <div class="blue-label">Project Name</div>
+        <div
+          class="fw-medium blue-value"
+          [matTooltip]="categoryList.projectName || projectName"
+        >
+          {{ categoryList.projectName || projectName }}
+        </div>
+      </div>
+      <div
+        [ngStyle]="{ flex: categoryList?.reviewers ? '' : '1 0 auto' }"
+      ></div>
+    </div>
+    <!-- <div class="col-lg-9">
+              <page-navigation
+                [linkText]="flowInforData.navigation.text"
+                [routeURL]="flowInforData.navigation.routerLink"
+              >
+              </page-navigation>
+            </div> -->
+  </div>
+</div>

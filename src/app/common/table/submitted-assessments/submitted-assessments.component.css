@@ -1,0 +1,37 @@
+
+th {
+  background-color: #f7f7f7;
+  color: #91979d;
+  padding: 0 16px 0 16px;
+}
+
+.heading {
+  color: #234f80;
+  font-weight: bold;
+  padding: 12px 0 12px 20px;
+  font-size: 1.1rem;
+}
+
+.table-container {
+  padding: 20px;
+}
+
+table {
+  width: 100%;
+}
+
+.assessment-table tr th {
+  font-weight: inherit;
+}
+
+.viewLink {
+  text-decoration: underline;
+  color: #BD267D;
+  cursor: pointer;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+

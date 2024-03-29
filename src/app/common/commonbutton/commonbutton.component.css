@@ -1,0 +1,13 @@
+#s1 {
+  background: #bd267d 0% 0% no-repeat padding-box;
+  border-radius: 6px;
+  opacity: 1;
+  color: #fff;
+  float: inline-end;
+  width: auto;
+  text-align: center;
+  padding: 8px 14px;
+  letter-spacing: 0px;
+  font-family: Medium;
+  cursor: pointer;
+}

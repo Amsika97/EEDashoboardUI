@@ -1,0 +1,18 @@
+mat-slider {
+  width: 300px;
+}
+
+.infoTooltip {
+  position: relative;
+  left: 9px;
+}
+
+::ng-deep .mat-mdc-slider.mat-primary {
+  --mdc-slider-handle-color: #234f80;
+  --mdc-slider-focus-handle-color: #234f80;
+  --mdc-slider-hover-handle-color: #234f80;
+  --mdc-slider-active-track-color: #234f80;
+  --mdc-slider-inactive-track-color: #234f80;
+  --mdc-slider-with-tick-marks-inactive-container-color: #234f80;
+  --mat-mdc-slider-ripple-color: #234f80;
+}

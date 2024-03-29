@@ -1,0 +1,53 @@
+<!-- <page-navigation
+  [linkText]="'Manage Assessment & Metric Templates'"
+></page-navigation> -->
+
+<div>
+  <div class="col-xs-12 col-lg-12 col-md-12 mb-3">
+    <mat-card class="m-4 mt-0">
+      <mat-card-content>
+        <div class="heading-container">
+          <div>
+            <div class="tbl-heading">Assessments - Template List</div>
+            <div class="tbl-subheading sub-heading">
+              Shows list of available templates in the system along with their
+              status
+            </div>
+          </div>
+          <app-commonbutton
+            [buttonText]="'+ ADD TEMPLATE'"
+            (buttoncallbackEvent)="buttonCallBackFunAss($event)"
+          >
+          </app-commonbutton>
+        </div>
+
+        <div class="mt-2">
+          <app-assessmentslist></app-assessmentslist>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="form-group col-xs-12 col-lg-12 col-md-12">
+    <mat-card class="m-4">
+      <mat-card-content>
+        <div class="heading-container">
+          <div>
+            <div class="tbl-heading">Metrics - Template List</div>
+            <div class="tbl-subheading sub-heading">
+              Shows list of available templates in the system along with their
+              status
+            </div>
+          </div>
+          <app-commonbutton
+            [buttonText]="'+ ADD TEMPLATE'"
+            (buttoncallbackEvent)="buttonCallBackFun($event)"
+          >
+          </app-commonbutton>
+        </div>
+        <div class="mt-2">
+          <app-metricslist></app-metricslist>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

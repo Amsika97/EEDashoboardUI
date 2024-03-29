@@ -1,0 +1,16 @@
+.hedtab {
+  text-align: left;
+  letter-spacing: 0px;
+  color: #234f80;
+  opacity: 1;
+  font-family: "Regular";
+}
+.titledata {
+  margin-top: 22px;
+  margin-left: 9px;
+}
+.body {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 12px;
+}

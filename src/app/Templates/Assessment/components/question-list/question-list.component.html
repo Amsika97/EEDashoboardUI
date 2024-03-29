@@ -1,0 +1,377 @@
+<div class="container__content">
+  <div class="" *ngIf="categoryList">
+    <div class="w-100 justify-content-center mt-3">
+      <!-- <div class="w-100 justify-content-center mt-3"> -->
+      <!-- <div class="heading">Questionnaire</div> -->
+
+      <!-- <div class="col-lg-6 col-sm-12 col-md-8 p-1"> -->
+      <div class="col-12">
+        <div
+          *ngFor="let categoryType of categoryList.projectCategory; index as i"
+          class="mb-2"
+        >
+          <!-- class="categoryName d-inline-block bg-gradient-secondary fw-bold mb-3" -->
+          <div
+            *ngIf="categoryList.projectCategory.length > 1"
+            class="categoryName bg-gradient-secondary fw-medium mb-3"
+            style="font-family: InterBold"
+          >
+            Category {{ i + 1 }} : {{ categoryType.categoryName }}
+
+            <span
+              class="categorywiseScores"
+              *ngIf="!!getCategorywiseScores(categoryType.categoryName)"
+              >Category Score:
+              {{
+                getCategorywiseScores(
+                  categoryType.categoryName
+                ).categoryScore.toFixed(2)
+              }}%</span
+            >
+
+            <span
+              *ngIf="categoryType.categoryDescription || ''"
+              class="category-infoTooltip"
+            >
+              <i
+                mat-raised-button
+                matTooltip="{{ categoryType.categoryDescription }}"
+                matTooltipPosition="left"
+              >
+                <i
+                  class="fa fa-exclamation-circle tool"
+                  style="padding-right: 10px; margin: 0; float: right"
+                ></i>
+              </i>
+            </span>
+          </div>
+          <div
+            class="ind_question d-flex" style="border-bottom: 1px solid #d8d8d8;"
+            *ngFor="
+              let questionDetails of categoryType.templateQuestionnaire;
+              index as j
+            "
+            [id]="
+              questionDetails.hasOwnProperty('isValid') &&
+              !questionDetails.isValid
+                ? categoryType.categoryName + (j + 1)
+                : ''
+            "
+          >
+
+          <div 
+          [ngStyle]="{ 'border-right': (flowInforData.status == 'reviewed' || flowInforData.flowType == 'reviewer') ? '1px solid #d8d8d8' : '' }" 
+          [ngClass]="{'col-lg-9': (flowInforData.status == 'reviewed' ) || flowInforData.flowType == 'reviewer', 'col-lg-12' : flowInforData.flowType == 'new' || flowInforData.flowType == 'saved' || (flowInforData.flowType == 'preview') ||  (flowInforData.flowType == 'submitted' && flowInforData.status == '')} " class=" p-3">
+            <div class="fw-medium mb-2 questionAlignment">
+              <span style="color: #91979d">
+                {{
+                  categoryList.projectCategory.length <= 1
+                    ? j + 1 + "."
+                    : i + 1 + "." + (j + 1)
+                }}
+              </span>
+              <span style="font-family: Semibold">
+                {{ questionDetails.question }}
+              </span>
+
+              <span
+                *ngIf="questionDetails.questionDescription || ''"
+                class="infoTooltip"
+              >
+                <i
+                  matTooltip="{{ questionDetails.questionDescription }}"
+                  matTooltipPosition="right"
+                >
+                  <i
+                    class="fa fa-exclamation-circle tool"
+                    style="padding: 0; margin: 0"
+                  ></i>
+                </i>
+              </span>
+            </div>
+            <div
+              *ngIf="questionDetails.questionSubText"
+              class="d-flex flex-row subtext ps-3 pb-2"
+            >
+              {{ questionDetails.questionSubText }}
+            </div>
+            <!-- <div class="fs-6 mb-3">Select Answer</div> -->
+
+            <div class="questionswrap d-flex flex-row">
+              <div
+                fxFlex="10"
+                class="question  {{ disableQuestion ? 'disabled' : 'enabled' }}"
+                *ngFor="
+                  let scoreCategory of getCategory(
+                    questionDetails.scoreCategory
+                  );
+                  index as k
+                "
+              >
+                <div
+                  class="form-check-input d-flex m1 form-check{{
+                    questionDetails.answerOptionIndex === k + 1
+                      ? ' fw-medium'
+                      : ''
+                  }}"
+                >
+                  <!-- <span class="w-8"> -->
+                  <input
+                    class="cursor-pointer"
+                    type="radio"
+                    [disabled]="disableQuestion"
+                    name="flexRadioDefault{{ i }}{{ j }}{{ currentDate }}"
+                    id="flexRadioDefault{{ i }}{{ j }}{{ k }}"
+                    [checked]="questionDetails.answerOptionIndex === k + 1"
+                    (change)="
+                      onChange(
+                        questionDetails,
+                        scoreCategory.optionIndex,
+                        !!questionDetails.extraInfo
+                          ? questionDetails.extraInfo.selectedIndex
+                          : 0
+                      )
+                    "
+                    style="width: 20px"
+                  />
+                  <!-- </span> -->
+                  <label
+                    class="w-auto cursor-pointer fs-6"
+                    for="flexRadioDefault{{ i }}{{ j }}{{ k }}"
+                  >
+                    {{ scoreCategory.label }}
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div
+              *ngIf="
+                !!questionDetails.answerOptionIndex &&
+                !!questionDetails.extraInfo &&
+                questionDetails.extraInfo.selectedIndex ===
+                  questionDetails.answerOptionIndex
+              "
+              class="d-flex flex-column my-3"
+            >
+              <!-- <div class="stateText">State your justification</div> -->
+              <textarea
+                *ngIf="
+                  !!questionDetails.extraInfo &&
+                  (questionDetails.extraInfo.proof === 'both' ||
+                    questionDetails.extraInfo.proof === 'comment')
+                "
+                class="h-25 mt-1 commentTextarea"
+                [disabled]="disableQuestion"
+                (keyup)="onCommentChange($event, questionDetails)"
+                [value]="
+                  !!questionDetails.comment ? questionDetails.comment : ''
+                "
+                placeholder="State your justification"
+              ></textarea>
+
+              <div
+                class="mt-2"
+                *ngIf="
+                  !!questionDetails.extraInfo &&
+                  (questionDetails.extraInfo.proof === 'both' ||
+                    questionDetails.extraInfo.proof === 'file')
+                "
+              >
+                <div class="fileuplodgroup" *ngIf="questionDetails.tempfileUri">
+                  <div class="d-flex justify-content-end">
+                    {{ questionDetails.tempfileUri }}
+                  </div>
+                  <button *ngIf="!disableQuestion"
+                    type="button"
+                    [disabled]="disableQuestion"
+                    class="btn btn-outline-danger btn-sm removeFilebutton"
+                    (click)="clearSelectedFile(questionDetails)"
+                  >
+                    X
+                  </button>
+                  <button
+                    [disabled]="disableQuestion"
+                    class="btn btn-success btn-sm"
+                    (click)="uploadFile(questionDetails)"
+                  >
+                    Upload
+                  </button>
+                  <div *ngIf="questionDetails.uploadStatus">
+                    {{ questionDetails.uploadStatus }}
+                  </div>
+                </div>
+
+                <div class="d-flex justify-content-end">
+                <div
+                  style="font-family: Semibold;"
+                  (click)="
+                    downloadFile(
+                      questionDetails,
+                      questionDetails.fileUri.split('/')[
+                        questionDetails.fileUri.split('/').length - 1
+                      ]
+                    )
+                  "
+                  class="d-flex justify-content-end downloadFile"
+                  *ngIf="questionDetails.fileUri"
+                >
+                  {{
+                    questionDetails.fileUri.split("/")[
+                      questionDetails.fileUri.split("/").length - 1
+                    ]
+                  }}
+                </div>
+                <input
+                  type="file"
+                  class="d-none"
+                  #fileUpload
+                  onclick="this.value=null;"
+                  (change)="onFileSelected($event, questionDetails)"
+                />
+
+                <!-- accept=".zip,.rar,.7zip" -->
+
+                <button
+                  [disabled]="disableQuestion"
+                  *ngIf="questionDetails.fileUri && !disableQuestion"
+                  type="button"
+                  class="btn btn-outline-danger btn-sm removeFilebutton"
+                  (click)="clearSelectedFile(questionDetails)"
+                >
+                  X
+                </button>
+              </div>
+                <div
+                  class="d-flex justify-content-end"
+                  *ngIf="
+                    !questionDetails.fileUri && !questionDetails.tempfileUri
+                  "
+                >
+                  <div
+                    class="cursor-pointer"
+                    (click)="
+                      !(flowInforData.flowType === 'submitted') &&
+                        displayMode !== 'preview' &&
+                        fileUpload.click()
+                    "
+                  >
+                    Upload document
+                    <img
+                      class="w-20 h-20 ms-2"
+                      src="/assets/png/upload.png"
+                      alt="image"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              *ngIf="questionDetails.hasOwnProperty('isValid')"
+              class="errorMsg fs-6"
+            >
+              {{
+                !questionDetails.isValid
+                  ? "Please provide your valid input"
+                  : ""
+              }}
+
+              <!-- {{
+          !questionDetails.isValid
+            ? "Please enter a valid fieldname"
+            : ""
+        }} -->
+            </div>
+            <!-- <hr class="hr" /> -->
+
+         
+          </div> 
+
+          <div class="col-lg-3 p-2" 
+          *ngIf="(flowInforData.status == 'reviewed' || flowInforData.flowType == 'reviewer')"
+         >
+
+         <div style="background-color: #F6F7FA;" class="p-2">
+         
+           <label style="font-family: Semibold; font-size: 15px ;" class="pt-1"> {{ flowInforData.flowType == 'reviewer' ? 'Add comments' : 'Reviewer Comments'  }} </label>
+         <textarea
+           style="height: auto"
+           [disabled]="
+             flowInforData.flowType == 'reviewer'
+               ? false
+               : disableQuestion
+           "
+           class="form-control"
+           (keyup)="onReviewerCommentChange($event, questionDetails)"
+           [value]="
+             !!questionDetails.reviewerComment
+               ? questionDetails.reviewerComment
+               : ''
+           "
+           [placeholder]= "flowInforData.flowType == 'reviewer' ? 'Reviewer comment' : ''"
+         ></textarea>
+       </div>
+       </div>
+          </div>
+          <div *ngIf="categoryList.projectCategory.length > i + 1">
+            <hr class="solid" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    *ngIf="respMsg.message"
+    class="container px-3 alert {{
+      respMsg.type === 'success' ? 'alert-success' : 'alert-danger'
+    }}"
+  >
+    <strong>{{ respMsg.type }}!</strong> {{ respMsg.message }}
+  </div>
+
+  <div
+    *ngIf="flowInforData.flowType === 'reviewer' && !!flowInforData.status"
+    class="container-fluid pt-2 reviewerCommentSection"
+  >
+    <form [formGroup]="commentForm">
+        <div class="comment-box mb-3">
+          <textarea
+            class="form-control comment"
+            formControlName="comment"
+            id="commentTextarea"
+            placeholder="Overall comments for the assessment reviewed."
+            rows="3"
+            [ngClass]="{
+              'is-invalid':
+                commentForm.controls['comment'].errors &&
+                (commentForm.controls['comment'].touched ||
+                  commentForm.controls['comment'].dirty)
+            }"
+          ></textarea>
+          <div
+            *ngIf="commentForm.controls['comment'].hasError('required')"
+            class="invalid-feedback"
+          >
+            Comment is required
+          </div>
+        </div>
+        <div class="d-flex justify-content-end">
+          <button
+            class="btn btn-danger"
+            (click)="returnAssessment()"
+          >
+            Return
+          </button>
+          <button
+            class="btn submit-btn"
+            (click)="submitReviewDecision()"
+            [disabled]="!commentForm.valid"
+          >
+            Submit
+          </button>
+        </div>
+    </form>
+  </div>
+
+  <!--  -->
+</div>

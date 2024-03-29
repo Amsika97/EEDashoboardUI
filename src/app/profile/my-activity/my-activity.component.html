@@ -1,0 +1,85 @@
+<mat-card class="m-4 mt-0">
+  <div class="user-details">
+    <div class="row">
+      <div class="col-sm header">User Name</div>
+      <div class="col-sm header">Email ID</div>
+    </div>
+    <div class="row">
+      <div class="col-sm header-details">{{ name }}</div>
+      <div class="col-sm header-details">{{ emailId }}</div>
+    </div>
+  </div>
+  <mat-card-content class="hd-container">
+    <div class="tbl-heading">My Activity</div>
+    <div class="tbl-subheading sub-heading"></div>
+    <br />
+
+    <div>
+      <table class="custom-table">
+        <tr>
+          <th>
+            <img
+              src="../../../../assets/svg/Assessment.svg"
+              class="icon"
+              alt="preview"
+            />
+            <span class="my-activity-heading">Assessments</span>
+          </th>
+          <th>
+            <img
+              src="../../../../assets/svg/Metrics.svg"
+              class="icon"
+              alt="preview"
+            />
+            <span class="my-activity-heading">Metrics</span>
+          </th>
+        </tr>
+        <tr class="my-activity-height" *ngIf="profileType === 'self'">
+          <td>
+            <span class="static">Draft</span>
+            &nbsp;
+            <span class="value">{{ assessmentStatusCounts?.draft }}</span>
+          </td>
+          <td>
+            <span class="static">Draft</span>
+            &nbsp;
+            <span class="value">{{ metricStatusCounts?.draft }}</span>
+          </td>
+        </tr>
+        <tr class="my-activity-height">
+          <td>
+            <span class="static">Reviewed</span> &nbsp;
+            <span class="value">{{ assessmentStatusCounts?.reviewed }}</span>
+          </td>
+          <td>
+            <span class="static">Reviewed</span> &nbsp;
+            <span class="value">{{ metricStatusCounts?.reviewed }}</span>
+          </td>
+        </tr>
+
+        <tr class="my-activity-height">
+          <td>
+            <span class="static">Submitted</span> &nbsp;
+            <span class="value">{{ assessmentStatusCounts?.submitted }}</span>
+          </td>
+          <td>
+            <span class="static">Submitted</span> &nbsp;
+            <span class="value">{{ metricStatusCounts?.submitted }}</span>
+          </td>
+        </tr>
+        <!-- Table rows -->
+        <tr mat-header-row *matHeaderRowDef="['assessment', 'metric']"></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: ['assessment', 'metric']"
+        ></tr>
+      </table>
+      <div class="data-table">
+        <span class="static">Account/Project</span>
+        <div *ngFor="let info of accountProjectInfo" class="pad-tp">
+          <span class="acct">{{ info }}</span>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

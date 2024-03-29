@@ -1,0 +1,32 @@
+.select{
+    position: absolute; 
+    left: 30px; 
+    top: -50px;
+    margin-left: 80%;
+    z-index: 1;
+    
+}
+.chart-container{
+    position: relative;
+}
+highcharts-chart {
+    width: 98%;
+    max-width: none; 
+    display: block; 
+    margin: 0 auto; 
+  }
+#timeRange{
+    padding: 5px;
+}
+.nodata{
+    font-weight: bold;
+}
+@media screen and (min-width: 1500px) {
+    
+    highcharts-chart {
+        width: 98%;
+        max-width: none; 
+        display: block; 
+        margin: 0 auto; 
+      }
+}

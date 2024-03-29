@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="390" height="146" viewBox="0 0 390 146">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_3386" data-name="Rectangle 3386" width="390" height="146" rx="4" transform="translate(0.334)" fill="#ffe386"/>
+    </clipPath>
+    <filter id="Ellipse_139" x="222" y="-35" width="216" height="216" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="16" result="blur"/>
+      <feFlood flood-color="#fff" flood-opacity="0.2"/>
+      <feComposite operator="in" in2="blur"/>
+    </filter>
+    <clipPath id="clip-path-2">
+      <rect id="Rectangle_3426" data-name="Rectangle 3426" width="76" height="76" transform="translate(294.334 35)" fill="#1f64ff"/>
+    </clipPath>
+  </defs>
+  <g id="Group_11305" data-name="Group 11305" transform="translate(-657 -252)">
+    <g id="Group_11233" data-name="Group 11233" transform="translate(656.666 252)">
+      <rect id="Rectangle_3370" data-name="Rectangle 3370" width="390" height="146" rx="4" transform="translate(0.334)" fill="#f5bc00"/>
+      <g id="Group_10228" data-name="Group 10228" clip-path="url(#clip-path)">
+        <g transform="matrix(1, 0, 0, 1, 0.33, 0)" filter="url(#Ellipse_139)">
+          <circle id="Ellipse_139-2" data-name="Ellipse 139" cx="60" cy="60" r="60" transform="translate(270 13)" fill="#fff"/>
+        </g>
+        <circle id="Ellipse_143" data-name="Ellipse 143" cx="157" cy="157" r="157" transform="translate(-130.666 -8)" fill="#b25b00"/>
+        <circle id="Ellipse_134" data-name="Ellipse 134" cx="157" cy="157" r="157" transform="translate(-136.666 -11)" fill="#ffdb64"/>
+      </g>
+    </g>
+    <g id="Mask_Group_10296" data-name="Mask Group 10296" transform="translate(654.666 252)" clip-path="url(#clip-path-2)">
+      <path id="briefcase-4-fill" d="M34.2,49.4V60.8H57V49.4H83.6V76a3.8,3.8,0,0,1-3.8,3.8H11.4A3.8,3.8,0,0,1,7.6,76V49.4Zm7.6-7.6h7.6V53.2H41.8ZM26.6,19V7.6a3.8,3.8,0,0,1,3.8-3.8H60.8a3.8,3.8,0,0,1,3.8,3.8V19H79.8a3.8,3.8,0,0,1,3.8,3.8v19H57V34.2H34.2v7.6H7.6v-19A3.8,3.8,0,0,1,11.4,19Zm7.6-7.6V19H57V11.4Z" transform="translate(286.734 31.2)" fill="#b25b00"/>
+    </g>
+  </g>
+</svg>

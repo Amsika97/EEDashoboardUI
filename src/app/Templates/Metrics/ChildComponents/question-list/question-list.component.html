@@ -1,0 +1,386 @@
+<div class="container__content">
+  <form [formGroup]="commentForm">
+  <div class="" *ngIf="categoryList">
+    <div class="w-100 justify-content-center mt-3">
+      <div class="col-12">
+        <!-- <div class="w-100 justify-content-center mt-3">
+    <div class="col-lg-6 col-sm-12 col-md-8 p-1"> -->
+        <div
+          *ngFor="let categoryType of categoryList.projectCategory; index as i"
+          class="mb-2"
+        >
+          <!-- <div
+          class="categoryName d-inline-block bg-gradient-secondary fw-bold mb-3"
+        >
+          Category {{ i + 1 }} : {{ categoryType.categoryName }}
+        </div> -->
+
+        <div class="row  align-items-start categoryName bg-gradient-secondary fw-medium"
+            style="font-family: InterBold;margin-left:0;margin-right:0">
+          <div class="col">
+            Category {{ i + 1 }} : {{ categoryType.categoryName }}
+          </div>
+      
+          <div class="col text-end">
+            <div
+            class="categorywiseScores"
+            *ngIf="!!getCategorywiseScores(categoryType.categoryName)"
+            >Category Score:
+            {{
+              getCategorywiseScores(
+                categoryType.categoryName
+              ).categoryScore.toFixed(2)
+            }}%</div
+          >
+          <div
+            *ngIf="categoryType.categoryDescription || ''"
+            class="infoTooltip"
+          >
+            <i
+              mat-raised-button
+              matTooltip="{{ categoryType.categoryDescription }}"
+              matTooltipPosition="right"
+            >
+              <i
+                class="fa fa-exclamation-circle tool"
+                style="padding-right: 15px; margin: 0;"
+              ></i>
+            </i>
+          </div>
+
+          </div>  
+
+        </div>
+    
+
+          <!-- Questions div -->
+          <div
+            class="content-expansion"
+            *ngFor="
+              let questionDetails of categoryType.templateQuestionnaire;
+              index as j
+            "
+            [id]="
+              questionDetails.hasOwnProperty('isValid') &&
+              !questionDetails.isValid
+                ? categoryType.categoryName + (j + 1)
+                : ''
+            "
+          >
+            <!-- <div class="fw-bold mb-2">
+      {{ i + 1 + (j + 1) / 10 }} {{ questionDetails.question }}
+    </div> -->
+<div class="d-flex que-ans-container" style="border-bottom: 1px solid #d8d8d8;">
+  <div
+      [ngStyle]="{ 'border-right': (flowInforData.status == 'reviewed'  || flowInforData.flowType == 'reviewer') ? '1px solid #d8d8d8' : '' }" 
+      [ngClass]="{'col-lg-9': (flowInforData.status == 'reviewed') || flowInforData.flowType == 'reviewer', 'col-lg-12' : flowInforData.flowType == 'new' || flowInforData.flowType == 'saved' || (flowInforData.flowType == 'preview') || (flowInforData.flowType == 'submitted' && flowInforData.status == '')} " class=" p-3">
+    <!-- answer options -->
+            <app-radio-comp
+              [isSubmitted]="isSubmitted"
+              [questionDetails]="questionDetails"
+              [disableQuestion]="disableQuestion"
+              [questionIndex]="
+                categoryList.projectCategory.length <= 1
+                  ? j + 1 + '.'
+                  : i + 1 + '.' + (j + 1)
+              "
+              *ngIf="questionDetails.fieldType === 'radio'"
+            ></app-radio-comp>
+            <app-checkbox-comp
+              [isSubmitted]="isSubmitted"
+              *ngIf="questionDetails.fieldType === 'checkbox'"
+              [questionDetails]="questionDetails"
+              [disableQuestion]="disableQuestion"
+              [questionIndex]="
+                categoryList.projectCategory.length <= 1
+                  ? j + 1 + '.'
+                  : i + 1 + '.' + (j + 1)
+              "
+            ></app-checkbox-comp>
+            <app-dropdown-comp
+              [isSubmitted]="isSubmitted"
+              *ngIf="questionDetails.fieldType === 'dropdown'"
+              [questionDetails]="questionDetails"
+              [disableQuestion]="disableQuestion"
+              [questionIndex]="
+                categoryList.projectCategory.length <= 1
+                  ? j + 1 + '.'
+                  : i + 1 + '.' + (j + 1)
+              "
+            ></app-dropdown-comp>
+            <app-textarea-comp
+              [isSubmitted]="isSubmitted"
+              *ngIf="questionDetails.fieldType === 'text'"
+              [questionDetails]="questionDetails"
+              [disableQuestion]="disableQuestion"
+              [questionIndex]="
+                categoryList.projectCategory.length <= 1
+                  ? j + 1 + '.'
+                  : i + 1 + '.' + (j + 1)
+              "
+            ></app-textarea-comp>
+
+            <div *ngIf="questionDetails.fieldType === 'file'">
+              <app-upload-file
+                *ngIf="
+                  (questionDetails.fieldType === 'file' &&
+                    questionDetails.valueType === 'FILE') ||
+                  (questionDetails.fieldType === 'file' &&
+                    questionDetails.valueType === 'BOTH')
+                "
+                [isSubmitted]="isSubmitted"
+                [questionDetails]="questionDetails"
+                [categoryList]="categoryList"
+                [valueType]="questionDetails.valueType"
+                [disableQuestion]="disableQuestion"
+                [questionIndex]="
+                  categoryList.projectCategory.length <= 1
+                    ? j + 1 + '.'
+                    : i + 1 + '.' + (j + 1)
+                "
+              >
+              </app-upload-file>
+            </div>
+
+            <app-range-comp
+              [isSubmitted]="isSubmitted"
+              *ngIf="questionDetails.fieldType === 'range'"
+              [questionDetails]="questionDetails"
+              [disableQuestion]="disableQuestion"
+              [questionIndex]="
+                categoryList.projectCategory.length <= 1
+                  ? j + 1 + '.'
+                  : i + 1 + '.' + (j + 1)
+              "
+            ></app-range-comp>
+
+            <!-- <div
+              *ngIf="questionDetails.hasOwnProperty('isValid')"
+              class="errorMsg fs-6"
+            >
+              {{
+                !questionDetails.isValid
+                  ? "Please provide your valid input"
+                  : ""
+              }}
+            </div> -->
+
+            <!-- <mat-accordion class="mt-2">
+              <mat-expansion-panel
+                #panel
+                hideToggle="true"
+                *ngIf="
+                  (questionDetails.reviewerComment &&
+                    questionDetails.reviewerComment != null) ||
+                  (flowInforData.flowType == 'reviewer')
+                "
+                style="box-shadow: none"
+                [expanded]="
+                  questionDetails.reviewerComment &&
+                  questionDetails.reviewerComment !== null &&
+                  questionDetails.reviewerComment.length > 0
+                "
+              >
+                <mat-expansion-panel-header
+                  style="
+                    padding: 0px 10px;
+                    height: max-content;
+                    padding-top: 5px;
+                  "
+                >
+                <mat-panel-description
+                    *ngIf="flowInforData.flowType == 'reviewer'"
+                    class="d-flex justify-content-end"
+                    style="margin-right: 0"
+                  >
+                    <div class="flex-column">
+                      <div class="d-flex justify-content-center">
+                        <img
+                          *ngIf="!panel.expanded"
+                          src="../../../../../assets/svg/add.svg"
+                          alt="Add Icon"
+                        />
+                        <img
+                          *ngIf="panel.expanded"
+                          src="../../../../../assets/svg/remove.svg"
+                          alt="Remove Icon"
+                        />
+                      </div>
+                      <div>Add Comment</div>
+                    </div>
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="m-4">
+                  <div
+                    *ngIf="flowInforData.flowType != 'reviewer'"
+                    for="floatingTextarea2"
+                  >
+                    <hr />
+                    <label style="font-family: Semibold">Reviewer Note</label>
+                  </div>
+                  <textarea
+                    style="height: auto"
+                    [disabled]="
+                      flowInforData.flowType == 'reviewer'
+                        ? false
+                        : disableQuestion
+                    "
+                    class="form-control"
+                    (keyup)="onReviewerCommentChange($event, questionDetails)"
+                    [value]="
+                      !!questionDetails.reviewerComment
+                        ? questionDetails.reviewerComment
+                        : ''
+                    "
+                    placeholder="Reviewer comment"
+                  ></textarea>
+                </div>
+              </mat-expansion-panel>
+            </mat-accordion> -->
+</div>    
+            <!-- question review comments and rating -->
+            <div class="col-lg-3 p-2" 
+             *ngIf="(flowInforData.status == 'reviewed' || flowInforData.flowType == 'reviewer')"
+            >
+              
+            
+              <!-- <div class="form-floating my-2"> -->
+              <!-- <select
+            
+              class="form-select  form-select-sm border-none py-0"
+              formControlName="businessUnit"
+              aria-label="Default select example"
+
+            >
+              <option selected value="" disabled>Rating</option>
+              <option
+                class="text-dark py-2"
+                *ngFor="let rating of ratings"
+                [value]="rating"
+              >
+                {{ rating }}
+              </option>
+            </select> -->
+            <select *ngIf="flowInforData.flowType == 'reviewer'"
+            (change)="onRatingChange($event, questionDetails)"
+            class="form-select form-select-sm mt-2" 
+            aria-label=".form-select-sm example"
+            [disabled]="
+            flowInforData.flowType == 'reviewer'
+              ? false
+              : disableQuestion
+            "
+             
+             >
+           
+              <option selected disabled>{{ questionDetails.rating ?? 'Rating' }}</option>
+              <option *ngFor="let rating of ratings"
+              [value]="rating">
+              {{ rating }}
+            </option>
+            </select>
+            
+
+            <!-- <div 
+              *ngIf="commentForm.get('rating_' + questionDetails.questionId)?.invalid && commentForm.get('rating_' + questionDetails.questionId)?.touched"
+              class="invalid-feedback">
+              Rating is required.
+            </div> -->
+
+            <div class="ratings text-center mt-2" *ngIf="(flowInforData.status == 'reviewed')"
+            style="background-color: #DFF9D4;border: 1px solid #9FD387;color: #366A1E; border-radius: 4px;">
+            {{ questionDetails.reviewerWeightage ? questionDetails.reviewerWeightage : '' }}
+            </div>
+            <div *ngIf="flowInforData.flowType == 'reviewer'">
+            <div *ngIf="(!questionDetails.reviewerWeightage && !questionDetails.rating)" class="text-danger">
+              Rating is required.
+            </div></div>
+      
+
+        
+
+            <div style="background-color: #F6F7FA;" class="p-2 mt-2">
+            
+              <label style="font-family: Semibold; font-size: 15px ;" class="pt-1"> {{ flowInforData.flowType == 'reviewer' ? 'Add comments' : 'Reviewer Comments'  }} </label>
+            <textarea
+              
+              style="height: auto"
+              [disabled]="
+                flowInforData.flowType == 'reviewer'
+                  ? false
+                  : disableQuestion
+              "
+              class="form-control"
+              (keyup)="onReviewerCommentChange($event, questionDetails)"
+              [value]="
+                !!questionDetails.reviewerComment
+                  ? questionDetails.reviewerComment
+                  : ''
+              "
+              [placeholder]= "flowInforData.flowType == 'reviewer' ? 'Reviewer comment' : ''"
+            ></textarea>
+          </div>
+   
+      </div>
+
+          </div>
+        </div>
+          <div *ngIf="categoryList.projectCategory.length > i + 1">
+            <hr class="solid" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    *ngIf="respMsg.message"
+    class="container px-3 alert {{
+      respMsg.type === 'success' ? 'alert-success' : 'alert-danger'
+    }}"
+  >
+    <strong>{{ respMsg.type }}!</strong> {{ respMsg.message }}
+  </div>
+
+  <div
+    *ngIf="flowInforData.flowType === 'reviewer' && !!flowInforData.status"
+    class="container-fluid pt-2 reviewerCommentSection"
+  >
+      <div class="mb-3">
+          <div class="comment-box mb-3">
+            <textarea
+              class="form-control comment"
+              formControlName="comment"
+              id="commentTextarea"
+              placeholder="Overall comments for the metric reviewed."
+              rows="3"
+              [ngClass]="{
+                'is-invalid':
+                  commentForm.controls['comment'].errors &&
+                  (commentForm.controls['comment'].touched ||
+                    commentForm.controls['comment'].dirty)
+              }"
+            ></textarea>
+            <div
+              *ngIf="commentForm.controls['comment'].hasError('required')"
+              class="invalid-feedback"
+            >
+              Comment is required
+            </div>
+          </div>
+
+        <div class="d-flex justify-content-end">
+          
+          <button
+            class="btn submit-btn"
+            (click)="submitReviewDecision()"
+            [disabled]="!commentForm.valid"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+
+  </div>
+</form>
+</div>

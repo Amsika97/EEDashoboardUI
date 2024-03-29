@@ -1,0 +1,47 @@
+<mat-dialog-content>
+  <div mat-dialog-actions class="crossbtn" align="end">
+    <div mat-button [mat-dialog-close]="'no'" cdkFocusInitial>X</div>
+  </div>
+  <div class="container content">
+    <div class="templateWrapper">
+      <div class="popupBody" #scrollBody>
+        <div class="overlay" [style.height.px]="contentHeight"></div>
+        <div *ngIf="data.type === 'assessment'">
+          <app-question-list
+            [flowInforData]="fetchedData.flowInforData"
+            [categoryList]="fetchedData.categoryList"
+            [disableQuestion]="fetchedData.disableQuestion"
+            [originalData]="fetchedData.originalData"
+            [isSubmitted]="fetchedData.isSubmitted"
+            [assesmentId]="fetchedData.assesmentId"
+            [popupData]="fetchedData.popupData"
+            [respMsg]="fetchedData.respMsg"
+            [displayMode]="'preview'"
+          ></app-question-list>
+        </div>
+        <div *ngIf="data.type === 'metric'">
+          <div style="min-width: 940px">
+            <app-question-list-metric
+              [flowInforData]="fetchedData.flowInforData"
+              [categoryList]="fetchedData.categoryList"
+              [disableQuestion]="fetchedData.disableQuestion"
+              [originalData]="fetchedData.originalData"
+              [isSubmitted]="fetchedData.isSubmitted"
+              [assesmentId]="fetchedData.assesmentId"
+              [popupData]="fetchedData.popupData"
+              [respMsg]="fetchedData.respMsg"
+              [displayMode]="'preview'"
+            ></app-question-list-metric>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="footer d-flex flex-row align-items-center justify-content-center"
+      >
+        <button class="edit me-3" [mat-dialog-close]="'no'">EDIT</button>
+        <button class="submit" [mat-dialog-close]="'yes'">SUBMIT</button>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>

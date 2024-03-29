@@ -1,0 +1,9 @@
+
+  ::ng-deep .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
+    color: #234f80 !important;  
+  }
+
+  ::ng-deep .mat-mdc-tab .mdc-tab__text-label {
+    color : #B5BAD0;
+  }
+

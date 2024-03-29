@@ -1,0 +1,43 @@
+.mat-mdc-radio-button ~ .mat-mdc-radio-button {
+  margin-left: 16px;
+}
+
+.infoTooltip {
+  position: relative;
+  left: 9px;
+}
+
+input[type="radio"] {
+  accent-color: #234f80;
+}
+input[type="radio"]:checked {
+  accent-color: #234f80;
+  color: #234f80;
+}
+
+input[type="radio"]:checked:hover {
+  accent-color: #234f80;
+  color: #234f80;
+}
+
+input[type="radio"]:checked + label {
+  accent-color: #234f80;
+  color: #234f80;
+}
+input[type="radio"]:disabled + label {
+  color: gray;
+}
+
+
+::ng-deep .mat-mdc-radio-button.mat-primary {
+  --mdc-radio-selected-focus-icon-color: #234f80;
+  --mdc-radio-selected-hover-icon-color: #234f80;
+  --mdc-radio-selected-icon-color: #234f80;
+  --mdc-radio-selected-pressed-icon-color: #234f80;
+  --mat-radio-checked-ripple-color: #234f80;
+} 
+
+
+::ng-deep .mdc-radio--disabled + label{
+  /* font-weight: 600; */
+}

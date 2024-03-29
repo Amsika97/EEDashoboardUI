@@ -1,0 +1,30 @@
+<div class="container-fluid">
+  <div class="row justify-content-center align-items-center mt-5">
+    <div class="col-sm-12 col-md-6 col-lg-4 login-card p-4">
+      <form [formGroup]="loginDetails" (ngSubmit)="submitLoginForm()">
+        <h1 class="text-center fw-bold login">Login</h1>
+        <div class="text-danger text-center">
+          {{loginMessage}}
+        </div>
+        <div class="form-group mb-4">
+          <label for="form2Example1" class="mb-1">Email address <span class="text-danger">*</span></label>
+          <input type="email" id="form2Example1" class="form-control" formControlName="email" required>
+          <div *ngIf="loginDetails.get('email')?.hasError('required') && loginDetails.get('email')?.touched" class="text-danger small">
+            Email is required.
+          </div>
+        </div>
+
+        <div class="form-group mb-4">
+          <label for="form2Example2" class="mb-1">Password <span class="text-danger">*</span></label>
+          <input type="password" id="form2Example2" class="form-control" formControlName="password" required>
+          <div *ngIf="loginDetails.get('password')?.hasError('required') && loginDetails.get('password')?.touched" class="text-danger small">
+            Password is required.
+          </div>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,73 @@
+<mat-dialog-content>
+  <div mat-dialog-actions class="crossbtn" align="end">
+    <div mat-button [mat-dialog-close]="'no'" cdkFocusInitial>X</div>
+  </div>
+  <div class="container content">
+    <div *ngIf="data.type === 'assessment'" class="templateWrapper">
+      <div class="popupHeader">
+        <app-assessment-header
+          [flowInforData]="fetchedData.flowInforData"
+          [headingLabels]="fetchedData.headingLabels"
+        ></app-assessment-header>
+        <div class="container_border" style="margin-top: 5px">
+          <app-account-project-details
+            [flowInforData]="fetchedData.flowInforData"
+            [categoryList]="fetchedData.categoryList"
+            [projectName]="fetchedData.projectName"
+            [accountName]="fetchedData.accountName"
+            [selectedStep]="fetchedData.selectedStep"
+          ></app-account-project-details>
+        </div>
+      </div>
+
+      <div class="popupBody container_border assessment-wrapper-body">
+        <app-reviewer-details
+          [flowInforData]="fetchedData.flowInforData"
+          [categoryList]="fetchedData.categoryList"
+        ></app-reviewer-details>
+        <app-assessment-template
+          [popupAssessmentDetails]="{
+            id: data.dataObj.id,
+            view: ['questionList'],
+            browswerTitle: data.browswerTitle
+          }"
+          (popupAssessmentGetDetails)="popupAssessmentGetDetails($event)"
+        ></app-assessment-template>
+      </div>
+    </div>
+
+    <div *ngIf="data.type === 'metric'" class="templateWrapper">
+      <div class="popupHeader">
+        <app-metric-header
+          [flowInforData]="fetchedData.flowInforData"
+          [headingLabels]="fetchedData.headingLabels"
+        ></app-metric-header>
+        <div class="container_border" style="margin-top: 5px">
+          <app-account-project-details-metric
+            [flowInforData]="fetchedData.flowInforData"
+            [categoryList]="fetchedData.categoryList"
+            [projectName]="fetchedData.projectName"
+            [accountName]="fetchedData.accountName"
+            [selectedStep]="fetchedData.selectedStep"
+          ></app-account-project-details-metric>
+        </div>
+      </div>
+
+      <div class="popupBody container_border metrics-wrapper-body">
+        <app-reviewer-details-metric
+          [flowInforData]="fetchedData.flowInforData"
+          [categoryList]="fetchedData.categoryList"
+        ></app-reviewer-details-metric>
+        <app-metrics-template
+          [popupMetricsId]="data.dataObj.id"
+          [browserTitle]="data.browserTitle"
+          [popupMetricsDetails]="{
+            id: data.dataObj.id,
+            view: ['questionList']
+          }"
+          (popupMetricsGetDetails)="popupMetricsGetDetails($event)"
+        ></app-metrics-template>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>

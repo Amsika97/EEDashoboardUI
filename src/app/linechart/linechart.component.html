@@ -1,0 +1,30 @@
+<div class="chart-container">
+  <div class="select">
+    <select
+      class="p-2"
+      style="border: 1px solid #b5bad0; border-radius: 7px"
+      id="timeRange"
+      [(ngModel)]="selectedTimeRange"
+      (change)="timeRangeChange()"
+    >
+      <option value="week">Last 7 Days</option>
+      <option value="15days">Last 15 Days</option>
+      <option value="month">Last 30 days</option>
+      <option value="yearly">Yearly</option>
+    </select>
+  </div>
+  <highcharts-chart
+    *ngIf="!linechartData.message; else noContent"
+    style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 10px;
+    "
+    [Highcharts]="Highcharts"
+    [options]="chartOptions"
+  ></highcharts-chart>
+  <ng-template #noContent>
+    <h1 class="text-center fw-bold pt-5">No Data Found</h1></ng-template
+  >
+</div>

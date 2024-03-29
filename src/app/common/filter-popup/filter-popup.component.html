@@ -1,0 +1,193 @@
+<div class="user-details">
+  <div class="row">
+    <div class="col-sm" class="padding-15">
+      <span class="header">Filters</span>
+      <span class="content"></span>
+      <div mat-dialog-actions class="crossbtn" align="end">
+        <div mat-button [mat-dialog-close]="'no'" cdkFocusInitial>X</div>
+      </div>
+    </div>
+  </div>
+</div>
+<mat-divider></mat-divider>
+<mat-dialog-content>
+  <div class="row" class="p-2">
+    <p class="account-text ps-2">Report Type</p>
+    <mat-radio-group aria-label="Select an option"  [(ngModel)]="selectedReport">
+      <mat-radio-button value="ASSESSMENT" class="radio-type">Assessments</mat-radio-button>
+      <mat-radio-button value="METRICS" class="radio-type">Metrics</mat-radio-button>
+      <mat-radio-button [checked]='true' value="BOTH" class="radio-type" >Both</mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="col-2 d-flex">
+    <div>
+      <p class="account-text">Account</p>
+      <div class="form-floating" class="padding-15-20">
+        <mat-form-field appearance="outline">
+          <mat-select placeholder="Account" (selectionChange)="account($event)" [(ngModel)]="accountsList">
+            <mat-option *ngFor="let account of accounts" [value]="account.accountId">
+              {{ account.accountName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div>
+      <p class="account-text">Project(s)</p>
+      <div class="form-floating" class="padding-15-20">
+        <mat-form-field appearance="outline">
+          <mat-select placeholder="Project" [(ngModel)]="projectsList" multiple>
+            <mat-option *ngFor="let project of projects" [value]="project.id">
+              {{ project.projectName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div>
+    <p class="account-text">Template Display Name</p>
+    <div class="form-floating" class="padding-15-20">
+      <mat-form-field appearance="outline" class="width-20vw">
+        <mat-select placeholder="Filter Template by Display Name" (selectionChange)="template($event)"
+          [(ngModel)]="templatesList" multiple>
+          <mat-option *ngFor="let template of templates" [value]="template.id">
+            {{ template.templateDisplayName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="col-4 d-flex align-items-center">
+    <div>
+      <p class="account-text">Submission(s) Period</p>
+      <div class="form-floating" class="padding-15-20">
+        <mat-form-field appearance="outline">
+          <mat-select placeholder="Last x Days" (selectionChange)="submission($event)" [(ngModel)]="submissionList">
+            <mat-option *ngFor="let submission of submissions" [value]="submission.submissionId">
+              {{ submission.submissionName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="padding-top-55">
+      <p>[or]</p>
+    </div>
+    <div class="dtpick">
+      <mat-form-field appearance="outline">
+        <input matInput [matDatepicker]="picker1" [(ngModel)]="fromDate" (dateChange)="startDate($event)" placeholder="From:" />
+        <mat-hint>From:</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="dtpick">
+      <mat-form-field appearance="outline">
+        <input matInput [matDatepicker]="picker2" [(ngModel)]="toDate" (dateChange)="endDate($event)" placeholder="To:" />
+        <mat-hint>To:</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div>
+    <p class="account-text">Score Range</p>
+    <div class="padding-15-20 margin-60-20">
+      <mat-slider discrete min="0" max="100" class="width-20">
+        <input [(ngModel)]="startValue" matSliderStartThumb #startThumb="matSliderRangeThumb" />
+        <input [(ngModel)]="endValue" matSliderEndThumb #endThumb="matSliderRangeThumb" />
+      </mat-slider>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="width-50">
+    <p class="account-text">Project Type</p>
+    <div class="horizontal padding-15-20"
+      *ngFor="let projectTypeName of projectTypeList; index as i">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="checked" [checked]="projectTypeName.checked"
+          id="flexCheckDefault{{ i }}" (change)="onProtoTypeCheck($event, projectTypeName)" />
+        <label class="form-check-label" for="flexCheckDefault{{ i }}">
+          {{ projectTypeName.projectTypeName }}
+        </label>
+      </div>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="col-2 d-flex">
+    <div>
+      <p class="account-text">Submitted By</p>
+      <div class="form-floating" class="padding-15-20">
+        <mat-form-field appearance="outline" class="width-17">
+          <mat-select placeholder="Select Name" (selectionChange)="submit($event)" [(ngModel)]="submitList" multiple>
+            <div class="display-flex">
+              <mat-icon class="filter-icon">search</mat-icon>
+              <input class="filter-input" #multiUserSearch type="text" matInput placeholder="Search By Name"
+                (input)="onSubmitInputChange($event)" />
+              <mat-icon class="close-input">cancel</mat-icon>
+            </div>
+            <mat-option *ngFor="let submit of submitted" [value]="submit.oid">
+              {{ submit.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div>
+      <p class="account-text">Review By</p>
+      <div class="form-floating" class="padding-15-20">
+        <mat-form-field appearance="outline" class="width-17">
+          <mat-select placeholder="Select" (selectionChange)="review($event)" [(ngModel)]="reviewList" multiple>
+            <div class="display-flex">
+              <mat-icon class="filter-icon">search</mat-icon>
+              <input class="filter-input" #multiUserSearch type="text" matInput placeholder="Search By Name"
+                (input)="onReviewInputChange($event)" />
+              <mat-icon class="close-input">cancel</mat-icon>
+            </div>
+            <mat-option *ngFor="let review of submitted" [value]="review.oid">
+              {{ review.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div *ngIf="!selectStatus">
+    <p class="account-text">By Status</p>
+    <div class="form-floating" class="padding-15-20">
+      <mat-form-field appearance="outline">
+        <mat-select placeholder="Status" (selectionChange)="status($event)" [(ngModel)]="statusList">
+          <mat-option *ngFor="let status of statusSelect" [value]="status.statusId">
+            {{ status.statusName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div *ngIf="selectStatus">
+    <p class="account-text">By Status</p>
+    <div class="form-floating" class="padding-15-20">
+      <mat-form-field appearance="outline" >
+        <mat-select placeholder="Status" (selectionChange)="status($event)" [(ngModel)]="statusList">
+          <mat-option *ngFor="let status of statusSelectInactive" [value]="status.statusId">
+            {{ status.statusName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="row" class="show-btn">
+    <app-commonbutton [buttonText]="'SHOW'" [stylesObj]="{
+        padding: '7px',
+        'font-size': '12px',
+        height: 'auto'
+      }" (buttoncallbackEvent)="buttonCallBackFun()"></app-commonbutton>
+  </div>
+</mat-dialog-content>

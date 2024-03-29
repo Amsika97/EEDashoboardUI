@@ -1,0 +1,49 @@
+<mat-dialog-content>
+  <div mat-dialog-actions class="crossbtn" align="end">
+    <div mat-button [mat-dialog-close]="'no'" cdkFocusInitial>X</div>
+  </div>
+
+  <div class="content container">
+    <div *ngIf="data.type === 'assessment'" class="templateWrapper">
+      <div class="popupHeader container">
+        <app-assessment-header
+          [flowInforData]="fetchedData.flowInforData"
+          [headingLabels]="fetchedData.headingLabels"
+        ></app-assessment-header>
+      </div>
+
+      <div class="popupBody">
+        <app-assessment-template
+          [popupAssessmentDetails]="{
+            id: data.dataObj.id,
+            view: ['questionList'],
+            questionView: data.dataObj.questionView,
+            popupTemplatePreview: data.dataObj.templatePreview
+          }"
+          (popupAssessmentGetDetails)="popupAssessmentGetDetails($event)"
+        ></app-assessment-template>
+      </div>
+    </div>
+
+    <div *ngIf="data.type === 'metric'" class="templateWrapper">
+      <div class="popupHeader container">
+        <app-metric-header
+          [flowInforData]="fetchedData.flowInforData"
+          [headingLabels]="fetchedData.headingLabels"
+        ></app-metric-header>
+      </div>
+
+      <div class="popupBody">
+        <app-metrics-template
+          [popupMetricsDetails]="{
+            id: data.dataObj.id,
+            view: ['questionList'],
+            questionView: data.dataObj.questionView,
+            popupTemplatePreview: data.dataObj.templatePreview
+          }"
+          (popupMetricsGetDetails)="popupMetricsGetDetails($event)"
+        ></app-metrics-template>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>

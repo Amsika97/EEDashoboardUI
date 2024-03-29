@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="438" height="216" viewBox="0 0 438 216">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_3388" data-name="Rectangle 3388" width="390" height="146" rx="4" transform="translate(-0.334)" fill="#ffe386"/>
+    </clipPath>
+    <filter id="Ellipse_140" x="222" y="0" width="216" height="216" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="16" result="blur"/>
+      <feFlood flood-color="#fff" flood-opacity="0.2"/>
+      <feComposite operator="in" in2="blur"/>
+    </filter>
+    <clipPath id="clip-path-2">
+      <rect id="Rectangle_3425" data-name="Rectangle 3425" width="76" height="76" transform="translate(293.666 35)" fill="#6c757d"/>
+    </clipPath>
+  </defs>
+  <g id="Group_11306" data-name="Group 11306" transform="translate(-1073 -217)">
+    <g id="Group_11234" data-name="Group 11234" transform="translate(1073.334 252)">
+      <rect id="Rectangle_3370" data-name="Rectangle 3370" width="390" height="146" rx="4" transform="translate(-0.334)" fill="#3ed9eb"/>
+      <g id="Mask_Group_10230" data-name="Mask Group 10230" clip-path="url(#clip-path)">
+        <circle id="Ellipse_144" data-name="Ellipse 144" cx="157" cy="157" r="157" transform="translate(-131.334 -8)" fill="#0f7580"/>
+        <circle id="Ellipse_136" data-name="Ellipse 136" cx="157" cy="157" r="157" transform="translate(-137.334 -11)" fill="#88f3ff"/>
+      </g>
+      <g transform="matrix(1, 0, 0, 1, -0.33, -35)" filter="url(#Ellipse_140)">
+        <circle id="Ellipse_140-2" data-name="Ellipse 140" cx="60" cy="60" r="60" transform="translate(270 48)" fill="#fff"/>
+      </g>
+    </g>
+    <g id="Mask_Group_10295" data-name="Mask Group 10295" transform="translate(1071.334 252)" clip-path="url(#clip-path-2)">
+      <path id="task-fill" d="M79.8,11.4V79.831A3.772,3.772,0,0,1,76.025,83.6H15.175A3.8,3.8,0,0,1,11.4,79.831V11.369A3.772,3.772,0,0,1,15.175,7.6H76A3.8,3.8,0,0,1,79.8,11.4ZM42.913,49.861l-9.4-9.4-5.374,5.374L42.913,60.609l21.5-21.5-5.374-5.374Z" transform="translate(286.066 27.4)" fill="#0f7580"/>
+    </g>
+  </g>
+</svg>

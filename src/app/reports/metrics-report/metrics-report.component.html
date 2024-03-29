@@ -1,0 +1,292 @@
+<mat-card class="m-4">
+  <mat-card-content>
+    <div class="heading-container">
+      <div>
+        <div class="tbl-heading">Metrics - Submissions History</div>
+        <div class="tbl-subheading sub-heading">
+          Below table lists the history of all previous submissions
+        </div>
+      </div>
+    </div>
+
+    <div class="table-container mt-2">
+      <table
+        class="report-table"
+        mat-table
+        [dataSource]="assessments"
+        matSort
+        (matSortChange)="announceSortChange($event)"
+      >
+        <ng-container matColumnDef="srNo">
+          <th
+            *matHeaderCellDef
+            sortActionDescription="Sort by srNo"
+            style="width: 60px"
+          >
+            SL. No
+          </th>
+          <td
+            mat-cell
+            *matCellDef="let assessment"
+            class="sr-no"
+            style="width: 60px"
+          >
+            {{ !assessment.srNo ? "-" : assessment.srNo }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="projectCode">
+          <th
+            *matHeaderCellDef
+            mat-sort-header
+            sortActionDescription="Sort by projectCode"
+            style="width: 105px"
+          >
+            {{ label.projectCode }}
+          </th>
+          <td mat-cell *matCellDef="let assessment" style="width: 105px">
+            {{ !assessment.projectCode ? "-" : assessment.projectCode }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="projectName">
+          <th
+            *matHeaderCellDef
+            mat-sort-header
+            sortActionDescription="Sort by projectName"
+          >
+            {{ label.projectName }}
+          </th>
+          <td
+            mat-cell
+            *matCellDef="let assessment"
+            class="single-line-cell"
+            matTooltip="{{ assessment.projectName }}"
+          >
+            {{ !assessment.projectName ? "-" : assessment.projectName }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="accountName">
+          <th
+            *matHeaderCellDef
+            mat-sort-header
+            sortActionDescription="Sort by accountName"
+          >
+            {{ label.accountName }}
+          </th>
+          <td
+            mat-cell
+            *matCellDef="let assessment"
+            class="single-line-cell"
+            matTooltip="{{ assessment.accountName }}"
+          >
+            {{ !assessment.accountName ? "-" : assessment.accountName }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="templateName">
+          <th
+            *matHeaderCellDef
+            mat-sort-header
+            sortActionDescription="Sort by templateName"
+            class="template-name"
+          >
+            {{ label.templateName }}
+          </th>
+          <td
+            mat-cell
+            *matCellDef="let assessment"
+            class="single-line-cell"
+            matTooltip="{{ assessment.templateName }}"
+          >
+            {{ !assessment.templateName ? "-" : assessment.templateName }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="submittedDate">
+          <th
+            *matHeaderCellDef
+            mat-sort-header
+            sortActionDescription="Sort by submittedDate"
+            style="width: 120px"
+          >
+            {{ label.submittedDate }}
+          </th>
+          <td mat-cell *matCellDef="let assessment" style="width: 120px">
+            {{
+              !assessment.submittedAt ? "-" : (assessment.submittedAt | date)
+            }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="reviewerName">
+          <th
+            *matHeaderCellDef
+            mat-sort-header
+            sortActionDescription="Sort by reviewerName"
+            class="fw-reviewer-name"
+          >
+            {{ label.reviewedBy }}
+          </th>
+          <td
+            mat-cell
+            *matCellDef="let assessment"
+            class="single-line-cell"
+            matTooltip="{{ assessment.reviewerName }}"
+            (click)="navigateUserProfile(assessment.reviewerId)"
+            [ngClass]="{
+              'link': assessment.reviewerName != null && assessment.reviewerName != '' }"
+          >
+            {{ !assessment.reviewerName ? "-" : assessment.reviewerName }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="submittedBy">
+          <th
+            *matHeaderCellDef
+            mat-sort-header
+            sortActionDescription="Sort by submittedBy"
+            class="fw-reviewer-name"
+          >
+            {{ label.submittedBy }}
+          </th>
+          <td
+            mat-cell
+            *matCellDef="let assessment"
+            class="single-line-cell link"
+            matTooltip="{{ assessment.submittedBy }}"
+            (click)="navigateUserProfile(assessment.submitterId)"
+            [ngClass]="{
+              'link': assessment.submittedBy != null && assessment.submittedBy != '' }"
+          >
+            {{ !assessment.submittedBy ? "-" : assessment.submittedBy }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="score">
+          <th
+            *matHeaderCellDef
+            mat-sort-header
+            sortActionDescription="Sort by score"
+            class="score"
+            style="width: 85px; text-align: center"
+          >
+            {{ label.score }}
+          </th>
+          <td
+            mat-cell
+            *matCellDef="let assessment"
+            class="score"
+            style="width: 85px; text-align: center"
+          >
+            {{
+              !assessment.score
+                ? "00.00%"
+                : (assessment.score | number : "1.2-2") + "%"
+            }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th
+            *matHeaderCellDef
+            mat-sort-header
+            sortActionDescription="Sort by status"
+            class="status-col"
+            style="width: 130px"
+          >
+            {{ label.status }}
+          </th>
+          <td
+            mat-cell
+            *matCellDef="let assessment"
+            style="text-align: center; width: 130px"
+          >
+            <span
+              [ngClass]="{
+                rejectedReport: (assessment.status | uppercase) === 'REJECTED',
+                approvedReport: (assessment.status | uppercase) === 'APPROVED',
+                reviewedReport:(assessment.status | uppercase) === 'REVIEWED',
+                saved: (assessment.status | uppercase) === 'SAVE',
+                submittedReport: (assessment.status | uppercase) === 'SUBMITTED',
+                inactiveReport: (assessment.status | uppercase) === 'INACTIVE'
+              }"
+            >
+              {{
+                !assessment.status
+                  ? "---"
+                  : (getStatus(assessment.status) | titlecase)
+              }}
+            </span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th
+            *matHeaderCellDef
+            sortActionDescription="Sort by action"
+            class="action"
+            style="width: 60px"
+          >
+            {{ label.action }}
+          </th>
+          <td
+            mat-cell
+            *matCellDef="let assessment"
+            style="width: 60px"
+          >
+            <span class="viewLink">
+              <!-- <mat-icon matSuffix class="eye">{{ "visibility" }}</mat-icon> -->
+              <div
+              (click)="preview(assessment.id)"
+                *ngIf="
+                  (assessment.status | uppercase) === 'SAVE';
+                  else normalPreview
+                "
+              >
+                <img
+                  src="../../../../assets/svg/pencil-icon.svg"
+                  alt="preview"
+                />
+              </div>
+
+              <ng-template class="d-flex" #normalPreview>
+                <img
+                (click)="preview(assessment.id)"
+                  src="../../../../assets/svg/action-icon.svg"
+                  alt="preview"
+                />
+                <span *ngIf="role === 'Admin'">
+                  <span *ngIf="(assessment.status | uppercase) !== 'INACTIVE'">
+                <img
+                (click)="deletePopUp(assessment.id)"
+                class="ps-2"
+                  src="../../../../assets/svg/delete-icon.svg"
+                  alt="preview"
+                />
+              </span>
+            </span>
+              </ng-template>
+            </span>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+
+      <div *ngIf="!isDataAvailable" style="text-align: center; padding: 30px 0">
+        No records found
+      </div>
+    </div>
+
+    <div class="mt-2">
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons
+        aria-label="Select page of metrics-report"
+      >
+      </mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>

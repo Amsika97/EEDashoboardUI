@@ -1,0 +1,12 @@
+.assessment-table {
+  border: 1px solid #d8d8d8;
+}
+.assessment-table th {
+  background-color: #d8d8d8;
+  color: #414141;
+  font-size: 14px;
+}
+.no-data-found {
+  text-align: center;
+  padding: 10px;
+}

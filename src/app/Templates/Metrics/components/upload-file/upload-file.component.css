@@ -1,0 +1,42 @@
+.infoTooltip {
+  position: relative;
+  left: 9px;
+}
+
+.upload-btn {
+  background-color: #d8d8d8;
+  color: black;
+  border: none;
+  border-radius: 6px;
+  opacity: 1;
+}
+
+.fileuplodgroup {
+  display: flex;
+  justify-content: end;
+}
+
+.selected-files {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.selected-file-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 30ch;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.btn-sm {
+  --bs-btn-padding-y: 0.45rem !important;
+}
+
+.downloadFile {
+  cursor: pointer;
+}

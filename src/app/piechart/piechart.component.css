@@ -1,0 +1,15 @@
+highcharts-chart {
+    width: 100%;
+    max-width: none; 
+    display: block; 
+    margin: 0 auto; 
+}
+@media screen and (min-width: 1500px) {
+    
+    highcharts-chart {
+        width: 90%;
+        max-width: none; 
+        display: block; 
+        margin: 0 auto; 
+      }
+}

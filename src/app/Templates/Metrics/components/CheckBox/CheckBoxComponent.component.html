@@ -1,0 +1,44 @@
+<!-- <h2 class="questionHeader">
+  {{ questionIndex }} {{ questionDetails.question }}
+</h2> -->
+
+<div class="fw-medium mb-2 questionAlignment">
+  <span style="color: #91979d">
+    {{ questionIndex }}
+  </span>
+  <span style="font-family: Semibold">
+    {{ questionDetails.question }}
+  </span>
+
+  <span *ngIf="questionDetails.questionDescription || ''" class="infoTooltip">
+    <i
+      matTooltip="{{ questionDetails.questionDescription }}"
+      matTooltipPosition="right"
+    >
+      <i
+        class="fa fa-exclamation-circle tool"
+        style="padding: 0; margin: 0"
+      ></i>
+    </i>
+    <div *ngIf="questionDetails.questionSubText"
+        class="d-flex flex-row subtext ps-4 pb-2"
+        >
+        {{ questionDetails.questionSubText }}
+  </div>
+  </span>
+  
+</div>
+
+<section class="d-flex checkbox-section">
+  <div *ngFor="let obj of questionDetails.answerData; index as i">
+    <mat-checkbox
+      [color]="color"
+      class="matric-checkbox"
+      [checked]="getAnswer(obj.value)"
+      [disabled]="disableQuestion"
+      (change)="checkboxSlected($event, questionDetails, obj, i)"
+    >
+      {{ obj.lable }}
+    </mat-checkbox>
+  </div>
+</section>

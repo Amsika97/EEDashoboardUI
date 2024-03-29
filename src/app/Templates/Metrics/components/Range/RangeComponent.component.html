@@ -1,0 +1,79 @@
+<!-- <h2 class="questionHeader">
+  {{ questionIndex }} {{ questionDetails.question }}
+</h2> -->
+
+<div class="fw-medium mb-2 questionAlignment">
+  <span style="color: #91979d">
+    {{ questionIndex }}
+  </span>
+  <span style="font-family: Semibold">
+    {{ questionDetails.question }}
+  </span>
+
+  <span *ngIf="questionDetails.questionDescription || ''" class="infoTooltip">
+    <i
+      matTooltip="{{ questionDetails.questionDescription }}"
+      matTooltipPosition="right"
+    >
+      <i
+        class="fa fa-exclamation-circle tool"
+        style="padding: 0; margin: 0"
+      ></i>
+    </i>
+  </span>
+  <div *ngIf="questionDetails.questionSubText"
+        class="d-flex flex-row subtext ps-4 pb-2"
+        >
+        {{ questionDetails.questionSubText }}
+  </div>
+</div>
+
+<div *ngIf="questionDetails.valueType === 'PERCENTAGE'">
+  <span class="text-small">{{ questionDetails.min }}%</span>
+  <mat-slider
+    class="rangeQuestion"
+    min="{{ questionDetails.min }}"
+    max="{{ questionDetails.max }}"
+    step="1"
+    [color]="color"
+    tickInterval="1"
+    showTickMarks
+    discrete
+    [displayWith]="formatLabelPercentage"
+    [disabled]="disableQuestion"
+    (input)="onInputChange($event, questionDetails)"
+  >
+    <input
+      matSliderThumb
+      [value]="
+        !!questionDetails.answerValue ? questionDetails.answerValue[0] : 0
+      "
+    />
+  </mat-slider>
+  <span class="text-small">{{ questionDetails.max }} %</span>
+</div>
+
+<div *ngIf="questionDetails.valueType === 'NUMBER'">
+  <span class="text-small">{{ questionDetails.min }}</span>
+  <mat-slider
+    class="rangeQuestion"
+    min="{{ questionDetails.min }}"
+    max="{{ questionDetails.max }}"
+    step="1"
+    [color]="color"
+    tickInterval="1"
+    showTickMarks
+    discrete
+    [displayWith]="formatLabel"
+    [disabled]="disableQuestion"
+    (input)="onInputChange($event, questionDetails)"
+  >
+    <input
+      matSliderThumb
+      [value]="
+        !!questionDetails.answerValue ? questionDetails.answerValue[0] : 0
+      "
+    />
+  </mat-slider>
+  <span class="text-small">{{ questionDetails.max }} </span>
+</div>

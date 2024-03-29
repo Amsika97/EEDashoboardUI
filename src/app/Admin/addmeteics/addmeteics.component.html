@@ -1,0 +1,267 @@
+<!-- <page-navigation [linkText]="'Manage Template'"> </page-navigation> -->
+
+<div *ngIf="!previewTemplate" class="addMeteics">
+  <mat-card class="m-4 mt-0">
+    <mat-card-content>
+      <div class="">
+        <div class="heading-container">
+          <div>
+            <div class="tbl-heading">Create Template</div>
+            <div class="tbl-subheading sub-heading">
+              enter template details and json data
+            </div>
+          </div>
+        </div>
+        <form
+          [formGroup]="addMeteicsForm"
+          (ngSubmit)="onCreateMeteicsTemplate(addMeteicsForm.value)"
+        >
+          <div class="row mb-2 mt-4">
+            <div class="form-group col-xs-3 col-lg-3 col-md-3 mb-3"></div>
+            <div class="form-group col-xs-5 col-lg-5 col-md-5 mb-3">
+              <label for="TemplateName" style="color: #6c757d"
+                >Template Name <span class="text-danger text">*</span></label
+              >
+              <input
+                style="border-color: #234f80; line-height: 2.5"
+                type="text"
+                class="form-control"
+                id="templateName"
+                formControlName="templateName"
+                maxlength="50"
+                placeholder="Template Name"
+                [ngClass]="{
+                  'error-border':
+                    formSubmit && addMeteicsForm.get('templateName')?.invalid
+                }"
+              />
+              <div
+                style="text-align: left !important; color: #ec1313 !important"
+                class="text-danger text-center"
+                *ngIf="
+                  formSubmit &&
+                  addMeteicsForm.get('templateName')?.hasError('required')
+                "
+              >
+                Template is Required.
+              </div>
+              <div
+                style="text-align: left !important; color: #ec1313 !important"
+                class="text-danger text-center"
+                *ngIf="
+                  formSubmit &&
+                  addMeteicsForm.get('templateName')?.hasError('pattern')
+                "
+              >
+                Invalid Template name format.
+              </div>
+            </div>
+          </div>
+
+          <div class="row mb-2">
+            <div class="form-group col-xs-3 col-lg-3 col-md-3 mb-3"></div>
+            <div class="form-group col-xs-5 col-lg-5 col-md-5 mb-3">
+              <label for="description" style="color: #6c757d">
+                Template Description<span class="text-danger text">*</span>
+              </label>
+              <input
+                style="border-color: #234f80; line-height: 2.5"
+                type="text"
+                class="form-control"
+                id="description"
+                formControlName="description"
+                maxlength="200"
+                placeholder="Template Description"
+                [ngClass]="{
+                  'error-border':
+                    formSubmit && addMeteicsForm.get('description')?.invalid
+                }"
+              />
+              <div
+                style="text-align: left !important; color: #ec1313 !important"
+                class="text-danger text-center"
+                *ngIf="formSubmit && addMeteicsForm.get('description')?.invalid"
+              >
+                Template Description is Required.
+              </div>
+            </div>
+          </div>
+
+          <div class="row mb-2">
+            <div class="form-group col-xs-3 col-lg-3 col-md-3 mb-3"></div>
+              <div class="form-group col-xs-5 col-lg-5 col-md-5 mb-3">
+                <label for="TemplateFrequency" style="color: #6c757d"
+                  >Template Frequency <span class="text-danger text">*</span></label
+                >
+            <select class="form-select"  formControlName="templateFrequency"
+             style="border-color: #234f80;line-height: 2.5;color: #6c757d;"
+             [ngClass]="{
+              'error-border':
+                formSubmit && addMeteicsForm.get('templateFrequency')?.invalid
+            }">
+              <option value="" selected disabled>Template Frequency</option>
+              <option value="WEEKLY">Weekly</option>
+              <option value="MONTHLY">Monthly</option>
+              <option value="QUARTERLY">Quarterly</option>
+              <option value="NA">NA</option>
+            </select>
+            <div
+                  style="text-align: left !important; color: #ec1313 !important"
+                  class="text-danger text-center"
+                  *ngIf="
+                    formSubmit &&
+                    addMeteicsForm.get('templateFrequency')?.invalid
+                  "
+                >
+                  Template Frequency is Required.
+                </div>
+              </div>
+            </div>
+
+          <div class="row mb-4">
+            <div class="form-group col-xs-3 col-lg-3 col-md-3 mb-2"></div>
+            <div class="form-group col-xs-5 col-lg-5 col-md-5 mb-2">
+              <label for="mtricstemplateData" style="color: #6c757d;float: inline-start;"
+                >Add Json Template<span class="text-danger text">*</span></label
+              >
+              <i
+                class="fa fa-exclamation-circle tool ps-2"
+                matTooltip="Please Fill Valid JSON Template"
+                matTooltipPosition="right"
+              ></i>
+              <textarea
+                style="border-color: #234f80"
+                class="form-control"
+                id="templateData"
+                formControlName="templateData"
+                rows="3"
+                (ngModelChange)="onSelection($event)"
+                [(ngModel)]="selectedNode"
+                (keyup)="validateJson()"
+                placeholder="Enter valid JSON here........."
+                [ngClass]="{
+                  'error-border':
+                    formSubmit && addMeteicsForm.get('templateData')?.invalid
+                }"
+              ></textarea>
+
+              <div *ngIf="jsonValidFlag">
+                <label [style.color]="'red'"
+                  >'Please Fill Valid JSON Template'</label
+                >
+              </div>
+              <div
+                style="text-align: left !important; color: #ec1313 !important"
+                class="text-danger text-center"
+                *ngIf="
+                  formSubmit && addMeteicsForm.get('templateData')?.invalid
+                "
+              >
+                JSON Template is Required.
+              </div>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="form-group col-xs-3 col-lg-3 col-md-3 mb-3"></div>
+            <div class="form-group col-xs-5 col-lg-5 col-md-5 mb-3">
+              <label for="inputEmail4" style="color: #6c757d"
+                >Project Type<span class="text-danger text">*</span></label
+              >
+
+              <br />
+              <div
+                class="horizontal"
+                *ngFor="let projectTypeName of projectTypeList; index as i"
+              >
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value="checked"
+                    [checked]="projectTypeName.checked"
+                    id="flexCheckDefault{{ i }}"
+                    (change)="onProtoTypeCheck($event, projectTypeName)"
+                  />
+                  <label class="form-check-label" for="flexCheckDefault{{ i }}">
+                    {{ projectTypeName.projectTypeName }}
+                  </label>
+                </div>
+              </div>
+              <div
+                style="text-align: left !important; color: #ec1313 !important"
+                class="text-danger text-center"
+                *ngIf="formSubmit && isProjectTypeError"
+              >
+                Project Type is Required.
+              </div>
+
+              <!-- <div
+                [ngClass]="{
+                  'error-border':
+                    formSubmit && addMeteicsForm.get('projectTypes')?.invalid
+                }"
+              >
+                <ng-multiselect-dropdown
+                  [placeholder]="'Project Type'"
+                  [settings]="projectTypeDropdownSettings"
+                  [data]="projectTypeList"
+                  formControlName="projectTypes"
+                  [(ngModel)]="projectTypeselectedItems"
+                  (onSelect)="onItemSelectProjectType($event)"
+                  (onSelectAll)="onSelectAllProjectType($event)"
+                  (onDeSelect)="onDeSelect($event)"
+                >
+                </ng-multiselect-dropdown>
+              </div> -->
+
+              <!--  <div
+                style="text-align: left !important; color: #ec1313 !important"
+                class="text-danger text-center"
+                *ngIf="
+                  formSubmit && addMeteicsForm.get('projectTypes')?.invalid
+                "
+              >
+                Project Type is Required.
+              </div> -->
+            </div>
+          </div>
+          <hr />
+          <div class="row" style="float: inline-end">
+            <!-- <mat-card class="mt-2" style="width: 380px">
+              <mat-card-content> -->
+            <app-commonbutton
+              [buttonText]="'PREVIEW METRICS'"
+              (buttoncallbackEvent)="buttonCallBackFun(addMeteicsForm.value)"
+              [stylesObj]="{
+                padding: '7px',
+                'font-size': '12px',
+                height: 'auto'
+              }"
+            ></app-commonbutton>
+            <!--    </mat-card-content>
+            </mat-card> -->
+          </div>
+          <br />
+        </form>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div *ngIf="previewTemplate" class="previewTemplate">
+  <div class="previewMeteicsContent">
+    <app-metrics-template
+      [previewObject]="previewTemplateData"
+      [previewTemplate]="previewTemplate"
+    ></app-metrics-template>
+  </div>
+
+  <div class="previewMeteicsFooter">
+    <button
+      (click)="onCreateMeteicsTemplate(addMeteicsForm.value)"
+      class="btn btn-primary savebutton"
+    >
+      CREATE TEMPLATE
+    </button>
+  </div>
+</div>

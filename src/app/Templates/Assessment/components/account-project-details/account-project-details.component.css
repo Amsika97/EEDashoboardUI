@@ -1,0 +1,120 @@
+.white-label {
+  /* font-size: 12px; */
+  font-size: calc(0.3rem + 0.5vw);
+
+  color: #414141;
+  font-family: "Medium";
+}
+
+.white-value {
+  /* font-size: 14px; */
+  font-size: calc(0.1rem + 0.7vw);
+
+  color: #414141;
+  font-family: "InterBold";
+}
+.reviewed {
+  background-color:#DFF9D4 ;
+  color: #366A1E;
+  /* border: #9FD387 1px; */
+  border-radius: 20px;
+  padding: 5px 15px;
+  display: block;
+  font-weight: 600;
+}
+.inactive{
+  color: #EE0200;
+  background-color: #FFE8E8;
+  border-radius: 20px;
+  padding: 5px 15px;
+  display: inline-block;
+  font-weight: 600;
+}
+
+.v1 {
+  border: 1px solid #d8d8d8;
+  /* height: 100%; */
+  height: 70%;
+  margin: 5px;
+}
+
+.score-status {
+  background-color: #f6f7fa;
+  border-radius: 25px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  align-self: baseline;
+  font-size: calc(0.2rem + 0.7vw);
+  padding: 0.2rem 0.2rem;
+}
+
+.p1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.p2 {
+  /* background-color: rgb(239, 236, 236); */
+  color: #6c757d;
+  font-family: "SemiBold";
+  border-radius: 100px;
+  background: #d4dce2a8;
+  padding: 0.2rem 0.3rem;
+  margin-right: 4px;
+}
+
+.p3 {
+  /* background-color: rgb(225, 247, 225); */
+  color: #00e38c;
+  border-radius: 100px;
+  background: #e2fce2;
+  padding: 0.2rem 0.3rem;
+}
+.p4 {
+  border-radius: 100px;
+  background: #fbc3c3;
+  padding: 0.2rem 0.3rem;
+  color: red;
+  margin-right: 4px;
+}
+
+.blue-label {
+  /* font-size: 12px; */
+  font-size: calc(0.3rem + 0.5vw);
+
+  color: white;
+  font-family: "Medium";
+}
+
+.page-header {
+  /* background-color: #234f80; */
+  padding: 4px;
+}
+
+.blue-value {
+  /* font-size: 14px; */
+  font-size: calc(0.2rem + 0.7vw);
+
+  color: white;
+  font-family: "InterBold";
+}
+
+.old-v1 {
+  border: 1px solid white;
+  height: 100%;
+}
+
+::ng-deep .container_border .extra-hr {
+  display: none;
+}
+
+::ng-deep .header-cont .mat-expansion-panel-content {
+  height: 57px;
+  background: rgb(246, 247, 250);
+  z-index: 99;
+  position: relative;
+}

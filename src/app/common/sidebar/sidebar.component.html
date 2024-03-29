@@ -1,0 +1,146 @@
+<div id="mySidenav" class="sidenav shadow scroll">
+  <div class="nav-icon">
+    <div
+      class="borderdata"
+      [ngClass]="{ active: isDashboard }"
+      routerLink="/dashboard"
+      matTooltipPosition="right"
+    >
+      <li class="d-flex justify-content-center mr-3">
+        <img
+          src="../../assets/svg/Dashboard-Icon.svg"
+          alt=""
+          class="menu-icon"
+        />
+      </li>
+      <a class="d-flex justify-content-center linkText">{{
+        label.dashboard
+      }}</a>
+    </div>
+
+    <div
+      class="borderdata"
+      [ngClass]="{ active: isAssessment }"
+      routerLink="dashboard/assessments"
+      matTooltipPosition="right"
+    >
+      <li class="d-flex justify-content-center mr-3">
+        <img src="../../assets/svg/Group 18415.svg" alt="" class="menu-icon" />
+      </li>
+      <a class="d-flex justify-content-center linkText">{{
+        label.assessment
+      }}</a>
+    </div>
+
+    <div
+      class="borderdata"
+      [ngClass]="{ active: isMetrics }"
+      routerLink="dashboard/metrics"
+      matTooltipPosition="right"
+    >
+      <li class="d-flex justify-content-center mr-3">
+        <img
+          src="../../assets/svg/Mask Group 10196.svg"
+          alt=""
+          class="menu-icon"
+        />
+      </li>
+      <a class="d-flex justify-content-center linkText">{{ label.metrics }}</a>
+    </div>
+
+    <div
+      class="borderdata"
+      [ngClass]="{ active: isTemplate }"
+      *ngIf="role === 'Admin'"
+      routerLink="dashboard/template-selection"
+      matTooltipPosition="right"
+    >
+      <li class="d-flex justify-content-center mr-3">
+        <img
+          src="../../assets/svg/Mask Group 10298.svg"
+          alt=""
+          class="menu-icon"
+        />
+      </li>
+      <a class="d-flex justify-content-center linkText">{{
+        label.templates
+      }}</a>
+    </div>
+
+    <div
+      class="borderdata"
+      [ngClass]="{ active: reviewAssessments }"
+      *ngIf="role === 'Reviewer'"
+      routerLink="dashboard/review-assessments"
+      matTooltipPosition="right"
+    >
+      <li class="d-flex justify-content-center mr-3">
+        <img
+          src="../../assets/svg/Mask Group 10303.svg"
+          alt=""
+          class="menu-icon"
+        />
+      </li>
+      <a class="d-flex justify-content-center linkText">{{
+        label.reviewassessmets
+      }}</a>
+    </div>
+
+    <div
+      class="borderdata"
+      [ngClass]="{ active: isReports }"
+      routerLink="dashboard/reports"
+      matTooltipPosition="right"
+    >
+      <li class="d-flex justify-content-center mr-3">
+        <img
+          src="../../assets/svg/Mask Group 10284.svg"
+          alt=""
+          class="menu-icon"
+        />
+      </li>
+      <a class="d-flex justify-content-center linkText">{{ label.reports }}</a>
+    </div>
+    <!-- <div class="borderdata" routerLinkActive="active">
+    <li class="d-flex justify-content-center mr-3" routerLink="/abc">
+      <img src="../../assets/svg/Dashboard-Icon.svg" alt="" class="menu-icon" />
+    </li>
+    <a
+      class="d-flex justify-content-center"
+      >{{ label.user }}</a
+    >
+  </div> -->
+  </div>
+  <hr />
+  <div class="nav-links">
+    <div>
+      <div routerLink="dashboard/faq">
+      <li class="d-flex justify-content-center" matTooltipPosition="right" >
+        <mat-icon class="drop-icons">person</mat-icon>
+        <a class="bottommenu">{{ label.faq }}</a>
+      </li>
+    </div>
+      <!--   <li
+        class="d-flex justify-content-center"
+        matTooltip="Reports"
+        matTooltipPosition="right"
+      >
+        <mat-icon class="drop-icons">file_copy</mat-icon>
+        <a class="bottommenu">{{ label.reports }}</a>
+      </li> -->
+      <!--    <li
+        class="d-flex justify-content-center"
+        matTooltip="Settings"
+        matTooltipPosition="right"
+      >
+        <mat-icon class="drop-icons">settings</mat-icon>
+        <a class="bottommenu">{{ label.settings }}</a>
+      </li> -->
+      <li class="d-flex justify-content-center" matTooltipPosition="right">
+        <mat-icon class="drop-icons">User</mat-icon>
+        
+        <a class="settingshelp" href={{pdfPath}} target="_blank" rel="noopener" >User Guide</a>
+      </li>
+    </div>
+  </div>
+</div>

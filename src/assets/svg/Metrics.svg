@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_3424" data-name="Rectangle 3424" width="24" height="24" transform="translate(294 34.755)" fill="#31374a"/>
+    </clipPath>
+  </defs>
+  <g id="Mask_Group_10294" data-name="Mask Group 10294" transform="translate(-294 -34.755)" clip-path="url(#clip-path)">
+    <path id="pie-chart-2-fill" d="M17.123,3.6V15.818H29.338A11.155,11.155,0,1,1,17.123,3.6Zm2.231-1.68A12.831,12.831,0,0,1,31.018,13.587H19.354Z" transform="translate(286.916 32.898)" fill="#31374a"/>
+  </g>
+</svg>

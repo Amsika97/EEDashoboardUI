@@ -1,0 +1,39 @@
+<mat-dialog-content class="mat-typography">
+  <div mat-dialog-actions align="end">
+    <button mat-button [mat-dialog-close]="'no'" cdkFocusInitial>Close</button>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Sl. No</th>
+        <th>Role</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let group of groups; index as i">
+        <tr>
+          <td style="text-align: center">
+            {{ i + 1 }}
+          </td>
+          <td>
+            {{ group.role }}
+          </td>
+          <td>
+            {{ group.name }}
+          </td>
+          <td>
+            {{ group.username }}
+          </td>
+
+          <td style="text-align: center">
+            <a class="link" [mat-dialog-close]="group" cdkFocusInitial>Login</a>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</mat-dialog-content>

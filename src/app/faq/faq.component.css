@@ -1,0 +1,35 @@
+.container {
+    display: flex;
+  }
+  
+  .headings {
+    flex: 1;
+    width: 25%;
+  }
+  
+  .faqs {
+    flex: 3;
+    width: 75%;
+  }
+  .faq-content{
+    height: fit-content;
+    overflow-y: auto;
+  }
+  .subtext{
+    color: #91979D;
+  }
+  .faq-list{
+    color: #234F80;
+  }
+  .question{
+    font-family: InterBold;
+    padding: 10px 0;
+  }
+  .active-tab{
+    border: 2px solid #234F80;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  }
+  mat-card{
+    border: 1px solid #D8D8D8;
+    box-shadow: none;
+  }
